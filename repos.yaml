@@ -1,0 +1,112 @@
+looker_repos:
+  official:
+    - name: "Looker Official Examples"
+      url: "https://github.com/looker/looker-sdk"
+      description: "Official Looker SDK and examples"
+    - name: "LookML Pattern Library"
+      url: "https://github.com/looker/lookml-pattern-library"
+      description: "Collection of LookML patterns and best practices"
+    - name: "Looker Visualization API Examples"
+      url: "https://github.com/looker/visualization-api-examples"
+      description: "Custom visualization examples"
+  community:
+    - name: "Lightweight LookML Generator"
+      url: "https://github.com/lightdash/dbt2looker"
+      description: "Generate LookML from dbt models"
+    - name: "Looker Extension Framework"
+      url: "https://github.com/looker-open-source/extension-framework"
+      description: "Framework for building Looker extensions"
+
+dbt_repos:
+  official:
+    - name: "dbt-core"
+      url: "https://github.com/dbt-labs/dbt-core"
+      description: "Core dbt product"
+    - name: "dbt-bigquery"
+      url: "https://github.com/dbt-labs/dbt-bigquery"
+      description: "BigQuery adapter for dbt"
+    - name: "dbt-examples"
+      url: "https://github.com/dbt-labs/dbt-examples"
+      description: "Example dbt projects and patterns"
+  community:
+    - name: "awesome-dbt"
+      url: "https://github.com/Hiflylabs/awesome-dbt"
+      description: "Curated list of dbt resources"
+    - name: "dbt-labs/docs.getdbt.com"
+      url: "https://github.com/dbt-labs/docs.getdbt.com"
+      description: "Official documentation and examples"
+
+omni_repos:
+  official:
+    - name: "Omni Public Examples"
+      url: "https://github.com/omni-co/public-examples"
+      description: "Official examples and templates"
+    - name: "Omni dbt Integration"
+      url: "https://github.com/omni-co/dbt-omni"
+      description: "dbt integration examples"
+
+bigquery_repos:
+  official:
+    - name: "BigQuery Utils"
+      url: "https://github.com/GoogleCloudPlatform/bigquery-utils"
+      description: "Useful BigQuery functions and procedures"
+    - name: "professional-services"
+      url: "https://github.com/GoogleCloudPlatform/professional-services/tree/main/examples/bigquery"
+      description: "BigQuery examples from Google Cloud Professional Services"
+  community:
+    - name: "awesome-bigquery"
+      url: "https://github.com/UnitedIncome/awesome-bigquery"
+      description: "Curated list of BigQuery resources"
+
+dataform_repos:
+  official:
+    - name: "dataform-examples"
+      url: "https://github.com/dataform-co/dataform-examples"
+      description: "Official Dataform examples"
+    - name: "dataform"
+      url: "https://github.com/dataform-co/dataform"
+      description: "Core Dataform repository"
+  community:
+    - name: "dataform-templates"
+      url: "https://github.com/GoogleCloudPlatform/professional-services/tree/main/examples/dataform"
+      description: "Templates and examples from Google Cloud Professional Services"
+
+cloud_storage_repos:
+  official:
+    - name: "google-cloud-storage-samples"
+      url: "https://github.com/googleapis/google-cloud-storage-samples"
+      description: "Official Cloud Storage samples"
+    - name: "python-storage"
+      url: "https://github.com/googleapis/python-storage"
+      description: "Python client for Google Cloud Storage"
+  examples:
+    - name: "storage-transfer-samples"
+      url: "https://github.com/GoogleCloudPlatform/storage-transfer-samples"
+      description: "Storage transfer service examples"      
+
+cloud_sql_repos:
+  official:
+    - name: "python-docs-samples"
+      url: "https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/cloud-sql"
+      description: "Official Cloud SQL Python samples"
+    - name: "cloud-sql-proxy"
+      url: "https://github.com/GoogleCloudPlatform/cloud-sql-proxy"
+      description: "Cloud SQL proxy for local development"
+  examples:
+    - name: "cloud-sql-samples"
+      url: "https://github.com/GoogleCloudPlatform/cloud-sql-samples"
+      description: "Various Cloud SQL implementation examples"      
+
+cloud_composer_repos:
+  official:
+    - name: "composer-samples"
+      url: "https://github.com/GoogleCloudPlatform/python-docs-samples/tree/main/composer"
+      description: "Official Cloud Composer examples"
+    - name: "cloud-composer-dag-examples"
+      url: "https://github.com/GoogleCloudPlatform/professional-services/tree/main/examples/cloud-composer"
+      description: "DAG examples from Professional Services"
+  community:
+    - name: "awesome-apache-airflow"
+      url: "https://github.com/jghoman/awesome-apache-airflow"
+      description: "Curated list of Airflow resources (Composer is based on Airflow)"
+

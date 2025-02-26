@@ -1,0 +1,129 @@
+# Vertex AI Agent Builder Configuration
+
+# Organization Information
+organization:
+  name: "wrench.chat"
+  id: "26556118309"
+
+# Google Cloud Project
+project:
+  id: "heuristicsai"
+  number: "976453210613"
+  billing_account: "looker_agen"
+  billing_id: "011B66-0BAC6F-8B619F"
+  region: "us-central1"  # Primary region for resources
+
+# Vertex AI Application
+vertex_ai:
+  app_name: "HeuristicAI"
+  app_id: "8285e0d0-24ae-43e9-8491-b0bd99befc87"
+  location: "global"
+  api_endpoint: "us-central1-aiplatform.googleapis.com"
+
+# Storage Configuration
+storage:
+  base_bucket: "heuristicsai-vertex-agents"
+  datastores:
+    - name: "looker-store"
+      display_name: "Looker Documentation Store"
+      bucket: "heuristicsai-looker-store"
+    - name: "bigquery-store"
+      display_name: "BigQuery Documentation Store"
+      bucket: "heuristicsai-bigquery-store"
+    - name: "dbt-store"
+      display_name: "DBT Documentation Store"
+      bucket: "heuristicsai-dbt-store"
+    - name: "gcp-store"
+      display_name: "GCP Architecture Documentation Store"
+      bucket: "heuristicsai-gcp-store"
+    - name: "omni-store"
+      display_name: "Omni Documentation Store"
+      bucket: "heuristicsai-omni-store"
+    - name: "lookerstudio-store"
+      display_name: "Looker Studio Documentation Store"
+      bucket: "heuristicsai-lookerstudio-store"
+
+# Agent Configuration
+agents:
+  - name: "looker-assistant"
+    display_name: "Looker Assistant"
+    datastore: "looker-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "bigquery-assistant"
+    display_name: "BigQuery Assistant"
+    datastore: "bigquery-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "dbt-assistant"
+    display_name: "DBT Assistant"
+    datastore: "dbt-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "gcp-assistant"
+    display_name: "GCP Architecture Assistant"
+    datastore: "gcp-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "omni-assistant"
+    display_name: "Omni Assistant"
+    datastore: "omni-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "lookerstudio-assistant"
+    display_name: "Looker Studio Assistant"
+    datastore: "lookerstudio-store"
+    tools:
+      - "code-interpreter"
+      - "openapi"
+  - name: "generative-assistant"
+    display_name: "Generative AI Router"
+    datastore: ""
+    tools:
+      - "code-interpreter"
+      - "openapi"
+
+# Integration Configuration
+integrations:
+  slack:
+    webhook_url: "[FILL_IN_SLACK_WEBHOOK_URL]"
+    channels:
+      default: "general-assistance"
+      specialized:
+        - name: "looker-support"
+          agents: ["looker-assistant", "lookerstudio-assistant"]
+        - name: "dbt-support"
+          agents: ["dbt-assistant"]
+        - name: "gcp-architecture"
+          agents: ["gcp-assistant"]
+        - name: "omni-support"
+          agents: ["omni-assistant"]
+        - name: "bigquery-support"
+          agents: ["bigquery-assistant"]
+
+# Repository Information
+repository:
+  url: "https://github.com/wrenchchatrepo/hbia2"
+  branch: "main"
+
+# Additional Configuration
+code_interpreter:
+  enabled: true
+  timeout_seconds: 300
+  max_memory_mb: 4096
+  allowed_packages:
+    - "pandas"
+    - "numpy"
+    - "matplotlib"
+    - "scikit-learn"
+    - "tensorflow"
+    - "pytorch"
+    - "looker_sdk"
+    - "google-cloud-bigquery"
+    - "dbt-core"
+    - "dbt-bigquery" 

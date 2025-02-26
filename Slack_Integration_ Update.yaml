@@ -1,0 +1,25 @@
+# Slack Integration Update
+```yaml
+slack_integration:
+  webhook_url: ${SLACK_WEBHOOK_URL}
+  channels:
+    default: general-assistance
+    specialized:
+      - name: looker-support
+        agents: [Looker Assistant, LookerStudio Assistant]
+      - name: dbt-support
+        agents: [DBT Assistant]
+      - name: gcp-architecture
+        agents: [GCP Architecture Assistant]
+      - name: omni-support
+        agents: [Omni Assistant]
+      - name: bigquery-support
+        agents: [BigQuery Assistant]
+  notifications:
+    - type: agent_handoff
+      template: "Transferring to ${agent_name} for specialized assistance"
+    - type: error
+      template: "Error in processing: ${error_message}"
+    - type: completion
+      template: "Task completed: ${summary}"
+```

@@ -1,0 +1,240 @@
+## Vertex Agent Builder
+
+### Slack Webhook:
+{url}
+
+### Tools:
+
+#### OpenAPI:
+**Description:**
+The OpenAPI tool allows for interaction with external APIs, enabling users to query and retrieve data from various external services. It is designed to handle API requests, process external data queries, and serve as a fallback for general-purpose tasks that don't fall under the scope of Looker or BigQuery-specific operations.
+
+The OpenAPI integration ensures smooth external data interactions and is capable of making requests to other services as needed. This OpenAPI specification is used to interact with **Gemini 2.0 Flash Experimental** within the Looker and BigQuery ecosystem. It enables querying external services, processing data, and handling general-purpose tasks outside the scope of Looker or BigQuery-specific operations. The **Gemini 2.0 API integration** allows for advanced AI-driven interactions, such as natural language processing, code generation, and data insights, with improved performance and capabilities over previous versions.
+
+### OpenAPI Specification:
+```yaml
+openapi: 3.0.0
+info:
+  title: Gemini 2.0 API
+  version: 1.0.0
+  description: >
+    This OpenAPI specification is used to interact with Gemini 2.0. It enables querying the latest Gemini model for tasks such as natural language processing, code generation, and data insights.
+servers:
+  - url: 'https://generativelanguage.googleapis.com/v1beta'
+paths:
+  /models/{model}:generateContent:
+    post:
+      summary: Perform an AI task using Gemini 2.0
+      operationId: generateContent
+      parameters:
+        - in: path
+          name: model
+          required: true
+          description: The name of the Gemini model to use
+          schema:
+            type: string
+            default: gemini-2.0-flash-exp
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateContentRequest'
+      responses:
+        '200':
+          description: AI task completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateContentResponse'
+        '400':
+          description: Bad request, invalid parameters provided
+        '429':
+          description: Rate limit exceeded for the API
+components:
+  schemas:
+    GenerateContentRequest:
+      type: object
+      properties:
+        contents:
+          type: array
+          description: An array of content parts for the model to process.
+          items:
+            type: object
+            properties:
+              parts:
+                type: array
+                description: An array of content parts within a content item.
+                items:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      description: The input text for the Gemini model.
+        generationConfig:
+          type: object
+          properties:
+            temperature:
+              type: number
+              description: Controls randomness in the response
+              default: 0.7
+            topK:
+              type: integer
+              description: The number of highest probability tokens to consider
+              default: 40
+            topP:
+              type: number
+              description: The cumulative probability cutoff for token selection
+              default: 0.95
+            maxOutputTokens:
+              type: integer
+              description: Maximum number of tokens to generate
+              default: 2048
+      required:
+        - contents
+    GenerateContentResponse:
+      type: object
+      properties:
+        candidates:
+          type: array
+          description: An array of possible responses from the model.
+          items:
+            type: object
+            properties:
+              content:
+                type: object
+                properties:
+                  parts:
+                    type: array
+                    description: The parts of the generated content.
+                    items:
+                      type: object
+                      properties:
+                        text:
+                          type: string
+                          description: The generated text.
+        promptFeedback:
+          type: object
+          description: Feedback about the prompt processing
+        usageMetadata:
+          type: object
+          description: Metadata about the API usage
+          properties:
+            promptTokenCount:
+              type: integer
+              description: The number of tokens in the prompt.
+            candidatesTokenCount:
+              type: integer
+              description: The number of tokens in the generated candidates.
+            totalTokenCount:
+              type: integer
+              description: The total number of tokens used.
+```
+
+### Authentication:
+- **Authentication type:**
+  - Service agent token
+  - ID token
+
+### Integration:
+- **Slack**
+  - Access token
+  - Signing token
+  - Environment
+  - Webhook URL
+
+- **Conversational Messenger**
+  ```html
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <df-messenger
+    oauth-client-id="INSERT_OAUTH_CLIENT_ID"
+    access-token-name="INSERT_ACCESS_TOKEN_NAME"
+    location="us-central1"
+    project-id="miguelai"
+    agent-id="d27f2462-5527-4091-9362-8b8455f9a753"
+    language-code="en"
+    max-query-length="-1"
+    allow-feedback="all">
+    <df-messenger-chat-bubble chat-title="Agent_Looker"></df-messenger-chat-bubble>
+  </df-messenger>
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Google Sans;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+      bottom: 16px;
+      right: 16px;
+    }
+  </style>
+  ```
+  
+playbooks:
+  - name: Default Generative Agent
+    goal: Handle general queries outside the scope of Looker or BigQuery-specific tasks.
+    instructions:
+      - Paraphrase the user's request to confirm intent.
+      - Example: "It sounds like you're asking for a general API call or code execution."
+      - Check if the query is Looker-specific, BigQuery-specific, or general.
+      - Looker-related keywords: ["Looker", "LookML", "data model", "dashboard"]
+      - BigQuery-related keywords: ["SQL error", "slow query", "data warehouse", "BigQuery", "database"]
+      - General: API calls, code execution, etc.
+      - If Looker-specific, hand off to "${AGENT:Looker Assistant}".
+      - If BigQuery-specific, hand off to "${AGENT:BigQuery Assistant}".
+      - For general queries, process using "${TOOL:OpenAPI}" with Gemini 2.0 Flash Experimental or "${TOOL:code-interpreter}".
+      - Provide the result and ask if further assistance is required.
+      - Close the session deterministically after user confirmation.
+    available_tools:
+      - OpenAPI
+      - code-interpreter
+
+  - name: Looker Studio Assistant
+    goal: Address Looker Studio-related queries such as report creation, dashboard integration, and visualization.
+    instructions:
+      - Confirm the Looker Studio-related intent.
+      - Example: "It seems you're asking about Looker Studio dashboard creation."
+      - Use Looker Studio-specific keywords: ["dashboard", "report", "integration"]
+      - If the query relates to Looker or BigQuery, pass it to the respective agent.
+      - Process requests using "${TOOL:Looker_Studio_Pro_Data_Store}" with Default model selection.
+      - For advanced visualization recommendations, enhance with "${TOOL:OpenAPI}" using Gemini 2.0.
+      - Provide results and confirm if further assistance is needed.
+      - Close the session after user confirmation.
+    available_tools:
+      - Looker_Studio_Pro_Data_Store
+      - OpenAPI
+      - code-interpreter
+
+  - name: BigQuery Assistant
+    goal: Assist with troubleshooting SQL queries, optimizing query performance, and providing SQL best practices using BigQuery Data Store.
+    instructions:
+      - Confirm the BigQuery-related intent by paraphrasing.
+      - Example: "It sounds like you're asking about a BigQuery SQL error."
+      - Use BigQuery-specific keywords: ["SQL error", "dataset", "query performance"]
+      - Process the request using "${TOOL:BigQuery Data Store}" with Default model selection.
+      - For advanced optimizations, enhance with "${TOOL:OpenAPI}" using Gemini 2.0.
+      - Provide the result and ask if further assistance is required.
+      - If further assistance is required, handle the additional task and repeat steps as needed.
+      - Close the session deterministically.
+    available_tools:
+      - BigQuery Data_Store
+      - OpenAPI
+      - code-interpreter
+
+  - name: Looker Assistant
+    goal: Assist with all issues or questions related to Looker, LookML, or the Looker ecosystem.
+    instructions:
+      - Paraphrase the user’s request to confirm intent.
+      - Example: "It sounds like you're asking for help with LookML or a Looker dashboard issue."
+      - Identify the query as LookML-related or Looker-specific using relevant keywords.
+      - Process the request using "${TOOL:Looker Data Store}".
+      - Provide the result and ask if further assistance is required.
+      - If further assistance is required, handle the additional task and repeat steps as needed.
+      - Close the session deterministically.
+    available_tools:
+      - Looker Data_Store
+      - OpenAPI
+      - code-interpreter
