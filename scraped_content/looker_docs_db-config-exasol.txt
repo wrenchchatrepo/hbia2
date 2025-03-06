@@ -1,0 +1,145 @@
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+The Exasol JDBC drivers support encrypted connections. If you're interested, see [Exasol's documentation](https://docs.exasol.com/connect_exasol/drivers/jdbc.htm).
+
+## Create a Looker user
+
+First, create a designated Looker user and give it the ability to create sessions:
+    
+    
+    CREATE USER LOOKER IDENTIFIED BY "<password>";
+    GRANT CREATE SESSION TO LOOKER;
+    
+
+**Note:** Put the password in double quotes. Otherwise, it will be stored as case-insensitive; _ChangeIt_ will be stored as _CHANGEIT_.
+
+Give the Looker user the appropriate `SELECT` permissions for the schema or tables that you plan to access from Looker:
+    
+    
+    GRANT SELECT ON <tables that will be used by LOOKER>;
+    
+
+Alternatively, you can grant all privileges:
+    
+    
+    GRANT ALL PRIVILEGES ON SCHEMA <YOUR_SCHEMA> TO LOOKER;
+    
+
+Alternatively, if you do not want to have to re-run `GRANT` statements on newly created tables in the future:
+    
+    
+    GRANT SELECT ANY TABLE TO LOOKER;
+    
+
+## Persistent derived tables
+
+If you want to enable [PDTs](https://docs.looker.com/data-modeling/learning-lookml/derived-tables#adding_persistence) for your Looker connection to Exasol, run this command:
+    
+    
+    CREATE SCHEMA LOOKER_SCRATCH;
+    ALTER SCHEMA LOOKER_SCRATCH CHANGE OWNER LOOKER;
+    
+
+Alternatively, you can grant all privileges:
+    
+    
+    GRANT ALL PRIVILEGES ON SCHEMA LOOKER_SCRATCH TO LOOKER;
+    
+
+## Enable symmetric aggregates
+
+To allow Exasol to take advantage of [symmetric aggregates](/looker/docs/best-practices/understanding-symmetric-aggregates), create the `hexstring2dec` function:
+    
+    
+    OPEN SCHEMA <YOUR_SCHEMA>;
+    
+    create or replace function hexstring2dec(hexstring in varchar(32)) return decimal(36,0)
+    is
+        pos smallint;
+        current_hexstring char(1);
+        current_hexstring_dec smallint;
+        hexstring_length smallint;
+        res decimal(36,0);
+    begin
+        if hexstring is null then
+            return null;
+        end if;
+        hexstring_length := length(hexstring);
+        res := 0;
+        pos := 1;
+        while  pos <= hexstring_length
+        do
+            current_hexstring := substr(hexstring,pos,1);
+            if current_hexstring in ('A','B','C','D','E','F') then
+                current_hexstring_dec := ascii(current_hexstring) - ascii('A') + 10;
+            else
+                current_hexstring_dec := to_number(current_hexstring);
+            end if;
+            res := (res * 16) + current_hexstring_dec;
+            pos := pos + 1;
+        end while;
+        return res;
+    end hexstring2dec;
+    /
+    
+    GRANT EXECUTE ON FUNCTION hexstring2dec;
+    
+
+## Creating the Looker connection to your database
+
+Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. Select **Exasol** from the **Dialect** drop-down menu.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+Exasol supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | No  
+SSL | Yes  
+Subtotals | No  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | No  
+SQL Runner Show Processes | No  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | No  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | No  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | No  
+Materialized Views | No  
+Approximate Count Distinct | No

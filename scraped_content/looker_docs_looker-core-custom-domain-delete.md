@@ -1,0 +1,12 @@
+# https://cloud.google.com/looker/docs/looker-core-custom-domain-delete
+
+Depth: 3
+
+Follow these steps to delete the custom domain of your Looker (Google Cloud core) instance:
+
+  1. On the **Instances** page, click the name of the instance for which you would like to remove the custom domain.
+  2. Select the **CUSTOM DOMAIN** tab.
+  3. Select the **Delete** trash icon next in the domain mapping.
+  4. In the deletion dialog, type "delete" into the text field and select **CONFIRM**.
+
+Once the domain mapping is deleted, you will be directed to the **Instances** page in the Google Cloud console. The **Instance URL** on the page will revert the default domain that was assigned when the Looker (Google Cloud core) instance was created.

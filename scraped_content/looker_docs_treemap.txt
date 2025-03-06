@@ -1,0 +1,51 @@
+**Note:** Starting in Looker 24.10, the Chart Config Editor supports the creation of treemap charts.
+
+A treemap chart displays categorical and hierarchical data as a set of rectangles, where the size of each rectangle is determined by a numeric measure.
+
+Using the [Chart Config Editor](/looker/docs/chart-config-editor), you can create treemap charts by starting from a [column chart](/looker/docs/column-options) in Looker. For best results, use a pivoted dimension, an unpivoted dimension, and a measure to create a treemap chart.
+
+For example, you can create a treemap chart that shows the **Order Item Count** over several different **Category** values, pivoted by **Seasonal Collection**. Each season is represented by a color-coded rectangle, which contains smaller rectangles that represent the category. The size of each rectangle corresponds to the **Order Item Count** .
+
+![](/static/looker/docs/images/treemap-2410.png)
+
+## Prerequisites
+
+To access the Chart Config Editor, you must have the [`can_override_vis_config` permission](/looker/docs/admin-panel-users-roles#can_override_vis_config).
+
+### Writing the JSON snippet
+
+To create a treemap chart, start from the following JSON snippet:
+    
+    
+    {
+      chart: {
+        type: 'treemap',
+      }
+    }
+    
+
+### Creating a treemap chart
+
+To create a treemap chart, follow these steps:
+
+  1. View a [column chart](/looker/docs/column-options) in an Explore, or edit a column chart in a Look or dashboard.
+
+For this example, we recommend starting from a column chart with two dimensions and one measure. One dimension should be pivoted. The pivoted values define the top level categories used to render the treemap. Your starting chart might look something like this example:
+
+![Sample column chart with Category Name on the x-axis and Order Items grouped by Seasonal Collection on the y-axis](/static/looker/docs/images/treemap-base-2410.png)
+
+  2. Open the **Edit** menu in the visualization.
+
+  3. In the **Plot** tab, click the **Edit Chart Config** button. Looker displays the **Edit Chart Config** dialog.
+
+  4. Select the **Chart Config (Override)** section, and enter the HighCharts JSON from the Writing the JSON snippet section of this page.
+
+  5. To let Looker properly format your JSON, click **< > (Format code)**.
+
+  6. To test your changes, click **Preview**.
+
+  7. To apply your changes, click **Apply**. The visualization will be displayed using the custom JSON values.
+
+![](/static/looker/docs/images/treemap-editor-2410.png)
+
+Once you've customized your visualization, you can save it.

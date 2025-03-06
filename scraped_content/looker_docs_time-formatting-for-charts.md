@@ -1,0 +1,39 @@
+# https://cloud.google.com/looker/docs/time-formatting-for-charts
+
+Depth: 3
+
+**Note:** This page is part of the [Retrieve and chart data](/looker/docs/retrieve-and-chart-data) learning series.
+
+You can format time values in Looker charts using the following syntax. You can also string these elements together to create formats of your choosing.
+
+Format Type | Description | Use This Expression  
+---|---|---  
+**Time**  
+Time | Milliseconds as a decimal number, i.e. 000 to 999 | `%L`  
+Time | Second as a two-digit number, i.e. 00 to 59 | `%S`  
+Time | Minute as a two-digit number, i.e. 00 to 59 | `%M`  
+Time | Hour as a decimal number (24-hour clock), i.e. 00 to 23 | `%H`  
+Time | Hour as a decimal number (12-hour clock), i.e. 01 to 12 | `%I`  
+Time | Either AM or PM | `%p`  
+**Date**  
+Date | Day of the year as a decimal number, i.e. 001 to 366 | `%j`  
+Date | Zero-padded day of the month, i.e. 01 to 31 | `%d`  
+Date | Space-padded day of the month (equivalent to `%_d`), i.e. 1 to 31 | `%e`  
+Date | Full weekday name, i.e. Monday, Tuesday, Wednesday | `%A`  
+Date | Abbreviated weekday name (3-letter), i.e. Mon, Tue, Wed | `%a`  
+Date | Weekday as a decimal number (Sunday as the first day of the week), i.e. 0 to 6 | `%w`  
+**Week**  
+Week | Week number of the year (Sunday as the first day of the week) as a two-digit number, i.e. 00 to 53 **Note** : `%U` uses the [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date) standard offset by one day.  | `%U`  
+Week | Week number of the year (Monday as the first day of the week) as a two-digit number, i.e. 00 to 53 **Note** : `%W` uses the [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date) standard.  | `%W`  
+**Month**  
+Month | Two-digit month, i.e. 01 through 12 (1-12 format not currently available) | `%m`  
+Month | Abbreviated month name, i.e. Jan, Feb, Mar  | `%b`  
+Month | Full month name, i.e. January, February, March  | `%B`  
+Year  
+Year | Two-digit year, i.e. 00 to 99 | `%y`  
+Year | Four-digit year, i.e. 2000, 2001, 2002 | `%Y`  
+**Combination**  
+Combination | Full time, of the form "%H:%M:%S", i.e. 23:56:12 | `%X`  
+Combination | Full date, of the form "%m/%d/%Y", i.e. 01/27/2014 | `%x`  
+Combination | Datetime format with the following: "%a %b %e %H:%M:%S %Y", i.e. Mon Jan 1 23:56:04 2014 | `%c`  
+**Note:** Quarter time formatting is not supported. Consider including a quarter timeframe in your date [dimension_group](/looker/docs/reference/param-field-dimension-group) and selecting that quarter timeframe in the visualization to display and filter data by quarters.

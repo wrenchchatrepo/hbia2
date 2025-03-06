@@ -1,0 +1,8 @@
+# https://cloud.google.com/looker/docs/exploring-data
+
+Depth: 3
+
+The content on this page has moved to the following pages:  
+  
+  * [Creating and editing Explores](/looker/docs/creating-and-editing-explores) — Learn to build queries and display results, and discover insights in Looker.
+  * [Viewing and interacting with Explores](/looker/docs/viewing-and-interacting-with-explores) — Learn how to view and discover insights in Explore queries.

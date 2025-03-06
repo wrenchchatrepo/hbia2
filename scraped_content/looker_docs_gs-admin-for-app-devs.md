@@ -1,0 +1,56 @@
+# https://cloud.google.com/looker/docs/gs-admin-for-app-devs
+
+Depth: 3
+
+To create a signed embed URL, you are required to identify the models and permissions that are available to each embed user and, optionally, supply user attribute data for embed users. This document provides a quick overview of what these elements are in Looker.
+
+## Models
+
+[Models](/looker/docs/lookml-project-files#model_files) determine which data your embed users can access.
+
+Each LookML model consists of a single database connection, and one or more Explores. Each Explore determines which database tables and fields are available to the model, how they are joined, and how they are presented to the user. It is common for multiple models to connect to a single database, which determines which data different sets of users can access. For example, users in the Sales department might need access to different data than users in the Purchasing department. In that case, you could provide two models, each one curated for a single use case.
+
+In a signed embed URL, or when using the `create_sso_embed_url` API endpoint, you specify which models an embed user can access by listing them by name. For example:
+    
+    
+    [
+      "model_one",
+      "model_two"
+    ]
+    
+
+At least one model value is required in a signed embed URL.
+
+## Permissions
+
+Permissions determine what your embed users can do in Looker.
+
+Every function in Looker requires permission to perform. For example, a user who does not have the `access_data` permission will not be able to view any data. A user who has the `access_data` permission, but not the `save_content` permission, will be able to view content but will not be able to make and save changes to content.
+
+In a signed embed URL, or when using the `create_sso_embed_url` API endpoint, you specify which permissions an embed user has by listing them by name. For example:
+    
+    
+    [
+      "access_data",
+      "see_looks"
+    ]
+    
+
+At least one permission is required in a signed embed URL. You can view the list of permissions that are supported by signed embed on the [Signed embedding](/looker/docs/single-sign-on-embedding#permissions) documentation page.
+
+## User attributes
+
+[User attributes](/looker/docs/admin-panel-users-user-attributes) are a method to provide metadata about your embed users. They consist of name and value pairs.
+
+Every user in Looker has several default user attributes, such as `first_name`, `last_name`, and `locale`. Looker admins can also create custom user attributes in various data types. For example, you may have an application where the data presented to the embed user varies based on the company they are associated with. In that case, you might create a custom `company` user attribute that accepts various values that grant or limit data access. You'd next assign the appropriate value to each embed user to limit data access at the user level.
+
+In a signed embed URL, or when using the `create_sso_embed_url` API endpoint, you specify which user attributes are assigned to an embed user by listing each name and value pair. For example:
+    
+    
+    {
+      "vendor_id" : "17",
+      "company" : "altostrat.com"
+    }
+    
+
+User attributes are optional in a signed embed URL.

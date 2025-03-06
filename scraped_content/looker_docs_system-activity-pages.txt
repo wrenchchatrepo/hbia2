@@ -1,0 +1,21 @@
+System Activity is an internal [LookML model](/looker/docs/model-and-view-files#model_files) that connects to Looker's underlying application database. System Activity [Explores](/looker/docs/usage-reports-with-system-activity-explores) and [dashboards](/looker/docs/system-activity-dashboards) that are built upon this model show information about your Looker instance, including all Looks and dashboards that are saved on your instance, along with user information, historical query information, and instance performance statistics. Both the granularity and retention of System Activity data are subject to system constraints. System Activity is designed for collecting high-volume data, and aggregating it can be used to supplement your business logs.
+
+> This data can be useful for supplementing monitoring and auditing activities, but is not intended to replace your current compliance strategy.
+> 
+> The text in filters run by users is accessible in System Activity and can be viewed by any user who has permission to view the System Activity model. _For customers using`i__looker`:_ The `i__looker` model contains accessible SQL text in addition to filter text.
+> 
+> **Take action** : Modify who has view access to the System Activity and `i__looker` models. Looker admins have access to both `i__looker` and System Activity by default. Non-admin users can be granted access to System Activity and `i__looker` if they are given the `see_system_activity` permission.
+
+System Activity includes the following elements:
+
+  * [System Activity dashboards](/looker/docs/system-activity-dashboards): Looker-created dashboards showing usage and performance information about the Looker instance. You can [download](/looker/docs/viewing-legacy-dashboards#downloading_your_dashboard), [schedule](/looker/docs/viewing-legacy-dashboards#scheduling_dashboard_data_delivery), [set alerts on](/looker/docs/alerts-overview), and [drill into](/looker/docs/viewing-and-interacting-with-explores#drilling_down_into_the_data) metrics and elements just like on any other dashboard. Data in the System Activity dashboards is updated and cached every 12 hours.
+
+  * [System Activity Explores](/looker/docs/usage-reports-with-system-activity-explores): Using System Activity Explores, you can create your own Looks and dashboards to monitor and analyze your Looker instance. See the [System Activity Explores](/looker/docs/usage-reports-with-system-activity-explores#system_activity_explores) page for a list of Explores and their cache rules.
+
+  * [Elite System Activity](/looker/docs/elite-system-activity): An optional analytical store that increases System Activity performance and storage limits. Elite System Activity is a paid feature on Looker (original), and is a standard feature on the [**Enterprise** and **Embed** editions](/looker/docs/looker-core-feature-differences) of Looker (Google Cloud core).
+
+  * [Read replica option](/looker/docs/system-activity-read-replica-db): For customer-hosted instances only, this method increases System Activity performance and provides longer System Activity data retention.
+
+  * [i__looker](/looker/docs/creating-usage-and-metadata-reports-with-i__looker): `i__looker` is Looker's legacy set of Explores for internal analytic data.
+
+  * [Understanding PDT log actions](/looker/docs/pdt-log-actions): Use the **PDT Event Log** Explore to view and understand PDT log actions and their corresponding action data.

@@ -1,0 +1,50 @@
+# https://cloud.google.com/looker/docs/looker-studio-connector
+
+Depth: 3
+
+The Looker connector in Looker Studio allows you to access data from Looker Explores within Looker Studio by adding an Explore as a [data source](https://support.google.com/looker-studio/answer/6268208) in a Looker Studio report.
+
+You can read about using the connector in Looker Studio in the [Connect to Looker](https://support.google.com/looker-studio/answer/12388266) article in the Looker Studio help center.
+
+See the [Looker and Looker Studio shared terms and concepts](/looker/docs/looker-and-studio-shared-terms-glossary) documentation page for more information about the nuances between similar terms and concepts in Looker and Looker Studio.
+
+## Enabling and using the connector
+
+Your Looker instance must meet the following prerequisites before you can enable the connector:
+
+  * Your Looker instance must be [Looker-hosted](/looker/docs/looker-hosted-installation-steps).
+  * Your Looker instance must be running Looker 22.16 or later. Instances earlier than Looker 23.4 must be hosted in the Google Cloud. As of Looker 23.6, [Looker (Google Cloud core)](/looker/docs/looker-core-overview) is supported for the connector.
+  * If your Looker instance has the [**Enable Allowlist**](/looker/docs/admin-panel-server-ip-allowlist) switch enabled, you will need to allowlist the IP addresses that are used by Looker Studio — contact [Support](https://cloud.google.com/contact) to provide the full list of IP addresses.
+
+Before the connector can be used, the following prerequisites must be met:
+
+  * In Looker (original), your Looker admin must enable either the **All Looker BI Connectors** or the **Looker Studio** options on the [BI Connectors panel](/looker/docs/bi-connectors) in the **Platform** section of Looker's **Admin** menu. In Looker (Google Cloud core) instances, these options are enabled by default.
+  * Each user who wants to connect a Looker Explore as a Looker Studio data source must have at least [`explore`](/looker/docs/admin-panel-users-roles#explore) permissions for at least one model on the Looker instance.
+  * Looker Studio users must have [`access_data`](/looker/docs/admin-panel-users-roles#access_data) and [`clear_cache_refresh`](/looker/docs/admin-panel-users-roles#clear_cache_refresh) Looker permissions to view Looker data in a Looker Studio report that is created from a Looker Explore data source.
+
+## Disabling the connector
+
+A Looker admin can disable the **Looker Studio** connector toggle on the [BI Connectors panel](/looker/docs/bi-connectors) in the **Platform** section of Looker's **Admin** menu.
+
+## Connecting to Looker Studio from Looker
+
+You can open an Explore in a Looker Studio report by selecting the **Open in Looker Studio** option in the [**Explore actions** menu](/looker/docs/viewing-and-interacting-with-explores#the_explore_actions_gear_menu). This menu option is available only for the Google-based [database dialects](/looker/docs/dialects) that are [supported by Looker Studio](https://support.google.com/looker-studio/topic/9281288).
+
+## Connecting to Looker from Looker Studio
+
+See the [Connect to Looker](https://support.google.com/looker-studio/answer/12388266) article in the Looker Studio help center for information about using the Looker connector to add a Looker Explore as a data source in a Looker Studio report.
+
+## Monitoring the Looker connector for Looker Studio
+
+A Looker admin can view Looker Studio usage using the **Query API Client Properties** group of fields in the [System Activity History Explore](/looker/docs/usage-reports-with-system-activity-explores#history). An entry is created in the **History** Explore every time a new query is run.
+
+In the **Query API Client Properties** dimension group under the **History** view, these are the fields relevant to Looker Studio:
+
+  * **API Client Name** — This field will always show `Looker Studio` to identify Looker Studio entries.
+  * **Looker Studio Dashboard ID** — This field shows the ID of the Looker Studio report that issued the query.
+  * **Looker Studio Datasource ID** — This field shows the ID of the data source in Looker Studio that is being queried.
+
+Following is an example of a System Activity URL that shows Looker Studio usage. Replace `<instance_name.looker.com>` with your instance URL.
+    
+    
+    https://<instance_name.looker.com>/explore/system__activity/history?fields=query_api_client_context.name,query_api_client_context.ls_dashboard_id,query_api_client_context.ls_datasource_id,user.name,history.created_date,history.created_time_of_day&f[query_api_client_context.name]=looker%20studio&sorts=history.created_time_of_day+desc&limit=5000

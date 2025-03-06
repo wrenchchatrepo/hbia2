@@ -1,0 +1,82 @@
+# https://cloud.google.com/looker/docs/db-config-datavirtuality
+
+Depth: 3
+
+To use Looker with DataVirtuality, you will need to configure a DataVirtuality driver. These instructions describe that process, assuming use of a startup script similar to the examples provided on the [looker-open-source GitHub page](https://github.com/looker-open-source/customer-scripts/tree/master/startup_scripts).  
+  
+You will need to acquire a DataVirtuality driver JAR, include it as part of the startup process, and add an option to tell Looker to access it.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+## Installing the DataVirtuality JDBC driver
+
+Follow the steps on the [Unpackaged JDBC drivers](/looker/docs/unpackaged-jdbc-drivers) documentation page using the following values:
+
+**driver symbol** : `datavirtuality`
+
+**driver entry** :
+    
+    
+    - name: datavirtuality
+      dir_name: datavirtuality
+      module_path: com.datavirtuality.dv.jdbc.Driver
+    
+
+## Creating the Looker connection to your database
+
+Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. Select **DataVirtuality** from the **Dialect** drop-down menu.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+DataVirtuality supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | No  
+Persistent Native Derived Tables | No  
+Stable Views | No  
+Query Killing | Yes  
+SQL-based Pivots | No  
+Timezones | No  
+SSL | Yes  
+Subtotals | No  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | No  
+Percentile | No  
+Distinct Percentile | No  
+SQL Runner Show Processes | No  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | No  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | No  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | No  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No

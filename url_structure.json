@@ -1,0 +1,2206 @@
+{
+  "url": "https://cloud.google.com/looker/docs/",
+  "depth": 0,
+  "children": [
+    {
+      "url": "https://cloud.google.com/looker/docs/",
+      "depth": 0,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/intro",
+      "depth": 2,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/home",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/lookml-quick-reference",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/available-apis",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/release-notes",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/studio",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-releases",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/find-and-organize-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/send-and-share-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/retrieve-and-chart-data",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/dashboards-and-looks-intro",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/data-modeling",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/write-lookml-intro",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/use-embedding-and-api",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/set-up-and-administer-looker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/build-skills-with-courses",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-menu",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-account",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-history",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-schedules",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-alerts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/user-sessions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/keyboard-shortcuts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/glossary",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-and-studio-shared-terms-glossary",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/error-catalog",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/finding-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/viewing-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/viewing-looks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/filter-expressions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/organizing-spaces",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/presenting-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-spaces",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sharing-data",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/downloading",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/publishing-looks-with-public-urls",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sharing-urls",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/scheduling",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/scheduling-and-sending-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/scheduling-slack",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/action-hub",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/configuring-deliveries",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/delivering-looks-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/alerts-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/alerts-for-admins",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/exploring-data",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-and-editing-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/viewing-and-interacting-with-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/filtering-and-limiting",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/merged-results",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/functions-and-operators",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/custom-formatting",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/connected-sheets",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-studio-connector",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-interface",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/tableau-connector",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/powerbi-connector",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/thoughtspot-connector",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/table-calculations",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/custom-fields",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-looker-expressions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/abs",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/exp",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/ln",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/power",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/rand",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/pivot_index",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/pivot_where",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/matches-filter",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-visualizations",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/visualization-guide",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/visualization-types",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/column-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/bar-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/scatter-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/line-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/area-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/boxplot-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/waterfall-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/pie-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/donut-multiples-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/funnel-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/timeline-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/single-value-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/single-record-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/table-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/legacy-table-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/word-cloud-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/google-map-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/map-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/map-regions-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/map-points-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/color-collections",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/time-formatting-for-charts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/chart-config-editor",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/bullet-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/solid-gauge",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/streamgraph",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/treemap",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sankey",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/dependency-wheel",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/venn",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sunburst",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/item",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/saving-and-editing-looks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/types-of-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-user-defined-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/editing-user-defined-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/using-markdown-in-text-tiles",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/filters-user-defined-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/cross-filtering-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/lookml-dashboard-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/building-lookml-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-element",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-column-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-bar-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-scatter-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-line-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-area-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-pie-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-donut-multiples-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-funnel-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-timeline-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-waterfall-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-text-tile",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-button",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-single-value-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-singe-record-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-table-chart-legacy",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-table-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-google-maps",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-map",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-coordinate-map",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-choropleth-map",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-boxplot-chart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/param-lookml-dashboard-reference-line",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/converting-lookml-to-user-defined-dashboard",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/overview-gemini",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-admin-gemini",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-gil",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/studio/enable-and-disable-gemini-in-looker-for-looker-studio",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/custom-looker-visualization-gemini",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/write-lookml-gemini",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/enabling-studio-in-looker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/studio-in-looker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/move-share-copy-reports",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/studio-in-looker-feature-availability",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/troubleshooting-studio-in-looker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/how-looker-generates-sql",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-runner-basics",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-runner-create-queries-and-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-runner-create-derived-tables",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-runner-manage-db",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/what-is-lookml",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-terms-and-concepts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/dev-mode-prod-mode",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/accessing-project-files",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-project-files",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-experts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-experts-view",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-experts-joins",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-experts-derived-tables",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/generating-a-model",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/create-projects",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/manage-projects",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-ide",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/ide-folders",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/object-browser",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-metadata",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/setting-up-git-connection",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/git-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/version-control-and-deploying-changes",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/advanced-deploy-mode",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/webhook-deploy-secret",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/git-command-reference",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-project-files",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-validation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/sql-and-referring-to-lookml",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/working-with-joins",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/additional-lookml-basics",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/changing-explore-menu-and-field-picker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/formatting-data-values",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-required-filters-with-lookml",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/changing-filter-suggestions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/templated-filters",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/liquid-variable-reference",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/derived-tables",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-ndts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/incremental-pdts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reusing-code-with-extends",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-refinements",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/importing-projects",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/blocks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/caching-and-datagroups",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/aggregate_awareness",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/content-validation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/model-localization",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/performance-documentation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-optimize-looker-performance",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/query-tracker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/considerations-when-building-performant-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-optimize-looker-server-performance",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-connection-pooling",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/system-activity-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/query-performance-metrics",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-customize-blocks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-develop-custom-blocks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-develop-visualization",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/using-looker-data-dictionary",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-diagram-configuring",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/lookml-diagram-using",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/looker-api/latest",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-4-ga",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-3x-deprecation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-update-query-slug",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-getting-started",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-auth",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-explorer",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/next-steps-after-mastering-the-interactive-api-docs",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-cors",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-versioning",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-troubleshooting",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-sdk-support-policy",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/api-sdk",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embed-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embed-getting-started",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/gs-private-embedding",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embed-enable",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/getting-started-embed-themes",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/gs-admin-for-app-devs",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/security-best-practices-embedded-analytics",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/viewing-embedded-items",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/private-embedding",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/signed-embedding",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/get-signed-embed-url",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/cookieless-embed",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embedded-javascript-events",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/signed-embedding-time-zone-reference",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/themes-for-embedded-dashboards-and-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embed-sdk-intro",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/embed-sdk-demo",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/implementing-row-level-segmentation-in-embeds",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-troubleshoot-signed-embed-authentication-errors",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-troubleshoot-signed-embed-404s-permissions-content-access",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/extension-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/intro-to-extension-framework",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/extension-intro-to-building",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/extension-framework-react-and-js-code-examples",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/extension-framework-building-tile-extensions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/setting-permissions-for-extensions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/actions-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-use-the-google-drive-integration",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/how-to-use-the-google-sheets-integration",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/action-hub-oauth-actions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/best-practices/bigquery-writeback-actions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/components",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/components-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/components-filter",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-develop",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/marketplace-submit-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/choosing-hosting-option",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-hosted-installation-steps",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/customer-hosted-installation-steps",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/managing-customer-hosted-deployment",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/getting-started-with-users",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-original-locations",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-cicd",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-cicd-installation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-cicd-usage",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/enabling-secure-db-access",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/dialects",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/connecting-to-your-db",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/testing-db-connectivity",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-actian-avalanche-and-vector",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-postgresql",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-amazon-athena",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-amazon-aurora-mysql",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-mysql-on-amazon-rds",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-amazon-redshift",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-apache-druid",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-apache-hive",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-apache-spark",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-clickhouse",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-cloudera-impala",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-databricks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-datavirtuality",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-denodo",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-dremio",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-exasol",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-firebolt",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-google-bigquery",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-google-cloud-sql",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-cloud-spanner",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-greenplum",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-mysql-mariadb-singlestore",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-microsoft-azure-synapse-analytics",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-microsoft-azure-sql-database",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-microsoft-sql-server",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-mongodb",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-oracle",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-oracle-autonomous-data-warehouse",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-prestodb-and-trino",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-sap-hana",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-snowflake",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-teradata",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/db-config-vertica",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/access-control-and-permission-management",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/access-levels",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/creating-connections",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/system-activity-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/usage-reports-with-system-activity-explores",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/making-announcements-to-your-users",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/managing-business-user-features",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/deleting-personal-user-information",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/using-time-zone-settings",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/supported-user-interface-languages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/localizing-number-formatting",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-settings",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-labs",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/legacy-feature-schedule",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-homepage",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/privatelabel",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-internal-help",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-support-access",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-general-localization",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-export",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-users",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-groups",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-roles",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-content-access",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-user-attributes",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-custom-welcome-email",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-users-login-lockouts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-database-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-database-connections",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-database-queries",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-database-pdts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-database-datagroups",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-alerts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-alert-history",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-schedule",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-schedule-history",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-alerts-and-schedules-scheduled-emails",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-actions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-api",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/bi-connectors",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-embed",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-extension-framework",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-marketplace",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-smtp",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-visualizations",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-platform-lsp",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-password",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-two-factor",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-google",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-ldap",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-saml",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-openid-connect",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-authentication-sessions",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/alternate-login",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-server-pages",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-server-ip-allowlist",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-server-log",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/admin-panel-server-usage",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-enablement",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-installation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-sign-in",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-navigating-to-content",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-viewing-looks",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-viewing-dashboards",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-alerts",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/mobile-app-legacy",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-feature-differences",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-edition-types",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-networking-options",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-service-account",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-locations",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-release-process",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-qs-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-quickstart-public-ip-standard-edition",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-qs-create-connection",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-qs-model-generation",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-qs-model-data",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-create-look-quickstart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-create-dashboard-quickstart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-create-oauth",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-instance-create",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-private-ip-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-create-private-ip",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-psc-docs",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-psc-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-create-psc",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-private-ip-overview",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-private-ip-same-region",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-private-ip",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-psc-access",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-bigquery-default-connection",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-dialects",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-private-ip-config",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-psc-southbound",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-user-authentication",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-access-control",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-oauth-authentication",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-admin-looker",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-user-management",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-instance-setup",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-admin-console",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-view-console",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-setup",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-settings",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-custom-domain-delete",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-lsp",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-vpcsc",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-cmek",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-fips-mode",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-import-export",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-maintenance",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-backup-restore",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-self-service-migration",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-delete-restart",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-sample-project",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-logging",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-audit-logging",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-support",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/reference/rest",
+      "depth": 3,
+      "children": []
+    },
+    {
+      "url": "https://cloud.google.com/looker/docs/looker-core-mobile-app",
+      "depth": 3,
+      "children": []
+    }
+  ]
+}

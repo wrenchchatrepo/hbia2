@@ -1,0 +1,130 @@
+# https://cloud.google.com/looker/docs/write-lookml-gemini
+
+Depth: 3
+
+**Preview**
+
+This product or feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](/terms/service-terms#1). Pre-GA products and features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](/products#product-launch-stages). 
+
+[Gemini in Looker](/looker/docs/overview-gemini) provides generative AI-powered assistance to help you work with your data. In the Looker IDE, the **Help me code** panel uses Gemini in Looker to generate LookML code suggestions in response to written prompts. You can use Gemini to create dimensions, dimension groups, and measures in your LookML project.
+
+[Learn how and when Gemini for Google Cloud uses your data](/gemini/docs/discover/data-governance). As an early-stage technology, Gemini for Google Cloud products can generate output that seems plausible but is factually incorrect. We recommend that you validate all output from Gemini for Google Cloud products before you use it. For more information, see [Gemini for Google Cloud and responsible AI](/gemini/docs/discover/responsible-ai).
+
+## Before you begin
+
+To use Gemini in the Looker IDE, note the following requirements:
+
+  * A Looker instance that is enabled for Gemini in Looker: 
+    * For Looker (original), the instance must be running Looker 25.2 or later, and the instance must be enabled for Gemini in Looker in the Admin settings. For detailed enablement instructions, see the [Admin settings — Gemini in Looker](/looker/docs/admin-panel-platform-gil) documentation page.
+    * For [Looker (Google Cloud core)](/looker/docs/overview-gemini) the instance must be enabled for Gemini in Looker in the Google Cloud console. For detailed enablement instructions, see the [Administer Gemini on your Looker (Google Cloud core) instance](/looker/docs/looker-core-admin-gemini) documentation page.
+  * A Looker role that contains the [`develop`](/looker/docs/admin-panel-users-roles#develop) permission for at least one model in a LookML project.
+
+## Use Gemini in the Looker IDE
+
+To use Gemini for creating LookML in your Looker project, follow these steps:
+
+  1. On your Looker instance, enable [Development Mode](/looker/docs/dev-mode-prod-mode#development_mode).
+  2. [Open your project in the Looker IDE](/looker/docs/looker-ide#accessing-ide).
+  3. Use the IDE [file browser](/looker/docs/ide-folders) to open a LookML view file in which you want to insert LookML.
+  4. Select the **Help me code** icon from the side panel selector.
+
+![Looker IDE with Help me code icon highlighted.](/static/looker/docs/images/ide-help-me-code-2416.png)
+
+  5. With the the **Help me code** panel open, click to place your cursor on a line in your LookML view file. Based on the type of LookML file and where your cursor is placed in the file, Gemini provides appropriate options to guide you, such as **Create a dimension** or **Create a measure**.
+
+  6. Select one of the following options from the **Help me code** panel:
+
+**Note:** If you don't see all of these options, make sure that you are in a view file and that your cursor is placed at a location in the file where a dimension, dimension group, or measure is supported.
+     * **Create a[dimension group](/looker/docs/reference/param-field-dimension-group)**
+     * **Create a[dimension](/looker/docs/reference/param-field-dimension)**
+     * **Create a[measure](/looker/docs/reference/param-field-measure)**
+     * **Other code suggestion** : You can use the **other code suggestion** option if you want to try out different LookML elements. Remember that Gemini is an early-stage technology, so validate and test all output before deploying it.
+  7. In the **Help me code** panel text field, use conversational language to describe the dimension, dimension group, or measure that you want to create. See the Tips for using Gemini in the Looker IDE and Sample prompts sections on this page for guidance.
+
+  8. Press **Enter** or click the **Submit** icon to send your request to Gemini. Gemini will respond with suggested code.
+
+  9. With the suggested code, you can do the following:
+
+     * Hold your pointer over the **Insert** button to preview the suggested LookML in your file. You can move your cursor to a different line in your file to preview it in a different location before inserting the LookML in the file.
+     * Click the **Edit** button to manually change the suggested LookML.
+     * Click the **Insert** button to insert the LookML into your file at the location of your cursor.
+     * Provide feedback about the suggested code by selecting the thumbs up icon (**This response was helpful**) or thumbs down icon (**This response was not what I expected**).
+     * Click the **New code suggestion** link to start over and enter a new prompt for Gemini.
+
+![Gemini showing a preview of the code placement when the cursor is hovered over the Insert button.](/static/looker/docs/images/help-me-code-preview-2416.png)
+
+  10. Click **Save Changes** in your LookML file.
+
+  11. Verify the LookML by doing the following:
+
+     * Use the [LookML Validator](/looker/docs/lookml-validation) to verify your LookML.
+     * [Test your LookML in an Explore](/looker/docs/looker-ide#testing_the_fields_in_the_explore).
+
+## Tips for using Gemini in the Looker IDE
+
+Here are some tips for using Gemini in the Looker IDE:
+
+  * For best results, write your prompts in American English. See the [Gemini for Google Cloud limitations](/gemini/docs/discover/responsible-ai#gemini-limitations) documentation for more information.
+  * The **Help me code** panel does not retain context from a previous prompt in the conversation and does not retain prompts across logins and refreshes.
+  * When you use LookML that was suggested by Gemini, always validate your LookML with the [LookML Validator](/looker/docs/lookml-validation), and [test your new fields in an Explore](/looker/docs/looker-ide#testing_the_fields_in_the_explore).
+  * Depending on your request, Gemini may suggest LookML that references fields in other view files. When you add suggested LookML to your file, save the file and run the LookML Validator. The LookML Validator will display errors if you need to add [`include`](/looker/docs/reference/param-model-include) statements to your model file.
+
+## Sample prompts
+
+To give you some ideas, here are some example prompts and their results:
+
+  * Create a dimension using longitude and latitude
+  * Create a measure for today's total sales
+
+### Create a dimension using longitude and latitude
+
+Here is a prompt using the **Create a dimension** option that asks Gemini to create a new dimension based on the `longitude` and `latitude` fields that are defined in the view file:
+
+`show coordinates with longitude and latitude`
+
+Gemini returns this suggested code:
+    
+    
+       dimension: coordinates {
+          type: location
+          sql_latitude: ${TABLE}.latitude ;;
+          sql_longitude: ${TABLE}.longitude ;;
+       }
+    
+
+You can verify this LookML in an Explore by selecting the new `coordinates` field, along with the `longitude` and `latitude` fields it's based on. Because Gemini created the dimension using [`type:location`](/looker/docs/reference/param-dimension-filter-parameter-types#location), the Explore results include a hyperlink to view the coordinates on a map:
+
+![Looker Explore showing the latitude and longitude fields, with the new coordinates field with values that match the latitude and longitude values.](/static/looker/docs/images/help-me-code-explore-test-2416.png)
+
+### Create a measure for today's total sales
+
+Here is a prompt using the **Create a measure** option that asks Gemini to create a new measure for the sum of all of today's orders:
+
+`show the total sale price of today's orders`
+
+Gemini returns this suggested code:
+    
+    
+       measure: todays_orders {
+          type: sum
+          sql: ${basic_order_items.sale_price} ;;
+          filters: [basic_order_items.created_at_date: "today"]
+      }
+    
+
+## Provide feedback
+
+You can provide feedback for the generated LookML in the **Help me code** panel. If the generated LookML looks correct, click the ![Thumbs up icon indicating approval.](/static/looker/docs/studio/images/standard--chrome--thumbs-up.png) thumbs-up icon. If the generated LookML looks incorrect or isn't what you expected, click the ![Thumbs down icon indicating disapproval.](/static/looker/docs/studio/images/standard--chrome--thumbs-down.png) thumbs-down icon.
+
+You can also send us an email with your feedback.
+
+**Note:** Gemini in Looker is in preview with limited support. We encourage you to share your feedback to help us improve. To report bugs or issues, send an email to [`lookml-assistant-feedback@google.com`](mailto:lookml-assistant-feedback@google.com) with the following details: 
+
+  * A clear description of the problem and the expected behavior
+  * Steps to reproduce the issue
+  * Any additional relevant details
+
+## Related resources
+
+  * [Gemini for Google Cloud overview](/gemini/docs/overview)
+  * [Gemini in Looker](/gemini/docs/looker/overview)

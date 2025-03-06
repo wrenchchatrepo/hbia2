@@ -1,0 +1,20 @@
+# https://cloud.google.com/looker/docs/user-history
+
+Depth: 3
+
+To view a list of recent queries ordered by date, select the **Profile** menu and then select **History**.
+
+![](/static/looker/docs/images/user-account-history-2412.png)
+
+The **History** page displays the following information about queries you have recently run:
+
+  * The date on which the query was run
+  * The name of the Explore used to run the query
+  * Filters, dimensions, measures, and sorts that were included in the query
+  * The length of time the query took to run
+  * The time at which you ran the query
+  * The name of the model on which the query is based
+
+![](/static/looker/docs/images/user-account-history-items-2412.png)
+
+The **History** page will show the 100 most recent queries. To view more results, Looker admins and users who have been granted the [`see_system_activity`](/looker/docs/admin-panel-users-roles#see_system_activity) permission may use the [**History** Explore](/looker/docs/usage-reports-with-system-activity-explores#history) in System Activity.

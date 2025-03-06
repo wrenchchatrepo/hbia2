@@ -1,0 +1,10 @@
+These pages appear under the **Authentication** section of Looker's **Admin** menu:
+
+  * [Passwords](/looker/docs/admin-panel-authentication-password): Customize password complexity requirements for users on your instance.
+  * [Two-Factor](/looker/docs/admin-panel-authentication-two-factor): Enable two-factor authentication and synchronize time sources.
+  * [Google](/looker/docs/admin-panel-authentication-google): Configure Google OAuth using the Google API console and Looker **Admin** panel.
+  * [LDAP](/looker/docs/admin-panel-authentication-ldap): Configure Lightweight Directory Access Protocol (LDAP) settings, bindings, user attribute pairing, and role mapping.
+  * [SAML](/looker/docs/admin-panel-authentication-saml): Configure Looker to authenticate users using Security Assertion Markup Language (SAML).
+  * [OpenID Connect](/looker/docs/admin-panel-authentication-openid-connect): Configure Looker to authenticate users using the OpenID Connect protocol.
+  * [Sessions](/looker/docs/admin-panel-authentication-sessions): Configure options for users to stay logged in to Looker.
+  * [Enabling the alternate login option](/looker/docs/alternate-login): Configure the option for an alternate email login when one of these authentication methods is configured: Google OAuth, LDAP, SAML, or OpenID Connect.

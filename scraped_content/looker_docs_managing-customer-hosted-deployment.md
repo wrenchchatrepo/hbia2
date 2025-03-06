@@ -1,0 +1,22 @@
+# https://cloud.google.com/looker/docs/managing-customer-hosted-deployment
+
+Depth: 3
+
+If you've [chosen to manage your own Looker instance](/looker/docs/choosing-hosting-option), this page provides information about ongoing maintenance. If you're looking for initial installation steps, refer to the [Customer-hosted installation steps](/looker/docs/customer-hosted-installation-steps) documentation.  
+  
+Select from the following topics to learn more about hosting a Looker instance:
+
+  * [Updating a customer-hosted Looker instance](/looker/docs/updating-looker-instance): Update Looker to stay current with new features and fixes.
+  * [Auto-provisioning a new Looker instance](/looker/docs/auto-provisioning-new-looker-instance): Automatically provision a new instance with a license key, a URL, and an initial user.
+  * [Moving Looker to a new host](/looker/docs/moving-to-new-host): Move Looker from one host to another.
+  * [Clustering Looker](/looker/docs/clustering-looker): Create a clustered Looker configuration.
+  * [Configuration management tools](/looker/docs/configuration-management-tools): View an example Ansible role for a simplified Looker deployment.
+  * [Recommended Java memory settings](/looker/docs/recommended-java-memory-settings): Allocate the appropriate amount of memory to the Looker application.
+  * [Archiving Looker log files](/looker/docs/archiving-log-files): Manage Looker log files to preserve disk space.
+  * [Restoring backups](/looker/docs/restoring-backups): Restore Looker to a new host or to a cluster.
+  * [Migrating the Looker backend database to MySQL](/looker/docs/migrating-looker-backend-db-to-mysql): For larger instances, migrate from the Looker HyperSQL internal database to a MySQL backend database.
+  * [Migrating to AES-256 GCM encryption](/looker/docs/migrating-to-aes-256-gcm-encryption): Migrate an existing Looker instance to AES-256 GCM encryption for internal data encryption.
+  * [Changing Looker encryption keys](/looker/docs/changing-encryption-keys): Change the encryption key that Looker uses to encrypt internal data.
+  * [Enabling a Redis cache on a customer-hosted instance](/looker/docs/enabling-redis-cache-on-customer-hosted-instance): Enable a Redis cache on a customer-hosted instance for improved cache performance.
+  * [Upgrading to OpenJDK 11](/looker/docs/upgrading-to-openjdk-11-customer-hosted-instance): Upgrade from OpenJDK version 8 to version 11.
+  * [Enabling FIPS 140-2 level 1 compliance](/looker/docs/fips-mode): Enable FIPS 140-2 level 1 encryption on a new customer-hosted Looker instance.

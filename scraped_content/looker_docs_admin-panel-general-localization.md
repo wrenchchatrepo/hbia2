@@ -1,0 +1,56 @@
+# https://cloud.google.com/looker/docs/admin-panel-general-localization
+
+Depth: 3
+
+Admins can set the default locale and number format for a Looker instance on the **Localization** page in the **General** section of the **Admin** panel.
+
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+Admins can set locales or number formats at the [user](/looker/docs/admin-panel-users-users#locale) or [user group](/looker/docs/admin-panel-users-user-attributes#assigning_values_to_user_groups) levels as well. Settings at the user or user group levels supersede settings for the instance.
+
+## Locale
+
+Certain Looker user interface text can be displayed in the following languages:
+
+Language | Locale Code and Strings Filename  
+---|---  
+English | `en`  
+Czech | `cs_CZ`  
+German | `de_DE`  
+Spanish (Spain) | `es_ES`  
+Finnish | `fi_FI`  
+French (Canada) | `fr_CA`  
+French (France) | `fr_FR`  
+Hindi | `hi_IN`  
+Italian | `it_IT`  
+Japanese | `ja_JP`  
+Korean | `ko_KR`  
+Lithuanian | `lt_LT`  
+Norwegian (Bokmål) | `nb_NO`  
+Dutch | `nl_NL`  
+Polish | `pl_PL`  
+Brazilian Portuguese | `pt_BR`  
+Portuguese | `pt_PT`  
+Russian | `ru_RU`  
+Swedish | `sv_SE`  
+Thai | `th_TH`  
+Turkish | `tr_TR`  
+Ukrainian | `uk_UA`  
+Simplified Chinese | `zh_CN`  
+Traditional Chinese | `zh_TW`  
+  
+It is helpful if Looker developers who are [localizing data models](/looker/docs/model-localization) set the models' [`default_locale`](/looker/docs/model-localization#default_locale) parameters and the titles of their associated [strings files](/looker/docs/model-localization#creating_locale_strings_files) to match the default locale for the instance.
+
+If no locale is set on this page, Looker defaults to `en`.
+
+For more information about localizing the Looker user interface, see the [Supported user-interface languages](/looker/docs/supported-user-interface-languages) documentation page.
+
+## Number format
+
+Looker's default number format setting for numbers that appear in data tables and visualizations is **1,234.56**. However, the number format can be set to any of the following:
+
+  * **1,234.56** : Thousands separated with commas; decimals separated with a period
+  * **1.234,56** : Thousands separated with periods; decimals separated with a comma
+  * **1 234,56** : Thousands separated with spaces; decimals separated with a comma
+
+For more information about localizing number formatting, see the [Localizing number formatting](/looker/docs/localizing-number-formatting) documentation page.

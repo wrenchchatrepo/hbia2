@@ -1,0 +1,15 @@
+# https://cloud.google.com/looker/docs/user-sessions
+
+Depth: 3
+
+To view information about your current session, first select the **Profile** menu, and then select **Sessions**.
+
+![](/static/looker/docs/images/user-account-sessions-2300.png)
+
+The **Sessions** page displays the following information:
+
+  * Your IP address
+  * Your browser type
+  * Your location
+  * A timestamp indicating when you logged in
+  * A timestamp indicating when your session will expire

@@ -1,0 +1,107 @@
+The Looker [Embed SDK repository](https://github.com/looker-open-source/embed-sdk) includes sample code and a simple demo of the Embed SDK. Because of Looker's attention to security, the demo requires a bit of setup. The demo also requires your Looker [embed secret](/looker/docs/admin-panel-platform-embed#embed_secret). The embed secret grants access to all of your data, so note the following:
+
+  * Do not share your secret with anyone you do not want to have complete access to your instance.
+  * Do not reset your secret if you already are using it in another context.
+  * Do not set up your code to store the secret in the web browser.
+
+## Step 1: Enable embedding in your Looker instance
+
+This is documented in more detail on the [Signed embedding](/looker/docs/single-sign-on-embedding) documentation page.
+
+  1. Navigate to **Admin > Platform Embed** on your Looker instance. This requires Admin privileges.
+  2. The demo server runs by default at `http://localhost:8080`. By adding that address to the [**Embedded Domain Allowlist**](/looker/docs/admin-panel-platform-embed#embedded_domain_allowlist) you can enable the demo to receive messages from Looker.
+  3. Turn on **Embed Authentication**.
+  4. In order to view your embed secret you must reset it. Copy the secret to a secure place.
+
+## Step 2: Customize the demo settings for your Looker instance
+
+Provide your embed secret to the server. You can do this a couple ways:
+
+  * Set it as `LOOKER_EMBED_SECRET` in your shell environment.
+  * Create a file named `.env` in the root of the sdk directory. Add a line to that file: `LOOKER_EMBED_SECRET="YourLookerSecret"`
+
+Provide your Looker instance host address to the server by either:
+
+  * Setting it as `LOOKER_EMBED_HOST` in your shell environment.
+  * Adding `LOOKER_EMBED_HOST="yourinstance.looker.com:yourport"` to the `.env` file.
+
+Edit the `demo/demo_config.ts` file to be appropriate for the pages you want to embed.
+    
+    
+    // The address of your Looker instance. Required.
+    export const lookerHost = 'self-signed.looker.com:9999'
+    
+    // A dashboard that the user can see. Set to 0 to disable dashboard.
+    export const dashboardId = 1
+    // A Look that the user can see. Set to 0 to disable look.
+    export const lookId = 1
+    
+
+Edit the `demo/demo_user.json` file to be appropriate for the type of user you want to embed.
+    
+    
+    {
+      // External embed user ID. IDs are not shared with regular users. Required
+      "external_user_id": "user1",
+      // First and last name. Optional
+      "first_name": "Pat",
+      "last_name": "Embed",
+      // Duration before session expires, in seconds. Required.
+      "session_length": 3600,
+      // Enforce logging in with these permissions. Recommended.
+      "force_logout_login": true,
+      // External embed group ID. Optional.
+      "external_group_id": "group1",
+      // Looker Group IDs. Optional
+      "group_ids": [],
+      // Permissions. See documentation for details. Required.
+      // Can any combination of:
+      //   access_data
+      //   see_looks
+      //   see_user_dashboards
+      //   see_lookml_dashboards
+      //   explore
+      //   create_table_calculations
+      //   download_with_limit
+      //   download_without_limit
+      //   see_drill_overlay
+      //   see_sql
+      //   save_content
+      //   embed_browse_spaces
+      //   schedule_look_emails
+      //   send_to_sftp
+      //   send_to_s3
+      //   send_outgoing_webhook
+      //   schedule_external_look_emails
+      "permissions": [
+        "access_data",
+        "see_looks",
+        "see_user_dashboards",
+        "explore"
+        "save_content",
+        "embed_browse_spaces"
+      ],
+      // Model access permissions. Required.
+      "models": ["powered_by", "thelook"],
+      // User attributes. Optional.
+      "user_attributes": { "locale": "en_US" },
+    }
+    
+
+## Step 3: Build and run the demo
+
+### Node server
+
+  1. Run `npm install`
+  2. Run `npm start`
+
+The server will print out what host and port it is running on. If it is different than `http://localhost:8080` then you will need to add it to your [**Embedded Domain Allowlist**](/looker/docs/admin-panel-platform-embed#embedded_domain_allowlist).
+
+### Python server
+
+  1. Run `npm install`
+  2. Run `npm run python`
+
+The server will print out what host and port it is running on.
+
+You may need to `pip install six` to install the Python 2/3 compatibility layer.

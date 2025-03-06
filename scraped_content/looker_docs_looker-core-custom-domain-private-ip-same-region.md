@@ -1,0 +1,161 @@
+# https://cloud.google.com/looker/docs/looker-core-custom-domain-private-ip-same-region
+
+Depth: 3
+
+This documentation page describes how to set up a custom domain and set up access to a Looker (Google Cloud core) instance that meets the following criteria:  
+  
+  * The instance is private IP only.
+  * The instance was [set up to use private services access at the time of creation](/looker/docs/looker-core-create-private-ip).
+  * Traffic to the instance originates either from the same [region](/docs/geography-and-regions) as the instance or through hybrid networking.
+
+To access this kind of instance, perform the following steps:
+
+  1. Set up a custom domain.
+  2. Create a Cloud DNS private zone.
+  3. Add the DNS A record.
+  4. Update the OAuth credentials.
+
+## Set up a custom domain
+
+After your Looker (Google Cloud core) instance has been created, you can set up a custom domain.
+
+### Before you begin
+
+**Note:** Custom domains cannot be created using a looker.com domain.
+
+Before you can customize the domain of your Looker (Google Cloud core) instance, identify where your domain's DNS records are stored, so that you can update them.
+
+#### Required roles
+
+To get the permissions that you need to create a custom domain for a Looker (Google Cloud core) instance, ask your administrator to grant you the [Looker Admin ](https://cloud.google.com/iam/docs/understanding-roles#looker.admin) (`roles/looker.admin`) IAM role on the project the instance resides in. For more information about granting roles, see [Manage access to projects, folders, and organizations](/iam/docs/granting-changing-revoking-access). 
+
+You might also be able to get the required permissions through [custom roles](/iam/docs/creating-custom-roles) or other [predefined roles](/iam/docs/understanding-roles). 
+
+### Create a custom domain
+
+**Note:** You cannot modify a custom domain once it is created. If you want to make changes to the custom domain, you must delete the existing custom domain and create a new one.
+
+In the Google Cloud console, follow these steps to customize the domain of your Looker (Google Cloud core) instance:
+
+  1. On the **Instances** page, click the name of the instance for which you would like to set up a custom domain.
+  2. Click the **CUSTOM DOMAIN** tab.
+  3. Click **ADD A CUSTOM DOMAIN**.
+
+![](/static/looker/docs/images/core-custom-domain-1.png)
+
+This opens the **Add a new custom domain** panel.
+
+  4. Using only letters, numbers, and dashes, enter the hostname of up to 64 characters for the web domain that you would like to use — for example: `looker.examplepetstore.com`.
+
+![](/static/looker/docs/images/core-custom-domain-2.png)
+
+  5. Click **DONE** on the **Add a new custom domain** panel to return to the **CUSTOM DOMAIN** tab.
+
+**Note:** Updating the custom domain takes 10 to 15 minutes to complete.
+
+Once your custom domain is set up, it is displayed in the **Domain** column on the **CUSTOM DOMAIN** tab of the Looker (Google Cloud core) [instance details page](/looker/docs/looker-core-custom-domain-settings) in the Google Cloud console.
+
+After your custom domain has been created, you can [view information](/looker/docs/looker-core-custom-domain-settings) about it, or [delete](/looker/docs/looker-core-custom-domain-delete) it.
+
+## Enable access to the custom domain
+
+When traffic to a private IP only Looker (Google Cloud core) instance originates from the same region that the instance is in, you can ensure secure access to the instance through proper DNS and credential setup.
+
+### Before you begin
+
+To get the permissions that you need to set up access to a private IP custom domain, ask your administrator to grant you the following IAM roles on the project the instance resides in: 
+
+  * [Looker Admin ](https://cloud.google.com/iam/docs/understanding-roles#looker.admin) (`roles/looker.admin`)
+  * [DNS Admin ](https://cloud.google.com/iam/docs/understanding-roles#dns.admin) (`roles/dns.admin`)
+  * Use Google OAuth: [OAuth Config Editor ](https://cloud.google.com/iam/docs/understanding-roles#oauthconfig.editor) (`roles/oauthconfig.editor`) 
+
+For more information about granting roles, see [Manage access to projects, folders, and organizations](/iam/docs/granting-changing-revoking-access). 
+
+You might also be able to get the required permissions through [custom roles](/iam/docs/creating-custom-roles) or other [predefined roles](/iam/docs/understanding-roles). 
+
+### Networking overview
+
+Looker (Google Cloud core) with a private IP network configuration is a regional deployment model that lets you seamlessly connect to the Looker (Google Cloud core) UI from various environments, such as on-premises, multicloud, and compute instances.
+
+To establish connectivity from on-premises or multicloud environments to Looker (Google Cloud core), modify the service networking VPC peering connection in your VPC to [export custom routes](/vpc/docs/using-vpc-peering#update-peer-connection) to the Google-managed VPC that hosts Looker (Google Cloud core). This action sends all [eligible static and dynamic routes](/vpc/docs/vpc-peering#considerations) from your VPC to Looker (Google Cloud core). The service producer's network automatically imports these routes, enabling traffic to be sent back to your on-premises network through the VPC network.
+
+By default, the connection from host devices is established within the same region as Looker (Google Cloud core), as illustrated in the following diagram:
+
+![A Google Cloud network showing secure access to a Looker \(Google Cloud core\) instance for traffic within the same region, using Cloud DNS, Cloud Router, Cloud Interconnect, and Private Services Access.](/static/looker/docs/images/private-ip-same-region.png)
+
+### Create the Cloud DNS private zone
+
+[Create a Cloud DNS private zone](/dns/docs/zones#create-private-zone) that is visible to the VPC in which the Looker (Google Cloud core) instance is located. The Cloud DNS private zone will be used by the VPC and the on-premises hosts for DNS resolution to reach the Looker (Google Cloud core) UI. The name of the zone should match the custom domain.
+    
+    
+      gcloud dns managed-zones create NAME \
+      --description=DESCRIPTION \
+      --dns-name=DNS_SUFFIX \
+      --networks=VPC_NETWORK_LIST \
+      --labels=LABELS \
+      --visibility=private
+    
+
+Replace the following:
+
+  * `NAME`: A name for your zone.
+  * `DESCRIPTION`: A description for your zone.
+  * `DNS_SUFFIX`: The DNS suffix for your zone, such as `examplepetstore.com`.
+
+**Note:** The `DNS_SUFFIX` shouldn't include your full custom domain such as `looker.examplepetstore.com`. You will specify the full custom domain when you create the A record.
+  * `VPC_NETWORK_LIST`: A comma-delimited list of VPC networks that are authorized to query the zone. Make sure to include the VPC that contains your Looker (Google Cloud core) instance.
+
+  * `LABELS`: An optional comma-delimited list of key-value pairs such as `dept=marketing` or `project=project1`; for more information, see the [SDK documentation](/sdk/gcloud/reference/dns/managed-zones/create#--labels).
+
+Once the zone is set up, if you navigate to the zone on the [**Cloud DNS zones** page](https://console.cloud.google.com/net-services/dns/zones) of the Google Cloud console, you can see that it's private, it's named after the custom domain, and it has record sets for the custom domain.
+
+![](/static/looker/docs/images/core-custom-domain-network.png)
+
+### Add the Cloud DNS A record
+
+Complete the following steps to add the Cloud DNS A record:
+
+  1. Since you will be using a load balancer, the A record in the Cloud DNS private zone will map to the load balancer IP address.
+
+![The ingress private IP highlighted on the Details tab of the Instances page.](/static/looker/docs/images/core-ingress-ip.png)
+
+  2. [Add a DNS A record](/dns/docs/records#add_a_record) for the custom domain in the private zone, consisting of the ingress IP address of the Looker (Google Cloud core) instance. The A record uses the Fully Qualified Domain Name (FQDN), the same as what you configured as the Looker (Google Cloud core) custom domain.
+
+![](/static/looker/docs/images/core-custom-domain-a-record.png)
+
+**Caution:** If the A record doesn't exactly match your custom domain, you will get an `ERR_NAME_NOT_RESOLVED` error in the browser when you are sent back to the authorized redirect URI after authenticating through OAuth.
+
+The complete setup should show the A record for the custom domain when you view the private zone details on the **Cloud DNS zones** page of the Google Cloud console. ![](/static/looker/docs/images/core-custom-domain-a-record-complete.png)
+
+> To make a VPC network's name resolution services available to on-premises networks that are connected to the VPC network by using Cloud VPN tunnels, Cloud Interconnect VLAN attachments, or Router appliances, you can use an [inbound server policy](/dns/docs/server-policies-overview#dns-server-policy-in).
+
+Once your domain's DNS records are updated and your domain has been verified in the Google Cloud console, the [status](/looker/docs/looker-core-custom-domain-settings) of the custom domain that is mapped to the instance will be updated from **Unverified** to **Available** on the **Custom Domain** tab of the **Instances** page.
+
+![](/static/looker/docs/images/core-custom-domain-status.png)
+
+### Update the OAuth credentials
+
+**Note:** You can use any OAuth client to create authorization credentials for your Looker (Google Cloud core) instance. As an example, these steps walk you through updating the credentials using the Google Cloud console. If you are using a different client, adjust the steps accordingly.
+
+  1. Access your OAuth client by navigating in the Google Cloud console to **APIs & Services > Credentials** and selecting the OAuth client ID for the OAuth client that is used by your Looker (Google Cloud core) instance.
+  2. Click the **Add URI** button to update the **Authorized JavaScript origins** field in your OAuth client. Use the same DNS name that your organization will use to access Looker (Google Cloud core). For example, if your custom domain is `looker.examplepetstore.com`, you would enter `looker.examplepetstore.com` as the URI.
+
+![](/static/looker/docs/images/core-custom-domain-ajso.png)
+
+  3. [Update or add](/looker/docs/looker-core-create-oauth#add_the_authorized_redirect_uri_to_the_oauth_client) the custom domain to the list of **Authorized redirect URIs** for the [OAuth credentials that were used](/looker/docs/looker-core-create-oauth) when the Looker (Google Cloud core) instance was created. Add `/oauth2callback` to the end of the URI. For example, if your custom domain is `looker.examplepetstore.com`, you would enter `looker.examplepetstore.com/oauth2callback`.
+
+![](/static/looker/docs/images/core-custom-domain-aruris.png)
+
+**Caution:** If the custom domain that you enter in the **Authorized redirect URI** field doesn't exactly match your custom domain, you will get an `Error 400: redirect_uri_mismatch` error when you attempt to authenticate through OAuth.
+
+### Add users
+
+Once the preceding steps are completed, the custom domain URL is accessible to users.
+
+Ensure that the [user authentication method](/looker/docs/looker-core-user-authentication) is completely set up for the Looker (Google Cloud core) instance before adding users to the instance.
+
+## What's next
+
+  * [Connect Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects)
+  * [Prepare your Looker (Google Cloud core) instance for users](/looker/docs/looker-core-instance-setup)
+  * [Manage users within Looker (Google Cloud core)](/looker/docs/looker-core-user-management)

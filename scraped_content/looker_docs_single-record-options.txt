@@ -1,0 +1,13 @@
+**Note:** This page describes visualization options for Looker. For information about Looker Studio visualizations, see [Types of charts in Looker Studio](/looker/docs/studio/types-of-charts-in-looker-studio).
+
+To select a single record chart, click the ellipses (...) on the Visualization menu bar and select **Single Record**. Click **Edit** in the upper right corner of the visualization tab to format your visualization.
+
+![](/static/looker/docs/images/single_record.png)
+
+Some of the options that are listed on this documentation page may be grayed out or hidden when they conflict with other settings that you have chosen.
+
+## Edit menu options
+
+### Show Full Field Name
+
+You can determine whether to show the view name along with the field name for each axis title and series name. When **Show Full Field Name** is turned off, generally only the field name shows; however, measures of type `count` display only the view name instead.

@@ -1,0 +1,250 @@
+# https://cloud.google.com/looker/docs/db-config-postgresql
+
+Depth: 3
+
+## Dialects that use these instructions  
+  
+The following dialects share database setup requirements as described on this page:
+
+  * PostgreSQL
+  * Google Cloud SQL for PostgreSQL
+  * Microsoft Azure PostgreSQL
+  * AlloyDB for PostgreSQL
+  * Amazon Aurora PostgreSQL
+  * Amazon RDS for PostgreSQL
+
+For Google Cloud SQL for PostgreSQL, Looker (Google Cloud core) offers [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) as a method of authentication. See the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#using-application-default-credentials-to-connect-to-a-database) for more information.
+
+For AlloyDB for PostgreSQL, Amazon RDS for PostgreSQL, and Amazon Aurora PostgreSQL, Looker has [integration support](/looker/docs/dialects#support_levels). To create a connection for these dialects, select **PostgreSQL 9.5+** from the **Dialect** drop-down on the **New Connection** page.
+
+For PostgreSQL on Heroku, see the [Heroku documentation](https://devcenter.heroku.com/articles/heroku-postgresql).
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+If you're interested in using SSL encryption, see the [PostgreSQL documentation](https://www.postgresql.org/docs/).
+
+## Users and security
+
+To perform actions on your database, Looker needs to have a user account on your database.
+
+If you're on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you want to use ADC, use the impersonated service account username that you [added to your Cloud SQL database](/looker/docs/looker-core-dialects#add-the-impersonated-service-account). The service account username will have the format `service-<project number>@gcp-sa-looker.iam.gserviceaccount.com`. If your service account username ends with `.gserviceaccount.com`, remove the `.gserviceaccount.com` portion of the username. After it's truncated, the username would look like `service-<project number>@gcp-sa-looker.iam`.
+
+To configure a database user for Looker to use, perform the following steps on your database:
+
+  1. Create a database user and password.
+
+**Note:** Skip this step if you're on a Looker (Google Cloud core) instance and you want to use [Application Default Credentials](/looker/docs/looker-core-dialects#using-application-default-credentials-to-connect-to-a-database). You don't need to create a user account: instead, you will use an existing service account.
+    
+        CREATE USER USERNAME WITH ENCRYPTED PASSWORD 'PASSWORD';
+    
+
+  2. Grant permissions to the database user so that Looker can perform actions on your database:
+    
+        GRANT CONNECT ON DATABASE DATABASE_NAME to USERNAME;
+    \c DATABASE_NAME
+    GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO USERNAME;
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO USERNAME;
+    
+
+  3. If you're using a schema other than `public`, run this command to grant usage permissions to Looker:
+    
+        GRANT USAGE ON SCHEMA SCHEMA_NAME TO USERNAME;
+    
+
+  4. To make sure that future tables that you add to the public schema are also available to the Looker user, run these commands:
+    
+        ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON tables TO USERNAME;
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT ON sequences TO USERNAME;
+    
+
+Depending on your setup, the preceding commands may need to be altered. If another user or role is creating tables that the Looker user needs future permissions for, you must specify a _target_ role or user to apply the Looker user's permission grants to:
+    
+    
+    ALTER DEFAULT PRIVILEGES FOR USER ANOTHER_USERNAME IN SCHEMA SCHEMA_NAME GRANT SELECT ON tables TO USERNAME;
+    ALTER DEFAULT PRIVILEGES FOR ROLE TARGET_ROLE IN SCHEMA SCHEMA_NAME GRANT SELECT ON sequences TO USERNAME;
+    
+
+For example, if a `web_app` user creates tables and you want the `looker` user to be able to use those tables, you must run a `GRANT` statement to give the `looker` user permissions on tables that are created by the `web_app` user. The target role or user in this case is the `web_app` user, meaning you want to alter privileges on tables that are created by `web_app` so that the `looker` user can have permissions to read the tables. Here is an example:
+    
+    
+    ALTER DEFAULT PRIVILEGES FOR USER web_app IN SCHEMA public GRANT SELECT ON tables TO looker;
+    
+
+See [`ALTER DEFAULT PRIVILEGES`](https://www.postgresql.org/docs/9.4/sql-alterdefaultprivileges.html) on PostgreSQL's website for more information.
+
+## Temp schema setup
+
+### Self-hosted Postgres
+
+Create a schema owned by the Looker user:
+    
+    
+    CREATE SCHEMA SCHEMA_NAME AUTHORIZATION USERNAME;
+    
+
+### Postgres on Amazon RDS
+
+Create a scratch schema:
+    
+    
+    CREATE SCHEMA SCHEMA_NAME;
+    
+
+Change the ownership of the scratch schema to the Looker user:
+    
+    
+    ALTER SCHEMA SCHEMA_NAME OWNER TO USERNAME;
+    
+
+**Note:** For PostgreSQL persistent derived tables to work, you must not be using Looker on top of a "hot swap" streaming replication database. You must be able to write to the database from outside the application.
+
+## Setting the `search_path`
+
+Before connecting Looker to your database, you should set an appropriate `search_path`, which the Looker SQL Runner can use to retrieve certain metadata from your database:
+    
+    
+    ALTER USER USERNAME SET search_path TO '$user',SCHEMA_NAME,SCHEMA_NAME_2,SCHEMA_NAME_3
+                                                                ^^^^^^^^^^^^^^^^^^
+                                                                ^^^^^^^^^^^^^^^^^^
+                                                 include a comma-separated list of
+                                                all schemas you'll use with Looker
+    
+
+**Note:** If you're on a Looker (Google Cloud core) instance and you want to use ADC, use the impersonated service account username that you [added to your Cloud SQL database](/looker/docs/looker-core-dialects#add-the-impersonated-service-account). The service account username will have the format `service-<project number>@gcp-sa-looker.iam.gserviceaccount.com`. If the service account username ends with `.gserviceaccount.com`, remove the `.gserviceaccount.com` portion of the username. After it's truncated, the username would look like `service-<project number>@gcp-sa-looker.iam`.
+
+## Creating the Looker connection to your database
+
+Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. From the **Dialect** drop-down menu, select your database dialect name. For the AlloyDB for PostgreSQL dialect, select **PostgreSQL 9.5+**.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+PostgreSQL 9.5+ supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | Yes  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+Google Cloud PostgreSQL supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | Yes  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+Microsoft Azure PostgreSQL supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | Yes  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No

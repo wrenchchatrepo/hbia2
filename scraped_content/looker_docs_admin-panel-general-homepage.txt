@@ -1,0 +1,28 @@
+The **Homepage** page in the **General** section of Looker's **Admin** menu lets admins configure a default homepage for their Looker instance. Looker admins can also set a homepage for a specific user or group with the `landing_page` [user attribute](/looker/docs/admin-panel-users-user-attributes).  
+  
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+## Setting a default homepage for your instance
+
+The Looker homepage appears when users log in to Looker or navigate to the homepage by clicking **Home** in the left navigation panel or by clicking the Looker logo. By default, the homepage for your instance is the [pre-built Looker homepage](/looker/docs/finding-content#viewing_content_on_your_homepage), which displays a user's favorite content, that user's recently viewed content, and the recently viewed content at the organization. However, you can change this default to a URL within Looker.
+
+![](/static/looker/docs/images/browse-folders-homepage-2412.png)
+
+The homepage options for your instance are available on the **Homepage** page under **Set a default homepage for your organization** :
+
+  * **Looker's pre-built homepage** : The [pre-built Looker homepage](/looker/docs/finding-content#viewing_content_on_your_homepage) displays tabs for recently viewed content and favorited content. This setting is the default.
+
+**Note:** If you are using Looker (Google Cloud core), the pre-built homepage also displays the following sections in addition to the **Recently Viewed** and **Favorites** tabs: 
+    * A **Sample Dashboards** section, which displays the [sample dashboards](/looker/docs/looker-core-sample-project#view_and_edit_the_sample_dashboards) from the sample LookML project, unless the sample LookML project has been [removed](/looker/docs/looker-core-sample-project#remove_the_sample_lookml_project).
+    * A **BigQuery Connection** section, which is visible to users with the [`manage_project_connections` Looker permission](/looker/docs/admin-panel-users-roles#manage_project_connections). This section won't appear if the default BigQuery connection for the instance has been set up already.
+  * **A URL within Looker** : You can set the default homepage to a specific page within Looker (such as the **Favorites** page), a [board](/looker/docs/presenting-content), a [folder](/looker/docs/organizing-spaces), or a Markdown file (such as a README or [document file](/looker/docs/other-project-files#document_files) in a project) by specifying a relative URL such as `/browse/boards/2`. If you set the homepage in your instance to a specific page within Looker or to a board, the **Home** button in the left navigation panel updates to the name of the page or the board.
+
+If you have configured group or user homepage settings with the `landing_page` user attribute, those settings will override the default homepage that you have chosen for your instance. Users with group or user homepages will still be able to access a link to the instance-wide default homepage from the left navigation.
+
+## Setting a homepage for a specific user or group
+
+In addition to setting a homepage for your entire instance, you can configure homepage settings for specific [users](/looker/docs/admin-panel-users-users) or [groups](/looker/docs/admin-panel-users-groups) with the `landing_page` [user attribute](/looker/docs/admin-panel-users-user-attributes).
+
+You can assign a specific homepage [to a user](/looker/docs/admin-panel-users-user-attributes#assigning_values_to_individual_users) or [to a group](/looker/docs/admin-panel-users-user-attributes#assigning_values_to_user_groups) by setting the value of the `landing_page` user attribute to a relative URL within Looker. If you want to assign a specific homepage to multiple users, we recommend that you [create a new group](/looker/docs/admin-panel-users-groups#adding_groups) specifically for that homepage option.
+
+> Setting a homepage for a specific group overrides the default homepage for your instance for members of the group. Setting a user-specific homepage also overrides any group homepage settings as well as the default homepage.

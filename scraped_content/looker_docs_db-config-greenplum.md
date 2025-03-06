@@ -1,0 +1,96 @@
+# https://cloud.google.com/looker/docs/db-config-greenplum
+
+Depth: 3
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+If you're interested in using SSL encryption, see this [official Greenplum security configuration guide](http://gpdb.docs.pivotal.io/security/pdf/GP_SecurityConfig_A01.pdf).
+
+## Users and security
+
+Change `some_password_here` to a unique, secure password:
+    
+    
+    CREATE USER looker WITH ENCRYPTED PASSWORD 'password';
+    GRANT CONNECT ON DATABASE database_name to looker;
+    \c database_name
+    GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO looker;
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO looker;
+    
+
+To grant Looker the necessary permissions to cancel its queries, run the following command:
+    
+    
+    CREATE OR REPLACE FUNCTION pg_kill_connection(integer) RETURNS boolean AS 'select pg_terminate_backend($1);' LANGUAGE SQL SECURITY DEFINER;
+    
+
+## Temp schema setup
+
+Create a schema owned by the Looker user:
+    
+    
+    CREATE SCHEMA looker_scratch AUTHORIZATION looker;
+    
+
+## Creating the Looker connection to your database
+
+Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. Select **Greenplum** from the **Dialect** drop-down menu.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+Greenplum supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | Yes  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+## Next steps
+
+After completing the database configuration, you can [connect to the database from Looker](/looker/docs/connecting-to-your-db).

@@ -1,0 +1,54 @@
+**Note:** Starting in Looker 24.14, the Chart Config Editor supports the creation of Sankey charts.
+
+A Sankey chart emphasizes flow from one state to another. In Looker, each dimension value is represented as a state, and the size of the flow is determined by a numeric measure value.
+
+Using the [Chart Config Editor](/looker/docs/chart-config-editor), you can create Sankey charts by starting from a [column chart](/looker/docs/column-options) in Looker. For best results, use at least two dimensions and exactly one measure to create a Sankey chart.
+
+For example, you can create a Sankey chart that shows the **Order Item Count** measure values over several **Seasonal Collection** dimension values, which flow into **Category** dimension values. Each dimension value is represented by a color-coded rectangle. The width of each line where it meets each rectangle corresponds to the value of the **Order Item Count** measure for that dimension. ![](/static/looker/docs/images/sankey-2412.png)
+
+## Prerequisites
+
+To access the Chart Config Editor, you must have the [`can_override_vis_config` permission](/looker/docs/admin-panel-users-roles#can_override_vis_config).
+
+### Writing the JSON snippet
+
+To create a Sankey chart, start from the following JSON snippet:
+    
+    
+    {
+      chart: {
+        type: 'sankey'
+      }
+    }
+    
+
+## Creating a Sankey chart
+
+To create a Sankey chart, follow these steps:
+
+  1. View a [column chart](/looker/docs/column-options) in an Explore, or edit a column chart in a Look or dashboard.
+
+For this example, we recommend starting from a column chart with two dimensions and one measure. Your starting chart might look something like this example:
+
+![Sample column chart with Category Name and Seasonal Collection on the x-axis and Order Items Count on the y-axis.](/static/looker/docs/images/sankey-base-2412.png)
+
+  2. Open the **Edit** menu in the visualization.
+
+  3. In the **Plot** tab, click the **Edit Chart Config** button. Looker displays the **Edit Chart Config** dialog.
+
+  4. Select the **Chart Config (Override)** section, and enter the HighCharts JSON from the Writing the JSON snippet section of this page.
+
+  5. To let Looker properly format your JSON, click **< > (Format code)**.
+
+  6. To test your changes, click **Preview**.
+
+  7. To apply your changes, click **Apply**. The visualization will be displayed using the custom JSON values.
+
+![](/static/looker/docs/images/sankey-editor-2412.png)
+
+Once you've customized your visualization, you can save it.
+
+## Limitations and requirements
+
+  * Sankey charts require at least two dimensions and exactly one measure.
+  * Sankey charts can display a maximum of 50 rows of data.

@@ -1,0 +1,47 @@
+# https://cloud.google.com/looker/docs/admin-panel-server-ip-allowlist
+
+Depth: 3
+
+**Note:** [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instances don't include this page. To allow access to Looker (Google Cloud core) for particular IPs, use a [private IP](/looker/docs/looker-core-create-private-ip) Looker (Google Cloud core) instance, and control access with your VPC settings.
+
+The **IP Allowlist** page lets you specify a list of IP addresses that can access your Looker instance. For a list of specific IPs to allow based on your region, see [Enabling secure database access](/looker/docs/enabling-secure-db-access#option_1_ip_address_allowlist). When the IP allowlist is enabled, your Looker instance filters IP addresses at the application level, allowing connections from _only_ the IP addresses on the allowlist. Looker refuses connection attempts from all other IP addresses. When the IP allowlist is disabled, your Looker instance can accept connections from any IP address.
+
+The **IP Allowlist** page is available only for Looker-hosted instances. Customer-hosted instances won't see this option in the **Admin** menu. To view the **IP Allowlist** page, from the **Server** section of the **Admin** menu, select **IP Allowlist**.
+
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+The **IP Allowlist** page lists the rules that you use to configure which IP addresses and subnet masks can access your Looker instance. Each rule also defines whether users from those IP addresses can log in only from the Looker UI, only from the Looker API, or from both sources.
+
+In addition to viewing existing IP allowlist rules, you can perform the following tasks:
+
+  * Enable or disable the IP allowlist with the **Enable Allowlist** switch. When the allowlist is active, only users from listed IP address can connect.
+  * Define a new rule, which adds more IP addresses to the allowlist.
+  * Enable, disable, edit, or delete an existing rule.
+
+## Adding your IP address
+
+If the IP allowlist has no rules defined, as when you first access the list, Looker will display two alerts:
+
+  * a tooltip next to the **Enable Allowlist** switch displays a warning icon
+  * a note reading **Your IP address is not allowlisted** appears next to the switch
+
+Select the **Your IP address is not allowlisted** text to obtain your detected IP address. Select **Add Rule** to add your IP address to the allowlist by using the following instructions.
+
+## Adding a new rule
+
+Select **Add Rule** to add an IP address or a range of addresses to the allowlist. Looker displays the **New IP Allowlist Rule** dialog. To add a new rule, follow these steps:
+
+![](/static/looker/docs/images/admin-ip-allowlist-new-rule-2308.png)
+
+  1. Enter a name for the new rule in the **Label** field.
+  2. Enter a range of approved IP addresses in the **IP Range** field using an IP address and a subnet mask, as described in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing).
+  3. Specify whether the new rule applies only to login attempts from the Looker UI, only to login attempts from the Looker API, or to login attempts from both sources in the **UI or API?** drop-down menu.
+  4. Select **Save**.
+
+## Things to know
+
+While configuring your IP allowlist, keep the following considerations in mind:
+
+  * Adding more than 50 rules may negatively impact Looker's performance.
+  * Certain Looker Action Hub features such as the [Slack integration](/looker/docs/scheduling-slack) and [OAuth-enabled actions](/looker/docs/action-hub#configuring_an_action_for_oauth) don't work when the IP allowlist is enabled.
+  * To integrate [Git pull requests](/looker/docs/git-options#integrating_pull_requests_for_your_project) with any LookML projects, you need to add to the allowlist the range of IP addresses from which your Git provider makes outbound requests. For example, GitHub IP addresses are [available from their meta API endpoint](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses). IPs are subject to change and will be different for other Git providers.

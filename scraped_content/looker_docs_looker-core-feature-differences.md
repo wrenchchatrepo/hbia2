@@ -1,0 +1,75 @@
+# https://cloud.google.com/looker/docs/looker-core-feature-differences
+
+Depth: 3
+
+On this page, you will learn about Looker (Google Cloud core) features compared to Looker (original). Looker (Google Cloud core) features also vary by [edition](/looker/docs/looker-core-edition-types) and network connection type.
+
+## Feature availability by instance type
+
+The interface and functionality of a Looker (Google Cloud core) instance is virtually indistinguishable from a Looker (original) instance, but the two instance types are not identical. Some differentiating characteristics include the following:
+
+  * The administrative functions that are available in the instance Admin section
+  * The database dialects that the instance can connect to
+
+### Administrative compatibility by instance type
+
+All administrative functions and settings for Looker (original) instances are managed in the [Admin section of the Looker (original) instance](/looker/docs/set-up-and-administer-looker). However, for Looker (Google Cloud core) instances, these settings are divided between the [Admin section of the Looker (Google Cloud core) instance](/looker/docs/looker-core-admin-looker) and the [Google Cloud console](/looker/docs/looker-core-admin-console).
+
+### Database connection compatibility by instance type
+
+The list of supported database dialects that you can [connect to your instance](/looker/docs/looker-core-dialects#setup_database) differs between Looker (original) and Looker (Google Cloud core).
+
+For a list of database dialects that are supported by Looker (original) instances, see the [Looker dialects](/looker/docs/dialects) documentation page.
+
+For a list of database dialects that are supported by Looker (Google Cloud core) instances, see the [Connecting Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects#supported_dialects_for) documentation page.
+
+## Feature compatibility by edition type
+
+Some Looker (Google Cloud core) features vary depending on the [instance edition](/looker/docs/looker-core-overview#editions). See the [Looker (Google Cloud core) features and entitlements](/looker/docs/looker-core-edition-types) documentation page for more information.
+
+## Feature compatibility by network connection type
+
+Four network configurations are available for Looker (Google Cloud core) instances:
+
+  * **Public** : Network connection uses an external, internet-accessible IP address.
+  * **Private** : Network connection uses an internal, Google-hosted [Virtual Private Cloud (VPC)](/vpc/docs/configure-private-services-access) IP address and [private services access](/looker/docs/looker-core-networking-options#psa). If your instance uses a private IP connection, [additional configuration](/looker/docs/looker-core-private-ip-config) may be necessary to use some Looker (Google Cloud core) features or to connect to external resources.
+  * **Public and private** : Network connection uses both a public IP address and a private IP address. Incoming traffic is routed through public IP, and outgoing traffic is routed through private IP. A public and private configuration uses [private services access](/looker/docs/looker-core-networking-options#psa) to connect with external resources.
+  * **Private Service Connect** : A private IP network connection that uses [Private Service Connect](/looker/docs/looker-core-networking-options#psc) to connect to external resources.
+
+See the following table for feature availability with each network configuration of an instance.
+
+| **Network configuration**  
+---|---  
+**Feature** | **Public IP** | **Private IP (using private services access or Private Service Connect)** | **Public IP and Private IP**  
+[Deliver content to S3, SFTP, Webhook](/looker/docs/scheduling) | Available. | Available, but your Google Cloud project must be [configured to route traffic](/vpc/docs/routes) to the selected destination. | Available.  
+[Local project import](/looker/docs/importing-projects#importing_local_projects) | Available. | Available. | Available.  
+Looker [Labs](/looker/docs/admin-panel-general-labs) and [Legacy](/looker/docs/legacy-feature-schedule) features | Not available. All Looker Labs and Legacy features are disabled on Looker (Google Cloud core). | Not available. All Looker Labs and Legacy features are disabled on Looker (Google Cloud core). | Not available. All Looker Labs and Legacy features are disabled on Looker (Google Cloud core).  
+[Looker Action Hub](/looker/docs/admin-panel-platform-actions) | Available. [Custom actions](/looker/docs/action-hub#building_a_custom_action) can also be developed for a private action hub server. | Not available. [Custom actions](/looker/docs/action-hub#building_a_custom_action) can be developed for a private action hub server. | Not available. [Custom actions](/looker/docs/action-hub#building_a_custom_action) can be developed for a private action hub server.  
+[VPC Service Controls](/looker/docs/looker-core-vpcsc) | Not available. | Available. | Not available.  
+[Marketplace](/looker/docs/marketplace) | Available. | Not available. | Not available.  
+[Signed embedding](/looker/docs/single-sign-on-embedding) | Available on the **Embed** edition of Looker (Google Cloud core).Not available on the **Standard** and **Enterprise** editions of Looker (Google Cloud core). | Available on the **Embed** edition of Looker (Google Cloud core).Not available on the **Standard** and **Enterprise** editions of Looker (Google Cloud core). | Available on the **Embed** edition of Looker (Google Cloud core).Not available on the **Standard** and **Enterprise** editions of Looker (Google Cloud core).  
+[Private embedding](/looker/docs/private-embedding) | Available on all editions of Looker (Google Cloud core). | Available on all editions of Looker (Google Cloud core). | Available on all editions of Looker (Google Cloud core).  
+[Custom Themes](/looker/docs/themes-for-embedded-dashboards-and-explores) | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core). | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core). | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core).  
+[Extension Framework](/looker/docs/intro-to-extension-framework) | Available. | Available. | Available.  
+[Elite System Activity](/looker/docs/elite-system-activity) | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core). | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core). | Available on the **Enterprise** and **Embed** editions of Looker (Google Cloud core).Not available on the **Standard** edition of Looker (Google Cloud core).  
+[Mobile application](/looker/docs/looker-core-mobile-app) | Available through the [Looker Studio mobile app](/looker/docs/looker-core-mobile-app). | Not available. | Not available.  
+[SAML](/looker/docs/admin-panel-authentication-saml), [LDAP](/looker/docs/admin-panel-authentication-ldap), [email/password](/looker/docs/admin-panel-authentiation-password), [OpenID Connect ](/looker/docs/admin-panel-authentication-openid-connect)authentication | SAML and OpenID Connect available; LDAP and email/password not available. | SAML and OpenID Connect available; LDAP and email/password not available. | SAML and OpenID Connect available; LDAP and email/password not available.  
+[Dialect support](/looker/docs/setting-up-git-connection) | Looker (Google Cloud core) [supported database dialects](/looker/docs/looker-core-dialects#supported-dialects-for). | Looker (Google Cloud core) [supported database dialects](/looker/docs/looker-core-dialects#supported-dialects-for). | Looker (Google Cloud core) [supported database dialects](/looker/docs/looker-core-dialects#supported-dialects-for).  
+[Git connections](/looker/docs/setting-up-git-connection) | Available for customer-hosted Git repos on the public internet. | Available for customer-hosted Git repos on the public internet, but must [configure the Google Cloud project](/looker/docs/looker-core-private-ip-config) to connect to Git. | Available for customer-hosted Git repos on the public internet, but must [configure the Google Cloud project](/looker/docs/looker-core-private-ip-config) to connect to Git.  
+[BI connectors](/looker/docs/bi-connectors) | Available. This feature is enabled by default on Looker (Google Cloud core) instances. | Not available. | Available. This feature is enabled by default on Looker (Google Cloud core) instances.  
+[IP Allowlist](/looker/docs/admin-panel-server-ip-allowlist) | Not available. | Not available. For private IP only instances, control access with your VPC settings. | Not available.  
+[Log](/looker/docs/admin-panel-server-log) | Not available. Google Cloud uses Cloud Logging. See the "View instance logs for Looker (Google Cloud core)" documentation page for more information. | Not available. Google Cloud uses Cloud Logging. See the "View instance logs for Looker (Google Cloud core)" documentation page for more information. | Not available. Google Cloud uses Cloud Logging. See the "View instance logs for Looker (Google Cloud core)" documentation page for more information.  
+[Looker Usage dashboard](/looker/docs/admin-panel-server-usage) | Not available. Usage information can be viewed using the System Activity [dashboards](/looker/docs/system-activity-dashboards) and [Explores](/looker/docs/usage-reports-with-system-activity-explores). | Not available. Usage information can be viewed using the System Activity [dashboards](/looker/docs/system-activity-dashboards) and [Explores](/looker/docs/usage-reports-with-system-activity-explores). | Not available. Usage information can be viewed using the System Activity [dashboards](/looker/docs/system-activity-dashboards) and [Explores](/looker/docs/usage-reports-with-system-activity-explores).  
+[Looker support access](/looker/docs/admin-panel-general-support-access) | Available. | The functionality of the Support Access Admin panel page has moved into the Google Cloud console. See the [Getting support for Looker (Google Cloud core)](/looker/docs/looker-core-support) documentation page for information. | The functionality of the Support Access Admin panel page has moved into the Google Cloud console. See the [Getting support for Looker (Google Cloud core)](/looker/docs/looker-core-support) documentation page for information.  
+  
+## Enable and configure certain Looker (Google Cloud core) instance features
+
+Some Looker features require additional configuration in Looker (Google Cloud core) instances.
+
+### Looker Action Hub
+
+Looker hosts and provides the Looker Action Hub, a stateless server that implements Looker's Action API and exposes integrations — also called actions — with third-party services. Data that your users send by using an action will be passed temporarily from your Looker (Google Cloud core) instance through the Looker Action Hub server. The Looker Action Hub is disabled by default in Looker (Google Cloud core) instances. To enable individual actions, a user with the Looker [Admin role](/looker/docs/admin-panel-users-roles#default_permission_sets) must click **Enable** next to the action on the [**Actions** page](/looker/docs/admin-panel-platform-actions) in the **Admin** section of the Looker (Google Cloud core) instance and configure the action settings. The Looker Action Hub is not available for Looker (Google Cloud core) instances that use a private network connection.
+
+### Sample LookML project
+
+Looker (Google Cloud core) provides a sample LookML project that can help you learn to write LookML, to query data, and to view and edit dashboards. The sample LookML project is provided on Looker (Google Cloud core) instances of all edition types. To use the sample LookML project, the [BigQuery API](/looker/docs/looker-core-sample-project#before_you_begin_enable_the_bigquery_api) must be enabled for your Google Cloud project.

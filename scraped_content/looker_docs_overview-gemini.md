@@ -1,0 +1,143 @@
+# https://cloud.google.com/looker/docs/overview-gemini
+
+Depth: 3
+
+**Preview**
+
+This product or feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](/terms/service-terms#1). Pre-GA products and features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](/products#product-launch-stages). 
+
+Gemini in Looker is a product in the [Gemini for Google Cloud](/gemini/docs/overview) portfolio that provides generative AI-powered assistance to help you analyze and gain valuable insights from your data. Gemini in Looker is available for Looker (original) and Looker (Google Cloud core) instances and for Looker Studio Pro subscriptions. This page describes the Gemini features that are available in each platform and how Gemini in Looker can be enabled and accessed.
+
+[Learn how and when Gemini for Google Cloud uses your data](/gemini/docs/discover/data-governance). As an early-stage technology, Gemini for Google Cloud products can generate output that seems plausible but is factually incorrect. We recommend that you validate all output from Gemini for Google Cloud products before you use it. For more information, see [Gemini for Google Cloud and responsible AI](/gemini/docs/discover/responsible-ai).
+
+**Note:** Gemini in Looker is being made available at no additional cost for a limited time only. At the end of this limited time period, usage of Gemini in Looker may require the purchase of additional or different features. You won't be charged automatically.
+
+## Available features in Looker
+
+When Gemini in Looker is enabled, Looker users can perform the following tasks in a Looker (Google Cloud core) instance or a Looker (original) instance using natural language:
+
+  * [**Generate custom Looker visualizations**](/looker/docs/custom-looker-visualization-gemini). Gemini in Looker lets you customize formatting options for Looker visualizations by using natural language. Gemini generates JSON formatting options from text-based prompts, which you can apply to your visualization. You can also use prompts as a starting point for creating templates and patterns for more complex customizations and then [manually update the visualization's formatting options](/looker/docs/chart-config-editor).
+  * [**Generate LookML**](/looker/docs/write-lookml-gemini). Gemini in Looker assists you in generating LookML parameters. Gemini suggests LookML parameters based on a natural language prompt, which you can add to your project files.
+
+To access these features in a Looker (original) instance, a Looker admin must [enable Gemini in Looker](/looker/docs/admin-panel-platform-gil) in the Looker (original) instance settings. The instance must be on Looker 25.2 or later and be Looker hosted.
+
+To access these features in a Looker (Google Cloud core) instance, a user with the [Looker Admin](/iam/docs/understanding-roles#looker.admin) (`roles/looker.admin`) IAM role must [enable Gemini in Looker](/looker/docs/looker-core-admin-gemini) in the Looker (Google Cloud core) instance settings in the Google Cloud console.
+
+## Available features in Looker Studio
+
+When Gemini in Looker is enabled for Looker Studio, Looker Studio users can perform the following tasks in Looker Studio using natural language:
+
+  * [**Ask questions about and converse with your data using Conversational Analytics**](/looker/docs/studio/query-your-data-in-natural-language-gemini). Gemini in Looker lets you ask questions about your data source by using natural language. Gemini returns Looker Studio charts or data tables that are based on your query. You can learn more about how your response was generated and save your conversation for future reference.
+  * [**Build a custom data agent for Conversational Analytics**](/looker/docs/studio/conversational-data-agents). Gemini in Looker lets you build a custom data agent for Conversational Analytics. You can provide instructions that are specific to your data to help the agent produce accurate and relevant responses. You can also share the agent with other users to use in their Conversational Analytics conversations.
+  * [**Create calculated fields by using natural language**](/looker/docs/studio/create-calculated-fields-gemini). Gemini in Looker lets you create [calculated fields](/looker/docs/studio/about-calculated-fields) in Looker Studio by prompting you to describe the kinds of fields that you'd like to create. Based on your input, Gemini suggests a formula for a calculated field by using fields from your data source along with Looker Studio functions and operators.
+  * [**Add Looker Studio content to your Slides presentation**](/looker/docs/studio/add-looker-studio-slides-gemini). Gemini in Looker lets you import [components](/looker/docs/studio/configure-report-components) from your Looker Studio Pro reports into your Slides presentations. Gemini inserts report charts as images, generates a textual summary of each image, and inserts the summary as a text element. You can generate a new Slides presentation by using all or selected visualizations in a Looker Studio report, or you can add or update Looker Studio content to an existing Slides presentation. You can also update the Looker Studio data that has been imported in a Slides presentation.
+
+To access these features, a user with the appropriate IAM or Google Workspace role must [enable Gemini in Looker](/looker/docs/studio/enable-and-disable-gemini-in-looker-for-looker-studio) in Looker Studio.
+
+## Use Gemini in Looker with both Looker Studio and Looker
+
+Looker users can interact with Gemini in Looker both within their Looker instance (as part of a unified experience) and within Looker Studio ([as part of a Looker Studio Pro subscription](/looker/docs/studio/looker-studio-pro-subscription-overview)).
+
+For more information about the various options for leveraging Gemini in Looker in a Looker (Google Cloud core) instance, a Looker (original) instance, and in Looker Studio, see the following documentation pages:
+
+  * For a Looker (Google Cloud core) instance: [Administer Gemini in Looker for a Looker (Google Cloud core) instance](/looker/docs/looker-core-admin-gemini)
+  * For a Looker (original) instance: [Admin settings — Gemini in Looker](/looker/docs/admin-panel-platform-gil)
+
+### Use Gemini in Looker as part of Studio in Looker
+
+If your admin has enabled Gemini in Looker _and_ Studio in Looker for your Looker instance, as a Looker user, you can query your data in natural language by accessing [Conversational Analytics](/looker/docs/studio/conversational-analytics-looker-connector) in the following places within your Looker instance:
+
+  * From the [main navigation menu](/looker/docs/studio-in-looker#from_the_looker_main_navigation_panel), select **Conversations**.
+  * From the [**Create** menu](/looker/docs/studio-in-looker#from_the_looker_main_navigation_panel), select **Conversation**.
+  * From a [Looker Explore](/looker/docs/studio-in-looker#from_an_explore_page), select **Start a conversation**.
+
+To access Conversational Analytics in a Looker (original) instance, a Looker admin must [enable Gemini in Looker](/looker/docs/admin-panel-platform-gil) in the Looker (original) instance settings.
+
+To access Conversational Analytics in a Looker (Google Cloud core) instance, a user with the [Looker Admin](/iam/docs/understanding-roles#looker.admin) (`roles/looker.admin`) IAM role must [enable Gemini in Looker](/looker/docs/looker-core-admin-gemini) in the Looker (Google Cloud core) instance settings in the Google Cloud console.
+
+To enable Studio in Looker for a Looker instance, a Looker admin must follow the enablement instructions for their instance type on the [Enabling and disabling Studio in Looker](/looker/docs/enabling-studio-in-looker) documentation page.
+
+### Use Gemini in Looker as part of a Looker Studio Pro subscription
+
+If your Looker admin has accepted the complimentary Looker Studio Pro licenses for your [Looker (Google Cloud core) instance](/looker/docs/looker-core-lsp) or [Looker (original) instance](/looker/docs/admin-panel-platform-lsp), as a Looker user, you can access the Gemini in Looker features that appear in Looker Studio when Gemini in Looker is enabled for your Looker Studio Pro subscription.
+
+## Where to interact with Gemini in Looker
+
+After you enable Gemini in Looker for the assistants that appear in your Looker product, you can seek Gemini assistance in the places that are described in the following sections.
+
+### Looker: Visualization chart configuration
+
+The **Visualization Assistant** is available for visualizations that use the HighCharts API, which includes most [Cartesian charts](/looker/docs/visualization-types#cartesian_charts), such as the [column chart](/looker/docs/column-options), [bar chart](/looker/docs/bar-options), and [line chart](/looker/docs/line-options).
+
+To access the **Visualization Assistant** , follow these steps:
+
+  1. View a supported visualization in an Explore, or edit a visualization in a Look or dashboard.
+  2. Open the **Edit** menu in the visualization.
+  3. Click **Visualization Assistant** to open the prompt menu.
+
+For more information, see [Create visualizations with Gemini assistance](/looker/docs/custom-looker-visualization-gemini).
+
+### Looker: IDE
+
+To use Gemini to create LookML in your Looker project, follow these steps:
+
+  1. On your Looker instance, enable [Development Mode](/looker/docs/dev-mode-prod-mode#development_mode).
+  2. [Open your project in the Looker IDE](/looker/docs/looker-ide#accessing-ide).
+  3. Use the IDE [file browser](/looker/docs/ide-folders) to open a LookML view file in which you want to insert LookML.
+  4. Select the **Help Me Code** icon from the side panel selector.
+
+For more information, see [Write LookML with Gemini assistance](/looker/docs/write-lookml-gemini).
+
+### Looker Studio: Left navigation
+
+To use Gemini assistance to query your data in natural language, select **Conversational Analytics** from the left navigation in Looker Studio.
+
+To create a custom data agent, select **Conversational Analytics** from the left navigation in Looker Studio, and then select **Manage agents**.
+
+If you want to query data within your [personal sandbox](/looker/docs/studio/sandbox), follow these steps:
+
+  1. From the left navigation, select the **Sandbox** project.
+  2. Click **Create**.
+  3. Select **Conversation**.
+
+For more information about querying your data in natural language, see [Query your data in natural language with Gemini assistance](/looker/docs/studio/query-your-data-in-natural-language-gemini). For more information about creating and managing a custom data agent, see [Conversational Analytics: Data Agents](/looker/docs/studio/conversational-data-agents).
+
+### Looker Studio: Calculated field editor
+
+To use Gemini assistance to write formulas for calculated fields, follow these steps from a Looker Studio report:
+
+  1. Edit the data source.
+  2. Click **Add a field**.
+  3. Select **Add calculated field**.
+  4. Click the **Help me write** icon.
+
+For more information, see [Create calculated fields with Gemini assistance](/looker/docs/studio/create-calculated-fields-gemini).
+
+### Looker Studio: Gemini panel
+
+To use Gemini assistance to create a Slides presentation that includes all or selected visualizations in a Looker Studio report, follow these steps:
+
+  1. Open a Looker Studio report in either view or edit mode.
+  2. Select the Gemini panel in the panel manager.
+  3. Select **Generate Slides**.
+
+For more information, see [Adding Looker Studio content to your Slides presentation with Gemini assistance](/looker/docs/studio/add-looker-studio-slides-gemini).
+
+### Slides: **Looker Studio Pro** panel
+
+To use Gemini assistance to add Looker Studio content to an existing Slides presentation, follow these steps:
+
+  1. Open a Slides presentation.
+  2. Click the Looker Studio icon on the right-hand toolbar to open the Looker Studio Pro panel.
+
+For more information, see [Adding Looker Studio content to your Slides presentation with Gemini assistance](/looker/docs/studio/add-looker-studio-slides-gemini).
+
+## What's next
+
+  * [Assign the Gemini role to Gemini in Looker users](/looker/docs/admin-panel-users-roles#default_roles)
+
+## Related resources
+
+  * [Gemini for Google Cloud overview](/gemini/docs/overview)
+  * Learn how [Gemini for Google Cloud uses your data](/gemini/docs/discover/data-governance).
+  * Learn more about [Google Cloud compliance](/security/compliance).

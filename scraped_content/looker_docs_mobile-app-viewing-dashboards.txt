@@ -1,0 +1,111 @@
+You can view [user-defined dashboards](/looker/docs/viewing-dashboards) and [LookML dashboards](/looker/docs/building-lookml-dashboards) on your mobile device in the Looker mobile application. You can also [view Looks](/looker/docs/mobile-app-viewing-looks) in the app.
+
+## Opening a dashboard
+
+You can navigate to dashboards from the [**Recently Viewed** and **Favorites** screens](/looker/docs/mobile-app-navigating-to-content#viewing_your_most_recently_viewed_or_favorite_content), while [viewing a board](/looker/docs/mobile-app-navigating-to-content#navigating_to_content_from_boards) that you follow, or while [browsing content in folders](/looker/docs/mobile-app-navigating-to-content#browsing_content_in_folders) in the Looker mobile app.
+
+To open a dashboard in the app, select the [content card](/looker/docs/mobile-app-navigating-to-content#content_cards) for the dashboard:
+
+![Content card for the Business Overview dashboard shows a visual preview of the dashboard, the dashboard title, and the name of the dashboard creator.](/static/looker/docs/images/mobile-select-dashboard-716.png)
+
+You can also [search for a specific dashboard](/looker/docs/mobile-app-navigating-to-content#searching_your_most_recently_viewed_or_favorite_content) on the **Recently Viewed** and **Favorites** screens.
+
+To open a LookML dashboard in the app, navigate to the **LookML Dashboards** [folder](/looker/docs/mobile-app-navigating-to-content#browsing_content_in_folders) and select the dashboard. If a LookML dashboard has been [pinned to a board](/looker/docs/presenting-content#adding_content_to_a_board) that you have [added to your list of boards](/looker/docs/presenting-content#adding_a_board_to_your_list), you can open the LookML dashboard while [viewing that board in the app](/looker/docs/mobile-app-navigating-to-content#navigating_to_content_from_boards).
+
+## Viewing a dashboard
+
+Dashboards include the following elements:
+
+![](/static/looker/docs/images/mobile-new-dashboard-2104.png)
+
+  1. **Back button** : Returns you to the previous screen.
+  2. **Dashboard title** : Displays the title of the dashboard.
+  3. **Three-dot menu**: Provides the options to add or remove the dashboard from your favorites, share the dashboard, copy the link to the dashboard, or view information about the dashboard.
+  4. **Dashboard last updated indicator** : Shows how recently the data on the dashboard has been queried from (or "refreshed" from) the database.
+  5. **Reload data icon** : [Updates the data](/looker/docs/viewing-dashboards#updating_data_on_dashboards_\(beta\)) on the dashboard. This is often useful after filters have been changed.
+  6. **Dashboard filters** : Shows any dashboard filters that have been [added to a dashboard](/looker/docs/filters-user-defined-dashboards#adding_dashboard_filters). You can temporarily change dashboard filter values while in the app to see how the data changes.
+  7. **Folder icon** : Opens the **Folder Content** sidebar, which lets you [browse the folders you can access](/looker/docs/mobile-app-navigating-to-content#browsing_content_in_folders) while viewing the dashboard.
+  8. **Dashboards tiles** : Displays one or more dashboard tiles in a single vertical column.
+
+## Switching between portrait mode and landscape mode
+
+When you view a dashboard or [a Look](/looker/docs/mobile-app-viewing-looks) in the Looker mobile app, you can rotate the screen of your mobile device to switch between portrait mode and landscape mode.
+
+Content displays in portrait mode by default. Portrait mode can be useful for viewing multiple dashboard tiles on the screen at once.
+
+![](/static/looker/docs/images/mobile-dashboard-portrait-716.png)
+
+In landscape mode, dashboard tiles expand horizontally to fill the width of the screen. Landscape mode can be useful for viewing the details of one tile at a time.
+
+![](/static/looker/docs/images/mobile-dashboard-landscape-716.png)
+
+## Temporarily changing filter values
+
+Looker [dashboards](/looker/docs/viewing-dashboards) can have one or more [filters](/looker/docs/filtering-and-limiting) that affect one or more dashboard tiles.
+
+You can temporarily change the values of dashboard filters to see how the data changes. You will not affect anyone else's dashboard results by changing the filter values temporarily in the app.
+
+Dashboards display a filter icon and the number of filters that have been added at the top of the dashboard in the mobile app. To view the filters that have been added to a dashboard, select the filter icon or the text indicating the number of filters that have been added.
+
+![](/static/looker/docs/images/mobile-new-dash-filter-section-2104.png)
+
+You can temporarily change the value for a dashboard filter. For example, a dashboard has an [advanced control](/looker/docs/filters-user-defined-dashboards#using_advanced_controls) filter on a field called **State**. To change the filter, select **is any value**.
+
+![](/static/looker/docs/images/mobile-new-dash-filters-expanded-2104.png)
+
+Next, begin typing the new filter value that you want to apply to the dashboard. If the value that is entered is **California** , the filter `State is any value` will change to `State is California`.
+
+![](/static/looker/docs/images/mobile-new-dash-filters-enter-value-2104.png)
+
+Then, select the reload data icon to see how the filter value changes affect your data.
+
+![](/static/looker/docs/images/mobile-new-dash-filters-update-2104.png)
+
+For more information on making temporary changes to filter values on dashboards, see the [Viewing dashboards](/looker/docs/viewing-dashboards#temporarily_changing_filter_values_on_dashboards) documentation page.
+
+## Using the dashboard three-dot menu
+
+The Looker mobile app displays a three-dot menu at the top of a dashboard. Select the three-dot menu for a user-defined dashboard to use the following options:
+
+  * **Add to Favorites** or **Remove from Favorites**: Add a dashboard to your favorites, or remove a dashboard from your favorites.
+  * **Share**: Share a link to a dashboard from your mobile device.
+  * **Copy link**: Copy the link to a dashboard.
+  * **Get info**: View information about a dashboard, including its title, information about views and favorites, the date the dashboard was created, and the name of the user who created the dashboard.
+
+The three-dot menu for a [LookML dashboard](/looker/docs/building-lookml-dashboards) includes the options to share the dashboard or copy the link to the dashboard.
+
+You can also access the three-dot menu for a dashboard from the [**Recently Viewed** and **Favorites** screens](/looker/docs/mobile-app-navigating-to-content#viewing_your_most_recently_viewed_or_favorite_content), a [board](/looker/docs/mobile-app-navigating-to-content#navigating_to_content_from_boards), or a [folder](/looker/docs/mobile-app-navigating-to-content#browsing_content_in_folders) that contains the dashboard.
+
+### Adding or removing a dashboard from your favorites
+
+The [**Favorites** screen](/looker/docs/mobile-app-navigating-to-content#viewing_your_most_recently_viewed_or_favorite_content) in the Looker mobile app lists the user-defined dashboards that have you added to your favorites.
+
+To add a dashboard to your favorites while viewing the dashboard, or from the **Recently Viewed** screen, a board, or a folder:
+
+  1. Select the three-dot menu for the dashboard.
+  2. Choose **Add to Favorites**.
+
+To remove a dashboard from your favorites while viewing the dashboard, or from the **Recently Viewed** screen, the **Favorites** screen, a board, or a folder:
+
+  1. Select the three-dot menu for a dashboard that you added to your favorites.
+  2. Choose **Remove from Favorites**.
+
+### Sharing a dashboard
+
+You can share dashboards with other users using the sharing options available on your mobile device, or with a third-party service that is [integrated with Looker](/looker/docs/admin-panel-platform-actions#list_of_integrated_services), such as [Slack](https://slack.com/).
+
+### Copying the link to a dashboard
+
+You can copy the link to a dashboard to your mobile device's clipboard:
+
+  1. Select the three-dot menu for the dashboard.
+  2. Select **Copy link**.
+
+After you copy a link, the app displays the message **Link copied to clipboard**.
+
+### Viewing information about a dashboard
+
+Select **Get info** from the three-dot menu for a user-defined dashboard to view the following information:
+
+  * **Title** : Shows the title of the dashboard, the number of views, and the number of favorites
+  * **Created** : Displays the date the dashboard was created and the name of the user who created it

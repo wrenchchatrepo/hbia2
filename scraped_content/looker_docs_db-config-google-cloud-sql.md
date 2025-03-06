@@ -1,0 +1,110 @@
+# https://cloud.google.com/looker/docs/db-config-google-cloud-sql
+
+Depth: 3
+
+**Note:** [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instances support [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) as a method of authentication for Google Cloud SQL for MySQL. See the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#using-application-default-credentials-to-connect-to-a-database) for more information.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+## Users and security
+
+To perform actions on your database, Looker needs to have a user account on your database.
+
+**Note:** Skip this procedure if you are on a Looker (Google Cloud core) instance and you want to use Application Default Credentials to authenticate into your database. You will instead use an existing IAM principal account. See the [Connecting Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects#using-application-default-credentials-to-connect-to-a-database) documentation page for the procedure.
+
+To configure a database user for Looker to use, perform the following steps on your database:
+
+  1. Create a database user.
+    
+        CREATE USER USERNAME;
+    SET PASSWORD FOR USERNAME = PASSWORD ('PASSWORD');
+    
+
+  2. Grant `SELECT` privileges to the database user on the database that you want Looker to query. Replace `database_name` with the name of your database.
+    
+        GRANT SELECT ON DATABASE_NAME.* TO USERNAME;
+    
+
+Once you create the database user, you can enter the database user account credentials in the **Username** and **Password** fields of the Looker UI when you create the Looker connection to your database.
+
+## Creating the Looker connection to your database
+
+To create the connection from Looker to your database, follow these steps:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. From the **Dialect** drop-down menu, select **Google Cloud SQL**.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information. Some of the settings are described next:
+
+     * **Host** : The database hostname that is used to connect to the Google Cloud SQL for MySQL database. For an SSH tunnel, use `localhost`.
+     * **Port** : The port used that is to connect to the Google Cloud SQL for MySQL database.
+     * **Database** : The name of the Google Cloud SQL for MySQL database instance.
+     * **Username** : The username of the account that Looker will use to sign in to Google Cloud SQL for MySQL.
+
+**Note:** [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instances also support [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) as a method of authentication for Google Cloud SQL for MySQL. See the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#using-application-default-credentials-to-connect-to-a-database) for more information.
+     * **Password** : The password of the account that Looker will use to sign in to Google Cloud SQL for MySQL.
+
+     * **Additional JDBC parameters** : Additional JDBC parameters (optional).
+
+     * **SSL** : If checked, enables an SSL connection; however, SSL connections to Google Cloud SQL for MySQL are not supported by default.
+
+**Note:** Google Cloud SQL for MySQL requires additional steps for configuring SSL connections; see [Configuring SSL/TLS certificates](/sql/docs/mysql/configure-ssl-instance). Google Cloud SQL for MySQL creates a server certificate on the creation of each instance, so the custom certificate must be installed on the Looker server for successful SSL connections. This option is available only for [customer-hosted Looker deployments](/looker/docs/customer-hosted-installation-steps) that have access to the Looker server. 
+
+Because of this requirement, a better alternative to SSL is to connect Looker to Google Cloud SQL for MySQL through a [Cloud SQL for MySQL Proxy](/sql/docs/mysql/sql-proxy).
+     * **Verify SSL** : If checked, SSL verification is enforced. However, SSL connections to Google Cloud are not supported by default.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## PDT support
+
+Google Cloud SQL for MySQL does not support `CREATE TABLE AS SELECT` statements, so you must use the [`create_process`](/looker/docs/reference/param-view-create-process) LookML parameter to define PDTs.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+Google Cloud SQL supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | No  
+Stable Views | No  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | No  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+## Next steps
+
+After you have created your database connection, [set authentication options](/looker/docs/getting-started-with-users).

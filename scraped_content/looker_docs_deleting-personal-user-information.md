@@ -1,0 +1,76 @@
+# https://cloud.google.com/looker/docs/deleting-personal-user-information
+
+Depth: 3
+
+There are two methods to delete a user's personal information.
+
+## Option 1: Overwrite personal information
+
+It is best practice to disable users, rather than delete them, to maintain user history and content. For details, see the [Removing User Access](/looker/docs/admin-panel-users-users#removing_user_access) documentation.
+
+![](/static/looker/docs/images/delete-user-sudo-514-v2.png)
+
+  1. Go to the [Users](/looker/docs/admin-panel-users-users) page in Looker's **Admin** panel.
+  2. Select the **Sudo** button to the right of the user's information to impersonate the user.
+
+![](/static/looker/docs/images/delete-user-details-profile-64.png)
+
+  3. Go to the user's **Account**.
+
+  4. Delete or overwrite any user changeable **User Attributes** that contain personal information. These do not always appear on the user admin page.
+
+  5. Select **Save**.
+
+  6. Select **Stop Sudoing** in the red bar at the top of the screen.
+
+![](/static/looker/docs/images/delete-user-edit-514-v3.png)
+
+  7. Go back to the [Users](/looker/docs/admin-panel-users-users) page in Looker's **Admin** panel.
+
+  8. Select **Edit** to see the user's details.
+
+![](/static/looker/docs/images/delete-user-details-admin-514-v2.png)
+
+  9. Change the user's account to Disabled.
+
+  10. Overwrite the **First Name** to something else, like "disabled-user-1".
+
+  11. Overwrite the **Last Name** to something else, like "disabled-user-1".
+
+  12. Overwrite the **Email** to something else, like "disabled@user-1.com".
+
+  13. Delete or overwrite any **User Attributes** that contain personal information. If an attribute's source is "System setting" you can't change it directly. Looker will update it as you work through this procedure.
+
+  14. Delete or overwrite any **Access Filter Fields** that contain personal information.
+
+  15. Select **Save**.
+
+Be sure to address the user's Git activity.
+
+## Option 2: Delete the user
+
+> Deleting a user is irreversible. Consider your organization's compliance and security needs before doing so.
+
+Looker generally suggests disabling a user. If you delete a user, all of their history and content is erased _and cannot be recovered_. For details, see the [Removing User Access](/looker/docs/admin-panel-users-users#removing_user_access) documentation.
+
+To delete the user, navigate to the [Users](/looker/docs/admin-panel-users-users) page in Looker's **Admin** panel, and then follow these steps:
+
+![](/static/looker/docs/images/admin-users-delete-user-524-v2.png)
+
+  1. To see the user's details, select the **Edit** button to the right of the user's information.
+  2. Scroll to the bottom of the page and select **Delete**.
+  3. Confirm the deletion.
+
+Be sure to address the user's Git activity.
+
+## Deleting the user's Git activity
+
+Looker's developer branch names contain the first and last name of the user. You must delete any Looker user's Git branch.
+
+If you host your Git repo, ask your Git administrator to delete the user's branch.
+
+If Looker hosts your Git repo, contact privacy@looker.com to request that the branch be deleted.
+
+## SSO authentication considerations
+
+If you use a single sign-on (SSO) method — like SAML, LDAP, OpenID, or Google — it is not sufficient to change user information on your SSO provider. Looker stores copies of user information; you must complete the steps described on this documentation page to delete the information within Looker. Removing user information from the SSO provider does not remove API authentication credentials.

@@ -1,0 +1,79 @@
+**Note:** This page describes visualization options for Looker. For information about Looker Studio visualizations, see [Types of charts in Looker Studio](/looker/docs/studio/types-of-charts-in-looker-studio).
+
+Static map (points) charts are useful for plotting data represented by **points** on a map. To plot regions, use [static map (regions)](/looker/docs/map-regions-options). Static map (points) charts plot a single dimension of [`type: location`](/looker/docs/reference/param-dimension-filter-parameter-types#location) or [`type: zipcode`](/looker/docs/reference/param-dimension-filter-parameter-types#zipcode), and a single measure. Additional dimensions appear in the tool-tip on hover.
+
+Your data must be grouped appropriately for the visualization type (regions map or points map) and the specific map (US, UK, World) that you choose. See the Map section later on this page for guidance.
+
+To select a static map (points) chart, click the ellipses (...) on the Visualization menu bar and select **Static Map (Points)**.
+
+## Map menu options
+
+To format your visualization, select **Edit** in the upper right corner of the visualization tab.
+
+Some of the options that are listed on this documentation page may be grayed out or hidden when they conflict with other settings that you have chosen.
+
+### Map
+
+You can choose a map to display your data:
+
+  * **Austin, Texas (ZIP Codes):** Use data grouped by Austin zip codes (for region or point maps) or lat/long locations (for point maps only)
+  * **New York City (ZIP Codes)** : Use data grouped by NYC zip codes (for region or point maps) or lat/long locations (for point maps only)
+  * **San Francisco Peninsula (ZIP Codes):** Use data grouped by San Francisco peninsula zip codes (for region or point maps) or lat/long locations (for point maps only)
+  * **United Kingdom (Postcode Areas):** Use data grouped by UK postal codes (for region or point maps) or lat/long locations (for point maps only)
+  * **United States:** Use data grouped by US states (for region maps only), zip codes (for point maps only), or lat/long locations (for point maps only)
+  * **World:** Use data grouped by country (for region maps only) or lat/long locations (for point maps only)
+  * **Custom:** lets you define your own map using TopoJSON
+
+### TopoJSON URL
+
+For map charts set to **Map** Custom, **TopoJSON URL** sets the location of a TopoJSON file that defines your map boundaries.
+
+### TopoJSON Object Key
+
+For map charts set to **Map** Custom, **TopoJSON Object Key** selects which map from the TopoJSON file to plot, since TopoJSON can support multiple maps in a single file. Set this parameter to one of the map names defined in the file.
+
+### Projection
+
+For map charts set to **Map** Custom, you can choose which D3 projection to use to render your map. Many options examples are shown [on this GitHub page](https://github.com/d3/d3-geo-projection).
+
+## Style menu options
+
+### Point Color
+
+You can set the color to use for each point on a map points chart.
+
+This parameter takes a single color value. The color value can be formatted as a RGB hex string, such as `#2ca6cd`, or as a [CSS named color string](https://www.w3schools.com/cssref/css_colors.asp), such as `mediumblue`.
+
+### Map Color
+
+You can set the background color of regions on a map points chart.
+
+This parameter takes a single color value. The color value can be formatted as a RGB hex string, such as `#2ca6cd`, or as a [CSS named color string](https://www.w3schools.com/cssref/css_colors.asp), such as `mediumblue`.
+
+### Outer Border Color
+
+You can set the color of the overall map border.
+
+This parameter takes a single color value. The color value can be formatted as a RGB hex string, such as `#2ca6cd`, or as a [CSS named color string](https://www.w3schools.com/cssref/css_colors.asp), such as `mediumblue`.
+
+### Inner Border Color
+
+You can set the border color of each map region.
+
+This parameter takes a single color value. The color value can be formatted as a RGB hex string, such as `#2ca6cd`, or as a [CSS named color string](https://www.w3schools.com/cssref/css_colors.asp), such as `mediumblue`.
+
+### Outer Border Width
+
+You can set the width of the overall map border, specified as a number of pixels.
+
+### Inner Border Width
+
+You can set the border width of each map region, specified as a number of pixels.
+
+### Point Radius
+
+You can set the radius of each point on a map points chart, specified as a number of pixels. When left unset, Looker scales the radius of each point according to its magnitude.
+
+### Show Full Field Name in Tooltips
+
+You can toggle whether to show the view name along with the field name when you hover over a map region.

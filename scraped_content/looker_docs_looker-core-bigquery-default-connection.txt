@@ -1,0 +1,143 @@
+Looker (Google Cloud core) must be connected to a database to enable data exploration. A default connection to a BigQuery Standard SQL database can be created using the BigQuery QuickStart Connection.
+
+![The BigQuery QuickStart tile on a home page.](/static/looker/docs/images/bq-quickstart-2418.png)
+
+## Before you begin
+
+Configuring a BigQuery QuickStart Connection requires the following permissions.
+
+### Looker permissions
+
+You can view and edit the **BigQuery QuickStart Connection** page on your Looker (Google Cloud core) instance **Home** page if you have one of the following [Looker permissions](/looker/docs/admin-panel-users-roles):
+
+  * The Looker [Admin role](/looker/docs/admin-panel-users-roles#default_permission_sets)
+  * The [`manage_project_connections` Looker permission](/looker/docs/admin-panel-users-roles#manage_project_connections)
+
+### IAM permissions
+
+Looker (Google Cloud core) instances can use [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) to authenticate when you're [setting up a connection](/looker/docs/db-config-google-bigquery) to BigQuery. When you use ADC, the connection will authenticate to the database by using the credentials of the [Looker (Google Cloud core) service account](/looker/docs/looker-core-service-account). The service account must have the following IAM permissions to access the BigQuery dataset:
+
+  * For the project that contains the BigQuery dataset, the Looker service account must have the following IAM roles:
+
+    * [Service Usage Consumer](/iam/docs/understanding-roles#serviceusage.serviceUsageConsumer) (`roles/serviceusage.serviceUsageConsumer`)
+    * [BigQuery Job User](/iam/docs/understanding-roles#bigquery.jobUser) (`roles/bigquery.jobUser`)
+    * [BigQuery Data Editor](/iam/docs/understanding-roles#bigquery.dataEditor) (`roles/bigquery.dataEditor`), or the following IAM permissions:
+
+      * `bigquery.config.get`
+      * `bigquery.datasets.create`
+      * `bigquery.datasets.get`
+      * `bigquery.tables.create`
+      * `bigquery.tables.get`
+**Note:** If your Looker (Google Cloud core) instance uses [persistent derived tables](/looker/docs/derived-tables#temporary_and_persistent_derived_tables) with a BigQuery dataset, the service account must have the [BigQuery Data Editor role](/iam/docs/understanding-roles#bigquery.dataEditor) rather than the individual permissions listed here.
+  * For the billing project, the Looker service account must have the following IAM roles:
+
+    * [Service Usage Consumer](/iam/docs/understanding-roles#serviceusage.serviceUsageConsumer) (`roles/serviceusage.serviceUsageConsumer`)
+    * [BigQuery Job User](/iam/docs/understanding-roles#bigquery.jobUser) (`roles/bigquery.jobUser`)
+
+If the Looker (Google Cloud core) service account doesn't already have the necessary IAM roles, use the service account's email address when granting roles in that project. To [find the service account's email address](/iam/docs/service-account-types#service-agents), go to the **IAM** page in the Google Cloud console and select the **Include Google-provided role grants** checkbox. The email will have the format `service-<project number>@gcp-sa-looker.iam.gserviceaccount.com`. Use that email to [grant the proper roles to the service account](/iam/docs/granting-changing-revoking-access#grant-single-role).
+
+## Configuring a BigQuery QuickStart Connection
+
+The BigQuery QuickStart Connection can be viewed and edited by users who have the correct permissions either from the **Home** page or from the **Connections** page in the **Admin** panel. On the **Connections** page, the BigQuery QuickStart Connection appears under the name **Default BigQuery Connection**. On a new instance, the **Storage project ID** and **Billing project ID** fields will default to **None**.
+
+From the **Home** page, click the **Review connection** button to manage the connection. You can dismiss the **Home** page tile by clicking the **x** or by toggling the **BigQuery Quick Start** option in the **Discover** sidebar.
+
+The BigQuery QuickStart Connection contains the following sections:
+
+  * Billing Project ID
+  * Primary Dataset
+  * Optional Settings
+  * Review
+
+## Billing Project ID
+
+The [project ID](/resource-manager/docs/creating-managing-projects#identifying_projects) serves as a unique identifier for the Google Cloud billing project. The billing project is the Google Cloud [project that gets billed for BigQuery usage](/billing/docs/how-to/modify-project), but you can still query datasets in a different Google Cloud project if your LookML developers specify fully scoped table names in the `sql_table_name` parameter of your LookML [views](/looker/docs/reference/param-view-sql-table-name), [Explores](/looker/docs/reference/param-explore-sql-table-name), or [joins](/looker/docs/reference/param-explore-join-sql-table-name). This is a required field.
+
+**To authenticate to a BigQuery database using OAuth** : For BigQuery connections, Looker (Google Cloud core) can automatically use the OAuth application credentials that your Looker (Google Cloud core) admin used when they created the instance. See the [Create OAuth authorization credentials for a Looker (Google Cloud core) instance page](/looker/docs/looker-core-create-oauth) for more information.
+
+Expand the **Status Details** section to test the settings for your connection.
+
+## Primary Dataset
+
+The **Primary Dataset** page contains the following settings.
+
+### Storage Project ID
+
+In the **Storage Project ID** field, enter the [project ID](/resource-manager/docs/creating-managing-projects#identifying_projects) for the project that contains the BigQuery dataset to which you want to connect, even if it's the same project that contains the Looker (Google Cloud core) instance. This is a required field.
+
+### Primary Dataset
+
+The primary dataset is where BigQuery will look for tables if their location is not specified in the SQL query text. Note that Looker (Google Cloud core) queries can reference tables in any project or dataset, as long as the queries use fully scoped table names with the format `project_id.dataset_name.table_name`. The Looker (Google Cloud core) service account will also need the appropriate IAM permissions to access the tables in that location. This is a required field.
+
+To learn more about datasets, see the [Connecting Looker to BigQuery](/looker/docs/db-config-google-bigquery#connecting-to) documentation page.
+
+Expand the **Status Details** section to test the settings for your connection.
+
+## Optional Settings
+
+The **Optional Settings** section contains the following options:
+
+  * **Maximum Connections per Node** : The maximum number of connections to the database that are allowed at one time. **Note** : This setting is per each node in the Looker (Google Cloud core) deployment. The value must be between 5 and 100 and can be left at the default value initially. Read more about this setting in the [Max connections per node](/looker/docs/connecting-to-your-db#max_connections) section of the **Connecting Looker to your database** documentation page.
+
+  * **Connection Pool Timeout** : The number of seconds that a query will wait before timing out when the connection pool is full. Can be left at the default value initially. Read more about this setting in the [Connection Pool Timeout](/looker/docs/connecting-to-your-db#connection-pool-timeout) section of the **Connecting Looker to your database** documentation page.
+
+  * **Additional JDBC Parameters** : Add any additional JDBC parameters, such as BigQuery labels (see the [Job labels and context comments for BigQuery connections](/looker/docs/db-config-google-bigquery#context_comments) section on this page for more information).
+
+  * **Maintenance Schedule** : Cron expression that indicates the maximum frequency of datagroup trigger checks and PDT maintenance. Read more about this setting in the [Datagroup and PDT Maintenance Schedule](/looker/docs/connecting-to-your-db#datagroup_and_pdt_maintenance_schedule) documentation.
+
+  * **SSL** : Choose whether you want to use SSL encryption to protect data as it passes between Looker (Google Cloud core) and your database. SSL is only one option that can be used to protect your data; other secure options are described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+  * **Verify SSL** : Choose whether you want to require verification of the SSL certificate used by the connection. Read more about this setting in the [Verify SSL](/looker/docs/connecting-to-your-db#verify_ssl) section of the **Connecting Looker to your database** documentation page.
+
+  * **Precache tables and columns** : In SQL Runner, all table information is pre-loaded as soon as you select a connection and schema. This enables SQL Runner to quickly display table columns as soon as you click a table name. However, for connections and schema with many tables or with very large tables, you may not want SQL Runner to pre-load all the information.
+
+  * **Fetch and cache schema** : For some SQL-writing features such as aggregate awareness, Looker (Google Cloud core) uses your database's information schema to optimize SQL writing. Read more about this setting in the [Fetch Information Schema For SQL Writing](/looker/docs/connecting-to-your-db#fetch_information_schema_for_sql_writing) section of the **Connecting Looker to your database** documentation page.
+
+  * **Enable PDTs** : Turn on the **Enable PDTs** toggle to enable [persistent derived tables](/looker/docs/derived-tables#persistent-derived-tables). When PDTs are enabled, the **Optional Settings** window reveals additional PDT fields and the **PDT Overrides** section.
+
+  * **Temp database** : Enter the dataset in BigQuery where Looker (Google Cloud core) will create [persistent derived tables](/looker/docs/derived-tables#persistent-derived-tables). You should configure this dataset ahead of time, with the appropriate write permissions. This field is required to use PDTs.
+
+  * **Max Number of PDT Builder Connections** : The **Max number of PDT builder connections** setting defaults to **1** but may be set as high as **10**. However, the value cannot be higher than the value set in the **Max connections per node**. Read more about this setting in the [Max Number of PDT Builder Connections section](/looker/docs/connecting-to-your-db#max_number_of_pdt_builder_connections) of the **Connecting Looker to your database** documentation page. Set this value carefully. If the value is too high, you may overwhelm your database. If the value is low, then long-running PDTs or aggregate tables can delay the creation of other persistent tables or slow down other queries on the connection.
+
+  * **Retry failed PDT builds** : The **Retry failed PDT builds** toggle configures how the [Looker (Google Cloud core) regenerator](/looker/docs/derived-tables#the_looker_regenerator) attempts to rebuild trigger-persisted tables that failed in the previous regenerator cycle. Read more about this setting in the [Retry failed PDT builds](/looker/docs/connecting-to-your-db#retry_failed_pdt_builds) section of the **Connecting Looker to your database** documentation page.
+
+  * **PDT API Control** : The **PDT API Control** toggle determines whether the [`start_pdt_build`](/looker/docs/reference/looker-api/latest/methods/DerivedTable/start_pdt_build), [`check_pdt_build`](/looker/docs/reference/looker-api/latest/methods/DerivedTable/check_pdt_build), and [`stop_pdt_build`](/looker/docs/reference/looker-api/latest/methods/DerivedTable/stop_pdt_build) API calls can be used for this connection. When the **PDT API Control** toggle is disabled, these API calls will fail when they reference PDTs on this connection.
+
+  * **PDT Overrides** : If your database supports persistent derived tables, and you have turned on the **Enable PDTs** toggle in the connection settings, Looker (Google Cloud core) displays the **PDT Overrides** section. In the **PDT Overrides** section, you can enter separate JDBC parameters (host, port, database, username, password, schema, additional parameters, and after connect statements) that are specific to PDT processes. Read more about this setting in the [PDT Overrides](/looker/docs/connecting-to-your-db#pdt_overrides) section of the **Connecting Looker to your database** documentation page.
+
+  * **Database Time Zone** : The time zone in which your database stores time-based information. Looker (Google Cloud core) needs to know this so that it can convert time values for users, making it easier to understand and use time-based data. See the [Using time zone settings](/looker/docs/using-time-zone-settings) documentation page for more information.
+
+  * **Query Time Zone** : The **Query Time Zone** option is visible only if you have disabled [**User Specific Time Zones**](/looker/docs/admin-panel-general-settings#user_specific_time_zones). See the [Using time zone settings](/looker/docs/using-time-zone-settings) documentation page for more information.
+
+Expand the **Status Details** section to test the settings for your connection.
+
+## Review
+
+Review and modify the connection details that you entered in the previous sections in the **Review** section.
+
+Expand the **Status Details** section to test the settings for your connection. Click the edit icon next to each section to be taken back to that section to change your settings.
+
+## Saving and testing the connection
+
+To save any changes made to the BigQuery QuickStart Connection, click **Save**.
+
+You can test your connection settings from a couple of places in the Looker (Google Cloud core) UI:
+
+  * Expand the **Status Details** section at the bottom of any of the QuickStart Connection pages, and click **Test Connection**.
+  * From the **Home** page, expand the **Status Details** section at the bottom of the QuickStart Connection tile, and click **Test Connection**.
+  * On the **Connections** Admin page, select the **Test** button next to the connection's listing, as described on the [Connections](/looker/docs/admin-panel-database-connections#testing_connections) documentation page.
+
+Once you've entered the connection settings, click **Test** to verify that the information is correct and the database is able to connect.
+
+If your connection does not pass one or more tests, here are some troubleshooting options:
+
+  * Try some of the troubleshooting steps on the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page.
+  * Access the [logs of your Looker (Google Cloud core) instance](/looker/docs/looker-core-logging) for more detailed error messaging.
+  * [Reach out to support](/looker/docs/looker-core-support) for additional troubleshooting assistance.
+
+## What's next
+
+  * [Manage users within Looker (Google Cloud core)](/looker/docs/looker-core-user-management)
+  * [Administer a Looker (Google Cloud core) instance from the Google Cloud console](/looker/docs/looker-core-admin-console)
+  * [Looker (Google Cloud core) admin settings](/looker/docs/looker-core-admin-looker)
+  * [Use the sample LookML project on a Looker (Google Cloud core) instance](/looker/docs/looker-core-sample-project)

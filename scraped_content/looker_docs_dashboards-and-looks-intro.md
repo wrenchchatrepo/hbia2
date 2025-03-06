@@ -1,0 +1,30 @@
+# https://cloud.google.com/looker/docs/dashboards-and-looks-intro
+
+Depth: 3
+
+After learning how to query and chart data, many users want to take the next step and learn how to save the results from a query as a _Look_ or _dashboard_. This lets them organize and present information in a logical and cohesive way. This page outlines the documentation on dashboards and Looks. 
+
+## Creating and editing Looks
+
+[Saving and editing Looks](/looker/docs/saving-and-editing-looks) — Save the results of your query as a Look to view later or add to dashboards.
+
+## Creating and editing user-defined dashboards
+
+The following pages help you create dashboards through the Looker UI:
+
+  * [Creating user-defined dashboards](/looker/docs/creating-user-defined-dashboards) — Creating dashboards and adding dashboard tiles.
+  * [Editing user-defined dashboards](/looker/docs/editing-user-defined-dashboards) — Editing dashboards; rearranging, resizing, and editing dashboard tiles; dashboard settings; and deleting dashboards.
+  * [Adding and editing user-defined dashboard filters](/looker/docs/filters-user-defined-dashboards) — Adding, configuring, editing, and deleting dashboard filters.
+  * [Cross-filtering dashboards](/looker/docs/cross-filtering-dashboards) — Enabling, creating, sharing, drilling on, and removing cross-filters.
+  * [Embedding dashboards](/looker/docs/embedding-dashboards) — Embed URLs for dashboards and embed themes for dashboards.
+
+## Creating and managing LookML dashboards
+
+The following pages help you build and maintain LookML dashboards:
+
+  * [Building LookML dashboards](/looker/docs/building-lookml-dashboards) — Create a dashboard and add visualizations to it using LookML.
+  * [LookML dashboard overview](/looker/docs/reference/lookml-dashboard-overview) — View a menu page for all dashboard parameters in LookML.
+  * [Dashboard element parameters](/looker/docs/reference/param-lookml-dashboard-element) — View a list of LookML dashboard element types, with links to pages that outline the parameters for each element type.
+  * [Dashboard reference line parameters](/looker/docs/reference/param-lookml-dashboard-reference-line) — View a reference page for all dashboard reference line parameters in LookML.
+  * [Converting from LookML to user-defined dashboards](/looker/docs/converting-lookml-to-user-defined-dashboard) — Copy a LookML dashboard into a folder as a user-defined dashboard.
+  * [Converting from user-defined to LookML dashboards](/looker/docs/building-lookml-dashboards) — Generate LookML for a LookML dashboard using a user-defined dashboard as a source.

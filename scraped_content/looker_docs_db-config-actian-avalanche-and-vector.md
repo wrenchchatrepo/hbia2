@@ -1,0 +1,145 @@
+# https://cloud.google.com/looker/docs/db-config-actian-avalanche-and-vector
+
+Depth: 3
+
+To use Looker with Actian Avalanche or Vector, you will need to configure an Ingres driver. These instructions describe that process, assuming use of a startup script that is similar to the examples that are provided on the [looker-open-source GitHub page](https://github.com/looker-open-source/customer-scripts/tree/master/startup_scripts).
+
+You will need to acquire an Ingres driver JAR, include it as part of the startup process, and add an option to tell Looker to access it.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+## Installing the Ingres JDBC driver
+
+Follow the steps on the [Unpackaged JDBC drivers](/looker/docs/unpackaged-jdbc-drivers) documentation page using the following values:
+
+**driver symbol** : `ingres`
+
+**driver entry** :
+    
+    
+    - name: ingres
+      dir_name: ingres
+      module_path: com.ingres.jdbc.IngresDriver
+    
+
+For the [step to put the driver in your dialect's directory](/looker/docs/unpackaged-jdbc-drivers#driver_directory), the path to this file will look like this: `looker/custom_jdbc_drivers/ingres/iijdbc.jar`.
+
+## Creating the Looker connection to your database
+
+Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. Select **Actian Avalanche** or **Vector** from the **Dialect** drop-down menu.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Enabling PDT support
+
+It is possible to use [persistent derived tables (PDTs)](/looker/docs/derived-tables#persistent_derived_table) on your database using the [**PDT Overrides**](/looker/docs/connecting-to-your-db#configuring_separate_login_credentials_for_pdt_processes) section in the [**Connection Settings** page](/looker/docs/admin-panel-database-connections#adding_connections).
+
+To enable PDTs:
+
+  1. Create a PDT user in your database for use with the scratch schema, for example `looker_scratch`.
+
+  2. Create a group in your database such as `looker_pdt_group`.
+
+  3. Add both the regular Looker user and the Looker PDT user to the new group.
+
+  4. GRANT SELECT on all tables in the regular Looker user's schema to the PDT user.
+
+  5. In the Looker **Connection Settings** page, in the **PDT Overrides** section, enter the PDT user information.
+
+  6. The PDT user then runs a GRANT SELECT to the `looker_pdt_group` for every table it creates.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+### Actian Avalanche
+
+Actian Avalanche supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | No  
+SSL | No  
+Subtotals | No  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | No  
+Distinct Percentile | No  
+SQL Runner Show Processes | No  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | No  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+### Vector
+
+Vector supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | No  
+SSL | No  
+Subtotals | No  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | No  
+Distinct Percentile | No  
+SQL Runner Show Processes | No  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | No  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No

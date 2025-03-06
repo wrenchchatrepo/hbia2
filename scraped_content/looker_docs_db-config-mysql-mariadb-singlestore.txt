@@ -1,0 +1,304 @@
+## Dialects that use these instructions
+
+MySQL, MariaDB, and SingleStore (formerly MemSQL) share the database setup requirements described on this page.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+If you're interested in using SSL encryption, see this [MySQL documentation page](https://dev.mysql.com/doc/refman/5.7/en/encrypted-connections.html).
+
+## Users and security
+
+To create and grant the required access to the Looker user, follow the instructions in the section appropriate to your database dialect and version:
+
+### MySQL 8.0.X:
+
+**Note:** The Looker MySQL 8.0.X dialect option is implemented with the patch version 8.0.12+ because of a [MySQL deprecation](https://dev.mysql.com/worklog/task/?id=8693) in implicit sorting in the `GROUP BY` clause. This affects Looker subtotals for MySQL versions 8.0.0 through 8.0.11, causing SQL generation errors. Looker suggests upgrading any MySQL 8.0.X databases to at least 8.0.12 to fully integrate. However, earlier MySQL versions will still work, aside from [subtotals](/looker/docs/table-options#subtotals).
+
+In MySQL 8.0.X, the default authentication plugin is `caching_sha2_password`. Looker uses the `mysql_native_password` plugin to attempt to authenticate to MySQL databases through the JDBC driver. For this version of MySQL to work properly, you must take the following additional steps:
+
+  1. Configure the MySQL database to use the `mysql_native_password` plugin. This can be done in multiple ways, and will depend on how your MySQL 8 database is deployed and what type of access you have to the configuration:
+
+     * Start the process with the flag `--default-auth=mysql_native_password`
+
+     * Set the property in the [`my.cnf`](https://dev.mysql.com/doc/refman/8.0/en/option-files.html) configuration file:
+    
+        [mysqld]
+    default-authentication-plugin=mysql_native_password
+    
+
+     * If your database instance is hosted through AWS RDS, set the `default_authentication_plugin` parameter through an RDS Parameter Group that is applied to this database instance.
+  2. Run the following commands, replacing `some_password_here` with a unique, secure password:
+    
+        CREATE USER looker IDENTIFIED WITH mysql_native_password BY 'some_password_here';
+    GRANT SELECT ON database_name.* TO 'looker'@'%';
+    
+
+### MySQL 5.7.X and earlier, MariaDB, and SingleStore:
+
+Run the following commands, replacing `some_password_here` with a unique, secure password:
+    
+    
+    CREATE USER looker;
+    SET PASSWORD FOR looker = PASSWORD ('some_password_here');
+    GRANT SELECT ON database_name.* TO 'looker'@'%';
+    
+
+## Temp schema setup for persistent derived tables
+
+These database dialects support the creation of [persistent derived tables (PDTs)](/looker/docs/derived-tables#persistent-derived-tables). This feature can be very useful, and we recommend enabling it when possible.
+
+To enable PDTs, you need to configure a temp schema. The following commands show an example of creating a temp database and granting the required privileges to the `looker` user.
+
+> You can specify the name of the temp database in the [**Temp Database**](/looker/docs/connecting-to-your-db#temp_database) field when [creating your database connection](/looker/docs/connecting-to-your-db). If you don't specify a temp database name, Looker generates a scratch database named `looker_tmp`. The following commands use `looker_tmp`, but if you specified a different temp database name, use your temp database name instead of `looker_tmp`.
+    
+    
+    CREATE SCHEMA looker_tmp;
+    GRANT
+      SELECT,
+      INDEX,
+      INSERT,
+      UPDATE,
+      DELETE,
+      CREATE,
+      DROP,
+      ALTER,
+      CREATE TEMPORARY TABLES
+    ON looker_tmp.* TO 'looker'@'%';
+    
+
+For SingleStore, or if your database uses GTID-based replication, you must use the [`create_process`](/looker/docs/reference/param-view-create-process) LookML parameter to use PDTs, because GTID does not support `CREATE TABLE AS SELECT` statements.
+
+## Alternative setup for regular derived tables
+
+If you do not want to allow the creation of [persistent derived tables](/looker/docs/derived-tables#persistent-derived-tables), you can still use [regular derived tables](/looker/docs/derived-tables#regular-or-ephemeral-derived-tables). To use regular derived tables, you still need to add certain permissions to a schema called `looker_tmp`. However, the `looker_tmp` schema does not actually need to exist in your database!
+    
+    
+    GRANT
+      SELECT,
+      INDEX,
+      INSERT,
+      DROP,
+      CREATE TEMPORARY TABLES
+    ON looker_tmp.* TO 'looker'@'%';
+    -- Note that the looker_tmp schema does not need to actually exist,
+    -- even though these permission grants are still needed
+    
+
+## Setting the `max_allowed_packet` variable
+
+For MySQL, set the MySQL `max_allowed_packet` variable to its maximum value, 1073741824, to prevent "SQLException: Packet for query is too large" errors.
+
+## Creating the Looker connection to your database
+
+After completing the database configuration, you can connect to the database from Looker. Follow these steps to create the connection from Looker to your database:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. From the **Dialect** drop-down menu, select your database dialect name: **MySQL** , **MySQL 8.0.12+** , **MariaDB** , **SingleStore** , or **SingleStore 7+**.
+
+**Note:** If you are on a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance and you don't see your dialect listed in the **Dialect** drop-down menu, see the [Looker (Google Cloud core) documentation](/looker/docs/looker-core-dialects#supported_dialects_for) to verify that the dialect is supported for Looker (Google Cloud core) instances.
+  3. Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  4. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  5. To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+MySQL supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+MySQL 8.0.12+ supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+MariaDB supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | No  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | Yes  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+SingleStore supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | No  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | No  
+Distinct Percentile | No  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+SingleStore 7+ supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | No  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | No  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No

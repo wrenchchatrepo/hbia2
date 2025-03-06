@@ -1,0 +1,97 @@
+# https://cloud.google.com/looker/docs/studio-in-looker
+
+Depth: 3
+
+**Preview**
+
+This product or feature is subject to the "Pre-GA Offerings Terms" in the General Service Terms section of the [Service Specific Terms](/terms/service-terms#1). Pre-GA products and features are available "as is" and might have limited support. For more information, see the [launch stage descriptions](/products#product-launch-stages). 
+
+Studio in Looker lets you create, view, and edit Looker Studio reports in your Looker instance, including both governed and ad hoc data. You can share and manage your reports in Looker folders and see your recent reports and the reports that you have marked as favorites from the Looker **Home** page.
+
+## Before you begin
+
+To use Studio in Looker, your Looker instance must meet all [requirements](/looker/docs/enabling-studio-in-looker#requirements_and_limitations) for Studio in Looker, and your Looker admin must [enable Studio in Looker](/looker/docs/enabling-studio-in-looker#enabling_studio_in_looker).
+
+## Accessing Studio in Looker
+
+You can access Looker Studio in the following ways:
+
+  * From the Looker main navigation panel
+  * From an Explore page
+  * From a previously created or shared report
+
+### From the Looker main navigation panel
+
+In the Looker main navigation panel, click the **Create** button, and then select the **Report** menu item to open the Looker Studio report editor tool, where you can create a new Looker Studio report.
+
+![The Create Report button in the Looker left navigation panel.](/static/looker/docs/images/looker-main-nav-create-report-2412.png)
+
+If your Looker admin has enabled [Gemini in Looker](/looker/docs/overview-gemini) _and_ Studio in Looker for your Looker instance, you can query your Explore data in natural language with [Conversational Analytics](/looker/docs/studio/conversational-analytics-looker-connector). To access Conversational Analytics, select **Conversations** from the main navigation panel or click the **Create** button, and then select the **Conversation** menu item.
+
+### From an Explore page
+
+From a [Looker Explore page](/looker/docs/creating-and-editing-explores#explores_are_the_starting_point_for_exploration), you can open a Looker Studio report or query your data with Conversational Analytics.
+
+#### Open a Looker Studio report
+
+Click the **Open in Report** button to open the Looker Studio report editor tool with the Explore's pre-selected model, view, and fields.
+
+![The Open in Report button in the Looker Explore page.](/static/looker/docs/images/explore-open-in-report-button-2406.png)
+
+![A Looker Studio report created from a Looker Explore.](/static/looker/docs/images/sil-create-report-from-explore-25-20.png)
+
+Looker visualization types that are supported in a Looker Studio report include [table charts](/looker/docs/table-options), [column charts](/looker/docs/column-options), [bar charts](/looker/docs/bar-options), [scatterplot charts](/looker/docs/scatter-options), [line charts](/looker/docs/line-options), [area charts](/looker/docs/area-options), [pie charts](/looker/docs/pie-options), and [funnel charts](/looker/docs/funnel-options)
+
+A report that was created from a Looker Explore will have the following limitations:
+
+  * Visualizations that include [hidden values](/looker/docs/creating-visualizations#hide) will not include the hidden values in the report.
+
+  * [Hidden fields](/looker/docs/reference/param-field-hidden) will not appear in the report.
+
+  * Values that were created by using [dimension fill](/looker/docs/creating-visualizations#filling_in_missing_dates_and_values) will not appear in the report.
+
+  * [Custom expressions](/looker/docs/creating-looker-expressions) will not appear in the report.
+
+  * Looker Explores that contain only dimensions will be displayed as a table chart in the report.
+
+  * Explores will not be [sorted](/looker/docs/creating-and-editing-explores#sorting_data) as expected in reports if the following apply:
+
+    * Explores are sorted by fields that do not appear in the visualization.
+    * Explores are sorted by multiple columns.
+  * Explores that are [pivoted](/looker/docs/creating-and-editing-explores#pivoting_dimensions) on more than one dimension will display only one pivoted dimension in the report.
+
+  * Looker [scatterplot charts](/looker/docs/scatter-options) will be displayed as a line chart in the report.
+
+  * Filters that are created in the Explore UI won't carry over into the report.
+
+#### Query your data with Conversational Analytics
+
+If your Looker admin has enabled Gemini in Looker _and_ Studio in Looker for your Looker instance, as a Looker user, you can [query your Explore data in natural language](/looker/docs/studio/conversational-analytics-looker-connector) with Conversational Analytics.
+
+To access Conversational Analytics from an Explore, click **Start a conversation**.
+
+### From a previously created or shared report
+
+If you have previously created any Studio in Looker reports, or if another user has shared a report with you, you will see the report in the folder where it was saved, under the **Reports** section.
+
+For more information about saving, moving, copying, and sharing Studio in Looker reports, see the [Move, share, and copy reports](/looker/docs/move-share-copy-reports) documentation page.
+
+## Using Studio in Looker
+
+Studio in Looker has most of the features of Looker Studio. This section presents a list of links for common tasks that will take you to the Looker Studio documentation for those tasks.
+
+**Note:** For a list of Looker Studio features that are and that are not supported by Studio in Looker, see the [Feature availability in Studio in Looker](/looker/docs/studio-in-looker-feature-availability) documentation page.
+
+Before you can get started creating or editing reports, you may need to [use the Looker connector to connect to a Looker Explore](/looker/docs/studio/connect-to-looker) as a Looker Studio data source.
+
+The following is a list of Looker Studio Help pages for common tasks.
+
+**Note:** Clicking any of the following links takes you away from the Looker documentation site and to the Looker Studio documentation site.
+
+  * [View the Looker Studio Quick start guide](/looker/docs/studio/quick-start-guide)
+  * [View a typical Looker Studio workflow](/looker/docs/studio/a-typical-looker-studio-workflow)
+  * [Create a report](/looker/docs/studio/create-a-report)
+  * [Edit a report](/looker/docs/studio/edit-a-report)
+  * [Add data to a report](/looker/docs/studio/add-data-to-a-report)
+  * [Add charts and controls to a report](/looker/docs/studio/add-charts-and-controls-to-your-report)
+  * [Rename reports, data sources, explorations, and blends](/looker/docs/studio/rename-reports-data-sources-and-blends)

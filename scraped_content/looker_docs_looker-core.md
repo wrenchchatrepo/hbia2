@@ -1,0 +1,106 @@
+# https://cloud.google.com/looker/docs/looker-core
+
+Depth: 3
+
+The following pages provide an overview of Looker (Google Cloud core).  
+  
+## Overview
+
+  * [Looker (Google Cloud core) overview](/looker/docs/looker-core-overview)
+  * [Feature availability in Looker (Google Cloud core)](/looker/docs/looker-core-feature-differences)
+  * [Looker (Google Cloud core) features and entitlements](/looker/docs/looker-core-edition-types)
+  * [Looker (Google Cloud core) networking options](/looker/docs/looker-core-networking-options)
+  * [The Looker service account](/looker/docs/looker-core-service-account)
+  * [Looker (Google Cloud core) release overview](/looker/docs/looker-core-release-process)
+  * [Looker (Google Cloud core) locations](/looker/docs/looker-core-locations)
+  * [Use the sample LookML project on a Looker (Google Cloud core) instance](/looker/docs/looker-core-sample-project)
+
+## Quickstarts
+
+  * [Looker (Google Cloud core) quickstart overview](/looker/docs/looker-core-qs-overview)
+  * [Create a Looker (Google Cloud core) public IP standard edition instance](/looker/docs/looker-core-quickstart-public-ip-standard-edition)
+  * [Create a database connection for a Looker (Google Cloud core) instance](/looker/docs/looker-core-qs-create-connection)
+  * [Generate a model from sample data](/looker/docs/looker-core-qs-model-generation)
+  * [Model your data in LookML](/looker/docs/looker-core-qs-model-data)
+  * [Build a Look with sample data](/looker/docs/looker-core-create-look-quickstart)
+  * [Build a dashboard with sample data](/looker/docs/looker-core-create-dashboard-quickstart)
+
+## Create a public IP Looker (Google Cloud core) instance
+
+  * [Create OAuth authorization credentials for a Looker (Google Cloud core) instance](/looker/docs/looker-core-create-oauth)
+  * [Create a public IP Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-create)
+
+## Create a private IP Looker (Google Cloud core) instance enabled for private services access
+
+  * [Looker (Google Cloud core) private IP documentation](/looker/docs/looker-core-private-ip-overview)
+  * [Create OAuth authorization credentials for a Looker (Google Cloud core) instance](/looker/docs/looker-core-create-oauth)
+  * [Create a private IP Looker (Google Cloud core) instance](/looker/docs/looker-core-create-private-ip)
+
+## Create a private IP Looker (Google Cloud core) instance enabled for Private Service Connect
+
+  * [Looker (Google Cloud core) enabled for Private Service Connect documentation](/looker/docs/looker-core-psc-docs)
+  * [Create OAuth authorization credentials for a Looker (Google Cloud core) instance](/looker/docs/looker-core-create-oauth)
+  * [Use Private Service Connect with Looker (Google Cloud core)](/looker/docs/looker-core-psc-overview)
+  * [Create a Looker (Google Cloud core) Private Service Connect instance](/looker/docs/looker-core-create-psc)
+
+## Create a custom domain and access a Looker (Google Cloud core) instance
+
+  * [Set up and access a custom domain for a public IP Looker (Google Cloud core) instance](/looker/docs/looker-core-custom-domain)
+  * [Custom domain networking options for Looker (Google Cloud core) private IP instances](/looker/docs/looker-core-custom-domain-private-ip-overview)
+  * [Access a Looker (Google Cloud core) instance with private services access: Traffic from the same region](/looker/docs/looker-core-custom-domain-private-ip-same-region)
+  * [Access a Looker (Google Cloud core) instance with private services access: Traffic from different regions](/looker/docs/looker-core-custom-domain-private-ip)
+  * [Northbound access to a Looker (Google Cloud core) instance using Private Service Connect](/looker/docs/looker-core-psc-access)
+
+## Connect to external services
+
+  * [BigQuery default connection for Looker (Google Cloud core)](/looker/docs/looker-core-bigquery-default-connection)
+  * [Connect Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects)
+  * [Control access to external services for a private IP Looker (Google Cloud core) instance](/looker/docs/looker-core-private-ip-config)
+  * [Looker (Google Cloud core) southbound access to external services using Private Service Connect](/looker/docs/looker-core-psc-southbound)
+
+## Authentication and authorization
+
+  * [Authentication methods](/looker/docs/looker-core-user-authentication)
+  * [Access control with IAM](/looker/docs/looker-core-access-control)
+  * [Use Google OAuth for user authentication](/looker/docs/looker-core-oauth-authentication)
+  * [Use SAML for user authentication](/looker/docs/admin-panel-authentication-saml)
+  * [Use OpenID Connect for user authentication](/looker/docs/admin-panel-authentication-openid-connect)
+
+## Administer a Looker (Google Cloud core) instance
+
+  * Administer a Looker (Google Cloud core) instance from within Looker 
+    * [Looker (Google Cloud core) admin settings](/looker/docs/looker-core-admin-looker)
+    * [Managing users within Looker](/looker/docs/looker-core-user-management)
+    * [Prepare a Looker (Google Cloud core) instance for users](/looker/docs/looker-core-instance-setup)
+  * Administer a Looker (Google Cloud core) instance from the Google Cloud console: 
+    * [Overview of administration within the Google Cloud console](/looker/docs/looker-core-admin-console)
+    * [View and edit details about a Looker (Google Cloud core) instance](/looker/docs/looker-core-view-console)
+    * [Set up a custom domain for a Looker (Google Cloud core) instance](/looker/docs/looker-core-custom-domain-setup)
+    * [View information about a Looker (Google Cloud core) custom domain](/looker/docs/looker-core-custom-domain-settings)
+    * [Delete a Looker (Google Cloud core) custom domain](/looker/docs/looker-core-custom-domain-delete)
+    * [Accept complimentary Looker Studio Pro licenses for a Looker (Google Cloud core) instance](/looker/docs/looker-core-lsp)
+    * [VPC Service Controls support for Looker (Google Cloud core)](/looker/docs/looker-core-vpcsc)
+    * [Enable CMEK for Looker (Google Cloud core)](/looker/docs/looker-core-cmek)
+    * [Enable FIPS 140-2 level 1 compliance on a Looker (Google Cloud core) instance](/looker/docs/looker-core-fips-mode)
+    * [Import or export data from a Looker (Google Cloud core) instance](/looker/docs/looker-core-import-export)
+    * [Manage maintenance policies for a Looker (Google Cloud core) instance](/looker/docs/looker-core-maintenance)
+    * [Back up and restore a Looker (Google Cloud core) instance](/looker/docs/looker-core-backup-restore)
+    * [Self-service migration from Looker (original) to Looker (Google Cloud core)](/looker/docs/looker-core-self-service-migration)
+    * [Delete and restart a Looker (Google Cloud core) instance](/looker/docs/looker-core-delete-restart)
+    * [Administer Gemini on your Looker (Google Cloud core) instance](/looker/docs/looker-core-admin-gemini)
+
+## Use Gemini assistance with a Looker (Google Cloud core) instance
+
+  * [Gemini in Looker overview](/looker/docs/looker-core-gemini-overview)
+  * [Create visualizations with Gemini assistance](/looker/docs/looker-core-visualization-gemini-assistance)
+  * [Write LookML with Gemini in Looker assistance](/looker/docs/looker-core-lookml-gemini)
+
+## Observe and troubleshoot a Looker (Google Cloud core) instance
+
+  * [View instance logs for Looker (Google Cloud core)](/looker/docs/looker-core-logging)
+  * [Looker (Google Cloud core) audit logging](/looker/docs/looker-core-audit-logging)
+  * [Getting support for Looker (Google Cloud core)](/looker/docs/looker-core-support)
+
+## Viewing content using the mobile application
+
+  * [Viewing Looker (Google Cloud core) content using the Looker Studio mobile application](/looker/docs/looker-core-mobile-app)

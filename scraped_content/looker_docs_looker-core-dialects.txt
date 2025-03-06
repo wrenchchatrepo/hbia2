@@ -1,0 +1,294 @@
+Once your Looker (Google Cloud core) instance has been provisioned, it is listed on the [**Instances** page](/looker/docs/looker-core-admin-console#view_the_instance_configuration) of your Google Cloud project. Click the instance URL to access and [authenticate in to](/looker/docs/looker-core-user-authentication) the instance.
+
+**Note:** If you are setting up a private IP-only instance, you will also need to complete the steps listed on the [Create a private IP connection for Looker (Google Cloud core)](/looker/docs/looker-core-create-private-ip#instance_configuration_after_instance_creation) documentation page to complete your instance configuration.
+
+Once you have logged in to your Looker (Google Cloud core) instance, you can set up a database connection to your Looker (Google Cloud core) instance.
+
+## Set up a database connection
+
+Looker (Google Cloud core) must be connected to a database to enable data exploration. See the list of supported dialects to learn which dialects are supported by Looker (Google Cloud core).
+
+You can create a database connection within a Looker (Google Cloud core) instance if you have one of the following permissions:
+
+  * the Looker [Admin role](/looker/docs/admin-panel-users-roles#default_permission_sets)
+  * the [`manage_project_connections` Looker permission](/looker/docs/admin-panel-users-roles#manage_project_connections)
+
+**Note:** Looker (Google Cloud core) instances can use [BigQuery Quickstart Connection](/looker/docs/looker-core-bigquery-default-connection) to streamline the connection process to an existing BigQuery project.
+
+You can follow the **Set up Looker** guide that appears dynamically within the Looker (Google Cloud core) instance to connect your database, or follow the steps listed on the [dialect-specific documentation pages](/looker/docs/looker-core-dialects#database_configuration_instructions). The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information on common fields in the Looker connection setup window.
+
+There are additional steps if you want to set up your Looker (Google Cloud core) connection with any of the following options:
+
+  * **Private IP connection** : If your Looker (Google Cloud core) instance uses a [private IP connection](/looker/docs/looker-core-instance-create#set_the_network_connection), you must set up a [route](/vpc/docs/routes) or a [private connection](/vpc/docs/configure-private-services-access) to connect it to any of the following types of databases:
+
+    * A database in a different network within Google Cloud
+    * A database that is hosted by another cloud service provider
+    * An on-premises database
+
+Learn more about private networks and external services on the [Private IP networking with Looker (Google Cloud core)](/looker/docs/looker-core-private-ip-config) documentation page.
+
+  * **Authenticate with Application Default Credentials for BigQuery and Cloud SQL databases** : Looker (Google Cloud core) instances can use [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) to authenticate into your database, as described in the following sections:
+
+    * Using Application Default Credentials to connect to a BigQuery database
+    * Using Application Default Credentials with a BigQuery database in a different Google Cloud project
+    * Using Application Default Credentials to connect to a Cloud SQL database
+  * **Authenticate to a BigQuery database using OAuth** : For BigQuery connections, Looker (Google Cloud core) can use the [OAuth application credentials that your Looker admin used](/looker/docs/looker-core-create-oauth) when they created the Looker (Google Cloud core) instance. See the Configuring OAuth authentication with BigQuery section of this page for more information.
+
+## Using Application Default Credentials to connect to a BigQuery database
+
+Looker (Google Cloud core) instances can use [Application Default Credentials (ADC)](/docs/authentication/application-default-credentials) to authenticate when you're [setting up a connection](/looker/docs/db-config-google-bigquery) to a BigQuery Standard SQL database. When you use ADC, the connection will authenticate to the database by using the credentials of the [Looker (Google Cloud core) project's service account](/looker/docs/looker-core-service-account).
+
+To use ADC with a BigQuery database, select **Application Default Credentials** in the **Authentication** field of the **Connection Settings** page of the Looker instance. For the full procedure, see the documentation for [connecting Looker to a BigQuery database](/looker/docs/db-config-google-bigquery).
+
+If your Looker (Google Cloud core) instance uses [persistent derived tables](/looker/docs/derived-tables#temporary_and_persistent_derived_tables) with a BigQuery dataset, you must also grant the [Looker service account](/looker/docs/looker-core-instance-create#service_account) the [BigQuery Data Editor IAM role](/bigquery/docs/access-control#bigquery.dataEditor).
+
+If you're connecting to a BigQuery database that is in a different project from your Looker (Google Cloud core) instance, some additional setup is required. See the Using Application Default Credentials with a BigQuery database in a different Google Cloud project section.
+
+### Service account impersonation
+
+If you want to authenticate to the BigQuery database by using a service account other than the Looker (Google Cloud core) project's service account, you can create a [delegated request flow](/iam/docs/create-short-lived-credentials-delegated#sa-credentials-delegated) by entering another service account, or a comma-separated chain of service accounts, into the **Impersonated Service Account** field. The Looker (Google Cloud core) service account is automatically used as the first service account in the chain and does not need to be added to the field. The last service account in the chain (also known as the impersonated service account) is the one that authenticates with the database.
+
+When using service account impersonation, do the following:
+
+  * Enable the Service Consumer Management API. 
+
+[ Enable the API](https://console.cloud.google.com/flows/enableapi?apiid=serviceconsumermanagement.googleapis.com)
+
+  * Make sure that all service accounts in the chain, including the Looker (Google Cloud core) project's service account, [have the appropriate IAM permissions](/iam/docs/create-short-lived-credentials-delegated#sa-credentials-permissions).
+  * Make sure that the impersonated service account has the [Service Usage Consumer role](/service-usage/docs/access-control#predefined_roles), the [BigQuery Job User role](/bigquery/docs/access-control#bigquery.jobUser), and the [BigQuery Data Viewer role](/bigquery/docs/access-control#bigquery.dataViewer).
+
+### Using Application Default Credentials with a BigQuery database in a different Google Cloud project
+
+The steps for using ADC for a BigQuery Standard SQL database that is outside the project that houses your Looker (Google Cloud core) instance are the same as those for setting up a connection inside the same project. However, prior to setting up the connection in your Looker (Google Cloud core) instance, your Looker (Google Cloud core) project's service account must have the following IAM roles:
+
+  * [BigQuery Data Viewer role](/bigquery/docs/access-control#bigquery.dataViewer) for the project that contains the BigQuery dataset.
+  * [BigQuery Job User role](/bigquery/docs/access-control#bigquery.jobUser) and the [Service Usage Consumer role](/service-usage/docs/access-control#predefined_roles) on the billing project listed on the [**Connection Settings** page](/looker/docs/db-config-google-bigquery#connecting-to).
+  * If your Looker (Google Cloud core) instance uses [persistent derived tables](/looker/docs/derived-tables#temporary_and_persistent_derived_tables) with a BigQuery dataset, the service account must also have the [BigQuery Data Editor role](/bigquery/docs/access-control#bigquery.dataEditor) for the project that contains the BigQuery dataset.
+
+If the Looker (Google Cloud core) service account doesn't already have IAM roles in the project that contains the BigQuery dataset, use the service account's email address when granting roles in that project. To [find the service account's email address](/iam/docs/service-account-types#service-agents), go to the **IAM** page in the Google Cloud console and select the **Include Google-provided role grants** checkbox. The email will have the format `service-<project number>@gcp-sa-looker.iam.gserviceaccount.com`. Use that email to [grant the proper roles to the service account](/iam/docs/granting-changing-revoking-access#grant-single-role).
+
+Once the proper roles are granted, follow the steps to use ADC.
+
+You can now use ADC with this BigQuery Standard SQL database. The project attached to the service account that is specified in the [**Connection Settings** page](/looker/docs/db-config-google-bigquery#connecting-to) will be used for billing and also act as the default project.
+
+## Using Application Default Credentials to connect to a Cloud SQL database
+
+Looker (Google Cloud core) instances can use [ADC](/docs/authentication/application-default-credentials) to authenticate a connection to a Cloud SQL database (either [Cloud SQL for PostgreSQL](/looker/docs/db-config-postgresql) or [Cloud SQL for MySQL](/looker/docs/db-config-google-cloud-sql)). When you use ADC to authenticate into your Cloud SQL database, the Google Cloud project where the Cloud SQL database is running is the project that is billed for Looker queries.
+
+For Looker connections to Cloud SQL that use ADC, ADC [impersonates](/iam/docs/service-account-impersonation) a service account or a chain of service accounts to access your database. When you create the Looker connection to your database, you use the **IAM database username(s)** field to specify the service account, or the chain of service accounts, that ADC will impersonate. The [Looker service account](/looker/docs/looker-core-instance-create#service_account) that was created automatically when you created the Looker (Google Cloud core) instance is automatically used as the first service account in the chain and does not need to be added to the field.
+
+If you want to authenticate to your Cloud SQL database by using a service account other than the Looker service account, you can create a [delegated request flow](/iam/docs/create-short-lived-credentials-delegated#sa-credentials-delegated) by entering another [service account](/iam/docs/service-account-types), or a comma-separated chain of service accounts, into the **IAM database username(s)** field.
+
+The last service account in the chain (also known as the _impersonated service account_) is the one that authenticates with the database, and this account must be added as a user on your Cloud SQL database. If you are using the Looker service account as the last service account in the chain (by leaving the **IAM database username(s)** field blank), you must add the Looker service account as a user on your Cloud SQL database.
+
+The following are the general steps for connecting a Cloud SQL for PostgreSQL or Cloud SQL for MySQL database to Looker using ADC:
+
+  1. Add the impersonated service account to your Cloud SQL database.
+  2. Set up service account impersonation on your Cloud SQL database.
+  3. Connect to your database to run additional configuration commands for Cloud SQL for PostgreSQL or Cloud SQL for MySQL.
+  4. Create the Looker connection to your database.
+
+### Add the impersonated service account to your Cloud SQL database
+
+When you create the Looker connection to your database, you use the **IAM database username(s)** field to specify the service account, or the chain of service accounts, that ADC will [impersonate](/iam/docs/service-account-impersonation) to perform actions on your database. The last service account in the impersonation chain is considered the _impersonated service account_.
+
+To use ADC with Cloud SQL, you must add the impersonated service account to your Cloud SQL database:
+
+  * In the default case, if you leave the **IAM database username(s)** field blank, ADC will impersonate the Looker service account. In this case, the Looker service account is the impersonated service account, so you need to add the Looker service account to your Cloud SQL database. See the [Create a Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-create#service_account) documentation page for information about the Looker service account and for the procedure for viewing the Looker service account email address.
+  * If you specify a service account other than the Looker service account, or if you specify a chain of service accounts in the **IAM database username(s)** field, you must add the last service account in the impersonation chain to your Cloud SQL database.
+
+To add a service account to your Cloud SQL database, you must have the [Cloud SQL Admin](/iam/docs/understanding-roles#cloudsql.admin) IAM role.
+
+Follow the "Add an IAM user or service account to your database instance" procedure for your database dialect to add the impersonated service account to your Cloud SQL database:
+
+  * [Cloud SQL for PostgreSQL](/sql/docs/postgres/add-manage-iam-users#creating-a-database-user)
+  * [Cloud SQL for MySQL](/sql/docs/mysql/add-manage-iam-users#creating-a-database-user)
+
+### Set up service account impersonation on your Cloud SQL database
+
+Once you have created the Cloud SQL user on your database, you must set up your Cloud SQL database for service impersonation by performing the following steps:
+
+  1. Follow the procedure to [enable the Cloud SQL Admin API](/sql/docs/mysql/admin-api#enable_the_api).
+  2. Make sure that all service accounts in the chain, including the Looker service account, [have the appropriate IAM permissions](/iam/docs/create-short-lived-credentials-delegated#sa-credentials-permissions).
+  3. Follow the procedure for [granting a single role in the Google Cloud console](/iam/docs/granting-changing-revoking-access#grant-single-role). Grant the following [Cloud SQL roles](/sql/docs/mysql/iam-roles) to the impersonated service account that you added to your Cloud SQL database:
+
+     * [Cloud SQL Instance User](/iam/docs/understanding-roles#cloudsql.instanceUser)
+     * [Cloud SQL Client](/iam/docs/understanding-roles#cloudsql.client)
+     * [Service Usage Consumer](/iam/docs/understanding-roles#serviceusage.serviceUsageConsumer)
+
+If you specify a service account other than the Looker service account, or if you specify a chain of service accounts in the **IAM database username(s)** field, grant every service account in the chain the following permission:
+
+     * [Service Account Token Creator](/iam/docs/understanding-roles#iam.serviceAccountTokenCreator)
+
+### Additional configuration commands for Cloud SQL for MySQL
+
+For Cloud SQL for MySQL, you must [connect to your database instance](/sql/docs/mysql/connect-instance-cloud-shell#connect) and run the following command on the Cloud SQL for MySQL database:
+    
+    
+    GRANT ALL on DATABASE_NAME.* to 'DATABASE_USER'@'%'
+    
+
+Replace the following:
+
+  * DATABASE_NAME: The name of your database.
+  * DATABASE_USER: The truncated service account username for the impersonated service account that you added to your Cloud SQL database. The service account will have the format `service-<project number>@gcp-sa-looker.iam.gserviceaccount.com`. Truncate the username by removing the `@` and everything that follows. After truncating, the username would look like `service-<project number>`.
+
+For example, if the service account username is `service-12345678901@gcp-sa-looker.iam.gserviceaccount.com` and the database name is `looker-test`, the command would be as follows:
+    
+    
+    GRANT ALL on looker-test.* to 'service-12345678901'@'%'
+    
+
+### Additional configuration commands for Cloud SQL for PostgreSQL
+
+For Cloud SQL for PostgreSQL, you must [connect to your database instance](/sql/docs/postgres/connect-instance-cloud-shell#connect) and run some configuration commands on the Cloud SQL for PostgreSQL database:
+
+  * Grant the user permissions on your database as described in the [Users and security](/looker/docs/db-config-postgresql#users_and_security) section of the PostgreSQL documentation page.
+  * Set the search path for the Looker SQL Runner to use to retrieve metadata from your database, as described in the [Setting the `search_path`](/looker/docs/db-config-postgresql#setting-the-search_path) section of the Looker documentation PostgreSQL page.
+
+### Create the connection from Looker (Google Cloud core) to your Cloud SQL database
+
+To create the connection from Looker to your database, follow these steps:
+
+  1. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+  2. From the **Dialect** drop-down menu, select **Google Cloud PostgreSQL** or, for Cloud SQL for MySQL, select **Google Cloud SQL**.
+  3. In the **Authentication** section, click the **Application Default Credentials** option.
+  4. In the **IAM database username(s)** field, specify the service account, or the chain of service accounts, that you want ADC to [impersonate](/iam/docs/service-account-impersonation) to perform actions on your database:
+
+     * If you want Looker to authenticate to the Cloud SQL database by using the [Looker (Google Cloud core) project's service account](/looker/docs/looker-core-instance-create#service_account), leave this field blank.
+     * If you want Looker to authenticate to the Cloud SQL database by using a service account other than the Looker (Google Cloud core) project's service account, you can create a [delegated request flow](/iam/docs/create-short-lived-credentials-delegated#sa-credentials-delegated) by entering another [service account](/iam/docs/service-account-types), or a comma-separated chain of service accounts.
+  5. Fill out the rest of the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+  6. To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+  7. To save these settings, click **Connect**.
+
+**Note:** It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page. For Cloud SQL for PostgreSQL, if you're interested in using SSL encryption, see the [PostgreSQL documentation](https://www.postgresql.org/docs/).
+
+Once a database connection is set up, you are ready to [set up a LookML project](/looker/docs/looker-core-instance-setup#setup_lookml).
+
+## Configuring OAuth authentication with BigQuery
+
+To configure OAuth authentication for connections to a BigQuery database on a Looker (Google Cloud core) instance, follow these steps:
+
+  1. Under **Authentication** , select **OAuth**. Looker (Google Cloud core) defaults to using the OAuth application credentials that your Looker admin used when they [created the Looker (Google Cloud core) instance](/looker/docs/looker-core-create-oauth). You don't need to manually create or enter a client ID and secret.
+  2. Add an additional redirect URI to the **Authorized redirect URIs** field in the instance's OAuth client (or create a new OAuth client with the credentials and add a redirect URI). The redirect URI must use the Looker instance's URL followed by `/external_oauth/redirect`. For background information, see the [generating OAuth credentials for BigQuery](/looker/docs/db-config-google-bigquery#generating_google_oauth_credentials) documentation.
+
+If you want to manually enter different OAuth credentials for this connection, enable the **Manually configure OAuth credentials** toggle, and then fill out the **OAuth Client ID** and **OAuth Client Secret** fields. If you manually enter OAuth credentials, that won't change or update the credentials that were used when the Looker (Google Cloud core) instance was created. Follow the steps in the [Configuring a BigQuery database project for OAuth](/looker/docs/db-config-google-bigquery#configuring-a-database-project-for-oauth) documentation to create and use different credentials.
+
+## Supported dialects for Looker (Google Cloud core)
+
+The following table shows the Looker (Google Cloud core) support for database dialects:
+
+Dialect | Supported?  
+---|---  
+Actian Avalanche | No  
+Amazon Athena | Yes  
+Amazon Aurora MySQL | Yes  
+Amazon Redshift | Yes  
+Apache Druid | No  
+Apache Druid 0.13+ | No  
+Apache Druid 0.18+ | Yes  
+Apache Hive 2.3+ | No  
+Apache Hive 3.1.2+ | Yes  
+Apache Spark 3+ | Yes  
+ClickHouse | Yes  
+Cloudera Impala 3.1+ | Yes  
+Cloudera Impala 3.1+ with Native Driver | No  
+Cloudera Impala with Native Driver | No  
+DataVirtuality | No  
+Databricks | Yes  
+Denodo 7 | No  
+Denodo 8 | Yes  
+Dremio | No  
+Dremio 11+ | Yes  
+Exasol | No  
+Firebolt | No  
+Google BigQuery Legacy SQL | No  
+Google BigQuery Standard SQL | Yes  
+Google Cloud PostgreSQL | Yes  
+Google Cloud SQL | Yes  
+Google Spanner | Yes  
+Greenplum | No  
+HyperSQL | No  
+IBM Netezza | Yes  
+MariaDB | Yes  
+Microsoft Azure PostgreSQL | Yes  
+Microsoft Azure SQL Database | Yes  
+Microsoft Azure Synapse Analytics | Yes  
+Microsoft SQL Server 2008+ | No  
+Microsoft SQL Server 2012+ | No  
+Microsoft SQL Server 2016 | No  
+Microsoft SQL Server 2017+ | Yes  
+MongoBI | No  
+MySQL | No  
+MySQL 8.0.12+ | Yes  
+Oracle | Yes  
+Oracle ADWC | No  
+PostgreSQL 9.5+ | Yes  
+PostgreSQL pre-9.5 | No  
+PrestoDB | Yes  
+PrestoSQL | Yes  
+SAP HANA | No  
+SAP HANA 2+ | Yes  
+SingleStore | No  
+SingleStore 7+ | Yes  
+Snowflake | Yes  
+Teradata | Yes  
+Trino | Yes  
+Vector | No  
+Vertica | Yes  
+  
+## Database configuration instructions
+
+Instructions are available for these SQL dialects:
+
+**Note:** The following links navigate to the instructions for Looker (original) database connections, but they apply to Looker (Google Cloud core) as well.
+
+  * [Amazon Athena](/looker/docs/db-config-amazon-athena)
+  * [Amazon Aurora MySQL](/looker/docs/db-config-amapzon-aurora-mysql)
+  * [Amazon Redshift](/looker/docs/db-config-amazon-redshift)
+  * [Apache Druid 0.18+](/looker/docs/db-config-apache-druid)
+  * [Apache Hive 3.1.2+](/looker/docs/db-config-apache-hive)
+  * [Apache Spark 3+](/looker/docs/db-config-apache-spark)
+  * [ClickHouse](/looker/docs/db-config-clickhouse)
+  * [Cloudera Impala 3.1+](/looker/docs/db-config-cloudera-impala)
+  * [Databricks](/looker/docs/db-config-databricks)
+  * [Denodo 8](/looker/docs/db-config-denodo)
+
+| 
+
+  * [Dremio 11+](/looker/docs/db-config-dremio)
+  * [Google BigQuery Standard SQL](/looker/docs/db-config-google-bigquery)
+  * [Google Cloud SQL for MySQL](/looker/docs/db-config-google-cloud-sql)
+  * [Google Cloud SQL for PostgreSQL](/looker/docs/db-config-postgresql)
+  * [Google Spanner](/looker/docs/db-config-cloud-spanner)
+  * [MariaDB](/looker/docs/db-config-mysql-mariadb-singlestore)
+  * [Microsoft Azure PostgreSQL](/looker/docs/db-config-postgresql)
+  * [Microsoft Azure SQL Database](/looker/docs/db-config-microsoft-azure-sql-database)
+  * [Microsoft Azure Synapse Analytics](/looker/docs/db-config-microsoft-azure-synapse-analytics)
+  * [Microsoft SQL Server 2017+](/looker/docs/db-config-microsoft-sql-server)
+
+| 
+
+  * [MySQL 8.0.12+](/looker/docs/db-config-mysql-mariadb-singlestore)
+  * [Oracle](/looker/docs/db-config-oracle)
+  * [PostgreSQL 9.5+](/looker/docs/db-config-postgresql)
+  * [Presto (formerly PrestoDB)](/looker/docs/db-config-prestodb-and-trino)
+  * [SAP HANA](/looker/docs/db-config-sap-hana)
+  * [SingleStore 7+](/looker/docs/db-config-mysql-mariadb-singlestore)
+  * [Snowflake](/looker/docs/db-config-snowflake)
+  * [Teradata](/looker/docs/db-config-teradata)
+  * [Trino (formerly PrestoSQL)](/looker/docs/db-config-prestodb-and-trino)
+  * [Vertica](/looker/docs/db-config-vertica)
+
+  
+---|---|---  
+  
+## What's next
+
+  * [Configure a Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-setup)
+  * [Manage users within Looker (Google Cloud core)](/looker/docs/looker-core-user-management)
+  * [Administer a Looker (Google Cloud core) instance from the Google Cloud console](/looker/docs/looker-core-admin-console)
+  * [Looker (Google Cloud core) admin settings](/looker/docs/looker-core-admin-looker)
+  * [Use the sample LookML project on a Looker (Google Cloud core) instance](/looker/docs/looker-core-sample-project)

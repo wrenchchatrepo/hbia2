@@ -1,0 +1,23 @@
+The **Extension Framework** page in the **Platform** section of the **Admin** menu lets you enable or disable Looker extension framework options.
+
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+## Extension Framework
+
+When enabled, the **Extension Framework** option lets developers build and run Looker-hosted applications as well as install and run extensions from the [Looker Marketplace](/looker/docs/marketplace), such as the [API Explorer](/looker/docs/api-explorer) and the [Data Dictionary](/looker/docs/using-looker-data-dictionary). This feature is enabled by default.
+
+When this feature is disabled, any extensions that have been installed are hidden and unavailable to users.
+
+Pricing, terms, and other details for Marketplace content and extensions such as the API Explorer and Data Dictionary are listed within the relevant store page. Before users can install and use Marketplace extensions, a Looker admin must enable the [Marketplace](/looker/docs/admin-panel-platform-marketplace) feature.
+
+## Enhanced Extension Loading
+
+To address potential [Content Security Policy (CSP)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) violations, there is a new, enhanced loading mechanism for the Looker extension framework, which includes the following changes:
+
+  * To fix Content Security Policy (CSP) violations, HTML is generated to load an extension on the server rather than in the browser.
+  * The `base` tag is removed, which potentially could impact custom code splitting.
+  * The new loader uses a `<!DOCTYPE html>` preamble. This may impact components that use `height: 100%;`. You can mitigate this by using `height: 100vh`.
+
+To use the enhanced loading mechanism, a Looker admin can enable **Enhanced Extension Loading**.
+
+**Warning:** The enhanced loader may cause errors with existing extensions. Disable this option to use the legacy extension framework loader.

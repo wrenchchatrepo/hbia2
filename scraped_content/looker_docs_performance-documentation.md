@@ -1,0 +1,79 @@
+# https://cloud.google.com/looker/docs/performance-documentation
+
+Depth: 3
+
+This page lists Looker documentation pages that include information about optimizing Looker performance.
+
+## Overview
+
+The following page provides a high-level view of issues that can affect Looker performance.
+
+  * [Performance overview](/looker/docs/best-practices/how-to-optimize-looker-performance)
+
+## Dashboard performance
+
+The following page provides tips on how to design Looker dashboards to optimize performance.
+
+  * [Considerations when building performant Looker dashboards](/looker/docs/best-practices/considerations-when-building-performant-dashboards)
+
+## Query performance
+
+The following pages provide information on how to design LookML models to optimize query performance.
+
+  * [Optimize query performance](/looker/docs/best-practices/how-to-optimize-looker-server-performance#optimize-query-performance)
+  * [Caching queries](/looker/docs/caching-and-datagroups)
+  * [Aggregate awareness](/looker/docs/aggregate_awareness)
+  * [Aggregate awareness tutorial](/looker/docs/best-practices/aggregate-awareness-tutorial)
+  * [Accelerate your queries with Looker aggregate awareness](https://cloud.google.com/blog/products/data-analytics/accelerate-queries-looker-aggregate-awareness)
+  * [Incremental PDTs](/looker/docs/incremental-pdts)
+  * [How to Optimize SQL with EXPLAIN](https://www.googlecloudcommunity.com/gc/Technical-Tips-Tricks/How-to-Optimize-SQL-with-EXPLAIN/ta-p/587526)
+  * [suggestions (for fields)](/looker/docs/reference/param-field-suggestions)
+
+## Instance performance
+
+This section includes information on ways Looker admins can optimize the Looker instance.
+
+  * [Optimize Looker server performance](/looker/docs/best-practices/how-to-optimize-looker-server-performance#optimize-looker-server-performance)
+  * [Max number of PDT builder connections](/looker/docs/connecting-to-your-db#max_number_of_pdt_builder_connections)
+  * [Fetch Information Schema For SQL Writing](/looker/docs/connecting-to-your-db#fetch_information_schema_for_sql_writing)
+
+### Customer-hosted instances
+
+This section includes performance information that is specific to customer-hosted instances.
+
+  * [Recommended Java memory settings](/looker/docs/recommended-java-memory-settings)
+  * [Migrating the Looker backend database to MySQL](/looker/docs/migrating-looker-backend-db-to-mysql)
+
+## Database performance
+
+This section includes both general and dialect-specific information about optimizing database performance for use with Looker.
+
+  * [Database connection pooling](/looker/docs/db-connection-pooling)
+
+### BigQuery
+
+  * [Job labels and context comments for BigQuery connections](/looker/docs/db-config-google-bigquery#job-labels-and-context-comments-for)
+
+### Amazon Redshift
+
+  * [Optionally accessing data in S3 using Amazon Redshift Spectrum](/looker/docs/db-config-amazon-redshift#optionally_accessing_data_in_s3_using_amazon_redshift_spectrum)
+
+### Amazon RDS for MySQL
+
+  * [Amazon RDS for MySQL](/looker/docs/db-config-mysql-on-amazon-rds)
+
+## Performance monitoring
+
+This section includes information about how to monitor the performance of a Looker instance.
+
+  * [Understanding query performance metrics](/looker/docs/query-performance-metrics)
+
+### System activity dashboards
+
+  * [Database Performance dashboard](/looker/docs/system-activity-dashboards#dashboard_performance_dashboard)
+  * [Instance Performance dashboard](/looker/docs/system-activity-dashboards#instance_performance_dashboard)
+  * [Performance Recommendations dashboard](/looker/docs/system-activity-dashboards#performance_recommendations_dashboard)
+
+### Looker Marketplace
+
+  * [Google BigQuery Performance block](https://marketplace.looker.com/marketplace/detail/datatonic-bq-performance-v2)

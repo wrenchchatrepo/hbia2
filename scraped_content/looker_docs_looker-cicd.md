@@ -1,0 +1,27 @@
+# https://cloud.google.com/looker/docs/looker-cicd
+
+Depth: 3
+
+Advanced users may want to create a CI/CD workflow in Looker so that they can manage LookML in a formal software development manner. These guides explain how to configure such a setup so that LookML may be developed, QAed, validated, and deployed.
+
+The examples given explain a three-tier system that comprises development, QA, and production. However, you can apply the same principles to a two-tier or four-tier system.
+
+Once enabled, all Looker developers must use the CI/CD workflow.
+
+## Process overview
+
+In this process, developers write LookML in their development environment, using Git pull requests. The pull requests are configured to require that code reviews are completed and that the code is evaluated with automatic processes.
+
+When LookML is ready for testing, it is tagged in Git with a release candidate version number and promoted to QA. When QA approves, the LookML is promoted to production based on a Git tagged version number.
+
+If needed content like Looks and User Defined Dashboards can be migrated between the CI/CD tiers through the use of [Gazer](https://github.com/looker-open-source/gzr).
+
+![](/static/looker/docs/images/cicd-workflow.png)
+
+## Installation and configuration
+
+Find installation and configuration steps on the [Looker CI/CD Installation and Configuration](/looker/docs/looker-cicd-installation) page.
+
+## Usage and workflow
+
+Find details for using this setup after installation on the [Looker CI/CD Usage and Workflow](/looker/docs/looker-cicd-usage) page.

@@ -1,0 +1,115 @@
+A project is a collection of LookML files that describe how your database tables are related to each other and how Looker should interpret those tables. You can learn more about projects on the [LookML projects and development model](/looker/docs/dev-mode-prod-mode#lookml_projects) and [LookML terms and concepts](/looker/docs/lookml-terms-and-concepts#lookml_project) documentation pages. For information about accessing and editing existing projects, see the [Accessing and editing project information](/looker/docs/manage-projects) documentation page.
+
+A LookML project can contain more than one [model file](/looker/docs/model-and-view-files#model_files). However, if you want to specify permissions for users around seeing and editing LookML for a specific model file, you might want to create a new project. Although most permissions in Looker apply at the [model level](/looker/docs/admin-panel-users-roles#permissions_list), there are some permissions that apply to the project level, including `see_lookml`, which lets you view LookML for a project, and `develop`, which lets you edit the LookML.
+
+Looker users with the [`manage_models`](/looker/docs/admin-panel-users-roles#manage_models) permission can create LookML models on a Looker instance.
+
+## Creating a project
+
+**Caution:** The **New Project** page in Looker that is described in this documentation has been replaced with the [**Create a Model**](/looker/docs/generating-a-model) page. However, you can still access the **New Project** page if you are using a Looker (original) instance and your Looker admin has enabled the [Use Legacy Project Creation Page](/looker/docs/legacy-feature-schedule#legacy_project_creation) legacy feature, or through the informational banner at the top of the **Create a Model** page, or from the **Add LookML** button in the [**Pending Projects** section](/looker/docs/manage-projects#viewing_the_listing_for_a_pending_project) of the **Projects** page.
+
+To create a project, perform the following steps:
+
+  1. [Verify that you are in Development Mode](/looker/docs/dev-mode-prod-mode#switching_in_and_out_of_development_mode).
+
+  2. Select **Projects** from the **Develop** section of the navigation panel.
+
+![](/static/looker/docs/images/dev-generate-project-mng-a-2216.png)
+
+  3. On the **LookML Projects** page, select **New LookML Project** to select the options for your project.
+
+![](/static/looker/docs/images/dev-new-project-from-db-2112.png)
+
+This action opens the **New Project** page, where you can specify settings for your project, including the project's name and starting point.
+
+Looker can create a project in several ways, and the steps taken depend on the **Starting Point** option that you choose on the **New Project** page. The following sections describe how these starting points work:
+
+  * Automatically generating a model from your database
+  * Cloning a public Git repository
+  * Creating a blank project
+
+### Automatically generating a model from your database
+
+From the **New Project** page, specify the following options to automatically generate a model from a database.
+
+  1. **Project Name** : Give your project a name. Project names are case-sensitive and only allow alphanumeric characters, `_`, `.`, and `-`. Choose the project name carefully and consider it a permanent ID for the project, since Looker uses the project name in the following ways:
+
+     * To identify the project for API calls that have the `project_id` parameter.
+     * To identify the project in the Looker instance's internal database.
+     * To identify the project for [local project import](/looker/docs/importing-projects#importing_local_projects).
+     * To display the project on the [**LookML Projects** page](/looker/docs/manage-projects).
+     * To display the project in the **Develop** section of the [Looker navigation panel](/looker/docs/finding-content).
+     * As part of the URL for project files. For example, on a Looker instance with a URL of `example.looker.com`, the project manifest file for the project named `ecommerce` can be found at this URL: `https://example.looker.com/projects/ecommerce/files/manifest.lkml`.
+  2. **Starting Point** : Choose **Generate Model from Database Schema**.
+
+  3. **Connection** : From the drop-down menu, select the name of your database connection.
+
+  4. **Build Views From** : Select one of the following options:
+
+     * **All Tables** : The LookML generator creates a view file for each table in your database.
+     * **Single Table** : The LookML generator creates a view for one table in your database. If you choose this option, enter the name of the database table.
+  5. **Schemas** : To generate files for only one schema in your database, enter the name of the schema in the **Schemas** text field. You can list multiple schemas, separated by commas.
+
+**Note:** For [connections to Databricks databases with Unity Catalog enabled](/looker/docs/db-config-databricks#unity_catalog), Looker can generate models only for the Databricks catalog that is specified in the Looker connection to the Databricks database. If your connection doesn't specify a catalog, Looker can generate models only for your database's default catalog.
+  6. **Ignore Prefixes** : To leave table prefixes out of your view file names, enter your database's prefixes in the **Ignore Prefixes** field. This field is case-sensitive. You can list multiple prefixes, separated by commas. For example, your tables are titled `dwh_orders` and `DBS_users`. If you enter `dwh, DBS` in the **Ignore Prefixes** text field, then Looker creates view files named `orders` and `users`.
+
+Finally, click **Create Project** to create a project that contains the generated model.
+
+  * The LookML generator creates one model file for the project as well as a view file for each table in the database (unless otherwise specified). Then, Looker opens the new project in the [Looker IDE](/looker/docs/looker-ide).
+  * The LookML generator creates [IDE folders](/looker/docs/ide-folders) for your view and model files. If your database has more than one schema, the LookML generator creates a folder for schemas.
+
+For BigQuery connections, if you [generate a LookML project from your database](/looker/docs/generating-a-model#automatically_generating_a_model_from_your_database), Looker autopopulates field descriptions with the descriptions from your BigQuery column metadata, if any.
+
+The generator also creates an Explore for each database table. To start querying your data, use the **Explore** panel to select the name of an Explore.
+
+### Cloning a public Git repository
+
+If you select **Clone Public Git Repository** as the starting point, Looker will copy the files from a public Git repository into your new LookML project.
+
+Looker projects that are cloned from public Git repositories are read-only. However, you can [import the read-only project into another of your Looker projects](/looker/docs/importing-projects), where you can then edit the files. Additionally, you can use the cloned repository files as a starting point, then use the Looker [`extends`](/looker/docs/reusing-code-with-extends) parameter or [refinements](/looker/docs/lookml-refinements) to build up a project from there.
+
+From the **New Project** page, specify the following options to clone an existing public Git repository into a Looker project:
+
+  1. **Project Name** : Give your project a name. Project names are case-sensitive and [cannot use spaces or certain special characters](/looker/docs/creating-project-files#before_you_begin_important_file_and_folder_naming_conventions). Choose the project name carefully and consider it a permanent ID for the project, since Looker uses the project name in the following ways:
+
+     * To identify the project for API calls that have the `project_id` parameter.
+     * To identify the project in the Looker instance's internal database.
+     * To identify the project for [local project import](/looker/docs/importing-projects#importing_local_projects).
+     * To display the project on the [**LookML Projects** page](/looker/docs/manage-projects).
+     * To display the project in the **Develop** section of the [Looker navigation panel](/looker/docs/finding-content).
+     * As part of the URL for project files. For example, on a Looker instance with a URL of `example.looker.com`, the project manifest file for the project named `ecommerce` can be found at this URL: `https://example.looker.com/projects/ecommerce/files/manifest.lkml`.
+  2. **Starting Point** : Choose **Clone Public Git Repository**.
+
+  3. **Git Repository URL** : Enter the URL for the public Git repository. Make sure that the URL is in the format `git://github.com/example/my-repository.git`. 
+
+If you have a URL such as `https://github.com/llooker/blocks_redshift_admin`, you can edit it use to the correct format by replacing "https://" with "git://" and then adding ".git" at the end. The URL you would enter would be `git://github.com/llooker/blocks_redshift_admin.git`.
+
+Finally, click **Create Project**. Looker will pull all the public repository's files into a new LookML project and open the project in the [Looker IDE](/looker/docs/looker-ide).
+
+### Creating a blank project
+
+If you select **Blank Project** as the starting point, Looker creates an empty project so that you can create your LookML files from scratch.
+
+From the **New Project** page, specify the following options to create a blank project:
+
+  1. **Project Name** : Give your project a name. Project names are case sensitive and [cannot use spaces or certain special characters](/looker/docs/creating-project-files#before_you_begin_important_file_and_folder_naming_conventions). Choose the project name carefully and consider it a permanent ID for the project, since Looker uses the project name in the following ways:
+
+     * To identify the project for API calls that have the `project_id` parameter.
+     * To identify the project in the Looker instance's internal database.
+     * To identify the project for [local project import](/looker/docs/importing-projects#importing_local_projects).
+     * To display the project on the [**LookML Projects** page](/looker/docs/manage-projects).
+     * To display the project in the **Develop** section of the [Looker navigation panel](/looker/docs/finding-content).
+     * As part of the URL for project files. For example, on a Looker instance with a URL of `example.looker.com`, the project manifest file for the project named `ecommerce` can be found at this URL: `https://example.looker.com/projects/ecommerce/files/manifest.lkml`.
+  2. **Starting Point** : Choose **Blank Project**.
+
+Finally, click **Create Project**. Looker creates the project and opens it in the [Looker IDE](/looker/docs/looker-ide).
+
+## Next steps
+
+After a project is created, you can:
+
+  * [Manually create](/looker/docs/creating-project-files#creating_files) additional new models for your project.
+  * [Edit existing LookML files](/looker/docs/looker-ide).
+  * [Configure models](/looker/docs/generating-a-model#when_you_need_to_configure_models) for use in production.
+  * [Rename the project](/looker/docs/manage-projects#renaming_a_project).
+  * [Connect the Looker project to Git](/looker/docs/setting-up-git-connection).

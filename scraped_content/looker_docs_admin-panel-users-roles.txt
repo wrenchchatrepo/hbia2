@@ -1,0 +1,317 @@
+Roles, permission sets, and model sets are used together to manage what [users can do and what they can see](/looker/docs/access-control-and-permission-management). The **Roles** page in the **Users** section of the **Admin** panel lets you view, configure, and assign roles, permission sets, and model sets.
+
+You can search for specific roles, permission sets, and model sets by entering a search term into the search box in the upper right and pressing **Enter**.
+
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+## Definitions
+
+  * A **role** defines the privileges that a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) will have for a specific set of [models](/looker/docs/reference/param-model) in Looker. You create a role by combining one permission set with one model set.
+  * A **permission set** defines what a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) can do. You select a combination of permissions that you want to assign to a user or group. It must be used as part of a role to have any effect.
+  * A **model set** defines what data and LookML fields a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) can see. You select a combination of LookML models to which a user or group should have access. It must be used as part of a role to have any effect.
+
+## Managing roles
+
+A role is a combination of one permission set and one model set. It's a common convention to name roles after types of people or groups of people in your organization — administrator, Looker developer, Finance team — although you can certainly follow your own naming conventions.
+
+A user can have more than one role in Looker. This can be useful when you have users who play multiple roles in your company or when you want to create complex systems of access to your models.
+
+**Note:**
+
+Adding users to multiple roles can have important implications for how the users' permissions are applied. For example, if a user has the `manage_models` permission (an instance-wide permission) in only one of their roles, they will be able to manage any model. In contrast, if a user has the `access_data` permission (a model-specific permission) in only one of their roles, that user can access only the models that are specified in that role.
+
+Multiple roles can also cause unexpected effects on dashboards. See [Managing business user features](/looker/docs/managing-business-user-features#users_may_download_data_from_dashboard_tiles_without_download_permission) for information about dashboards and multiple roles.
+
+### Creating, editing, and deleting roles
+
+To create a role, follow these steps:
+
+  1. Click the **New Role** button at the top of the **Roles** page.
+  2. Looker displays the **New Role** page, where you can configure the following settings:
+
+     * **Name** : Enter a name for the role.
+     * **Permission Set** : Choose a permission set to associate with the role.
+     * **Model Set** : Choose a model set to associate with the role.
+     * **Groups** : Optionally, choose one or more [groups](/looker/docs/admin-panel-users-groups) to assign the role to.
+     * **Users** : Optionally, choose one or more [users](/looker/docs/admin-panel-users-users) to assign the role to.
+  3. Once you've configured the role as desired, click the **New Role** button at the bottom of the page.
+
+After a role has been created, you can edit it by clicking the **Edit** button to the right of the role on the **Roles** page. Clicking **Edit** takes you to the **Edit Role** page for that role, where you can edit the name, the permission set, the model set, and the groups or users that are assigned to the role.
+
+To delete a role, click the **Delete** button to the right of the role on the **Roles** page.
+
+### Default roles
+
+For new instances, Looker creates the following default roles, each of which includes a default permission set of the same name:
+
+  * Admin
+  * Developer
+  * Gemini
+  * Support Advanced Editor
+  * Support Basic Editor
+  * User
+  * Viewer
+
+If a Looker admin has disabled the [Tiered Support Access](/looker/docs/admin-panel-general-labs#tiered_support_access) Labs feature on a Looker (original) instance, the **Support Advanced Editor** and **Support Basic Editor** roles won't appear. The **Support Advanced Editor** and **Support Basic Editor** roles cannot be edited, deleted, or assigned to users other than [support access users](/looker/docs/admin-panel-general-support-access#specifying_individuals_who_have_access).
+
+The **Gemini** role cannot be edited or deleted. This role's permission set applies to all models on the Looker instance. A user with the **Gemini** role can [ask questions](/looker/docs/studio/query-your-data-in-natural-language-gemini) about fields in Looker Explores that are based on models that the user has the `access_data` permission for. For more information, see the [Gemini in Looker overview](/loker/docs/overview-gemini).
+
+**Note:** In Looker 25.2, the Gemini in Looker permission is not enforced, but we recommend that you assign this permission to those who will use Gemini in Looker features. This permission will be enforced starting in Looker 25.4.
+
+## Permission sets
+
+A permission set defines what a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) can do. Admins can use Looker's default permission sets or create original permission sets, keeping in mind permission dependencies.
+
+All the available permissions, and their types, are discussed in more detail in the permissions list.
+
+### Default permission sets
+
+For new installations, Looker includes several default permission sets that you can start with:
+
+Permission Set | Included Permissions  
+---|---  
+Admin | All permissions  
+Developer | `access_data``,` `can_create_forecast``,` `clear_cache_refresh``,` `create_custom_fields``,` `create_table_calculations``,` `deploy``,` `develop``,` `download_without_limit``,` `explore``,` `manage_spaces``,` `mobile_app_access``,` `save_content``,` `save_dashboards``,` `save_looks``,` `schedule_look_emails``,` `see_drill_overlay``,` `see_lookml``,` `see_lookml_dashboards``,``see_looks``,` `see_pdts``,` `see_sql``,` `see_user_dashboards``,` `send_to_integration``,` `use_sql_runner`**NOTE** : The `see_pdts` permission is included in the **Developer** default permission only for Looker installations that were created with Looker 21.18 or later. To verify whether the `see_pdts` permission is included in the **Developer** permission set on your instance, go to the **Roles** page in the **Admin** panel in the Looker UI.  
+Support Advanced Editor | `access_data`, `clear_cache_refresh`, `create_custom_fields`, `create_table_calculations`, `develop`, `explore`, `follow_alerts`, `manage_embed_settings`, `manage_models`, `manage_privatelabel`, `manage_project_connections`, `manage_project_connections_restricted`, `manage_project_models`, `manage_themes`, `see_admin`, `see_alerts`, `see_datagroups`, `see_drill_overlay`, `see_logs`, `see_lookml`, `see_lookml_dashboards`, `see_looks`, `see_pdts`, `see_queries`, `see_schedules`, `see_sql`, `see_system_activity`, `see_user_dashboards`, `see_users`, `update_datagroups`, `use_global_connections`**NOTE** : The **Support Advanced Editor** permission set isn't available if the [Tiered Support Access](/looker/docs/admin-panel-general-labs#tiered_support_access) Labs feature is disabled. The **Support Advanced Editor** permission set can't be edited or deleted.  
+Support Basic Editor | `access_data`, `clear_cache_refresh`, `create_custom_fields`, `create_table_calculations`, `explore`, `follow_alerts`, `manage_privatelabel`, `manage_themes`, `see_admin`, `see_alerts`, `see_drill_overlay`, `see_logs`, `see_lookml`, `see_lookml_dashboards`, `see_looks`, `see_pdts`, `see_schedules`, `see_sql`, `see_datagroups`, `see_system_activity`, `see_user_dashboards`, `see_users`**NOTE** : The **Support Basic Editor** permission set isn't available if the [Tiered Support Access](/looker/docs/admin-panel-general-labs#tiered_support_access) Labs feature is disabled. The **Support Basic Editor** permission set can't be edited or deleted.  
+LookML dashboard user | `access_data``,` `clear_cache_refresh``,` `mobile_app_access``,` `see_lookml_dashboards``,` `send_to_integration`  
+User | `access_data``,` `can_create_forecast``,` `clear_cache_refresh``,` `create_custom_fields``,` `create_table_calculations``,` `download_without_limit``,` `explore``,` `manage_spaces``,` `mobile_app_access``,` `save_content``,` `save_dashboards``,` `save_looks``,` `schedule_look_emails``,` `see_drill_overlay``,` `see_lookml``,` `see_lookml_dashboards``,` `see_looks``,` `see_sql``,` `see_user_dashboards``,` `send_to_integration`  
+User who can't view LookML | `access_data``,` `can_create_forecast``,` `clear_cache_refresh``,` `create_custom_fields``,` `create_table_calculations``,` `download_without_limit``,` `explore``,` `manage_spaces``,` `mobile_app_access``,` `save_content``,` `save_dashboards``,` `save_looks``,` `schedule_look_emails``,` `see_lookml_dashboards``,` `see_looks``,` `see_user_dashboards``,` `send_to_integration`  
+Viewer | `access_data``,` `clear_cache_refresh``,` `download_without_limit``,` `mobile_app_access``,` `schedule_look_emails``,` `see_drill_overlay``,` `see_lookml_dashboards``,` `see_looks``,` `see_user_dashboards`  
+  
+You'll see these permission sets appear as options when you create a new role. If you select one of these permission sets, Looker will display the list of permissions it includes.
+
+> The Admin permission set cannot be edited or deleted, and it cannot be assigned to a role. It is assigned _only_ to the Admin role, which also cannot be edited or deleted. The only way to grant the Admin permission set to a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) is to add the Admin role to that user or group.
+
+### Creating permission sets
+
+To create a permission set, click the **New Permission Set** button at the top of the **Roles** page. Looker will display a page where you can enter a name for the permission set and select the permissions it should include. Once you've configured the set as desired, click the **New Permission Set** button at the bottom of the page.
+
+After a permission set has been created, you can edit or delete it by clicking the **Edit** or **Delete** buttons to the right of the permission set on the **Roles** page.
+
+### Permissions and dependencies
+
+Some permissions depend on others to work properly. For example, it makes sense that someone who wants to develop in LookML must first be able to see LookML.
+
+When you create a permission set, you'll see the available permissions in an indented list. If a privilege is indented under another (parent) privilege, you must select the parent privilege first. The permission list may look like this:
+    
+    
+    ☑️ access_data
+      ☑️ see_lookml_dashboards
+      ☑️ see_looks
+        ☑️ see_user_dashboards
+    
+
+In this example, Looker uses indentation to indicate the following:
+
+  * The `access_data` privilege can be selected at any time.
+  * The `see_lookml_dashboards` and `see_looks` privileges require the `access_data` privilege to be selected first.
+  * The `see_user_dashboards` privilege depends on the `see_looks` privilege, which in turn depends on `access_data` privilege.
+
+You cannot select a child privilege without first selecting its parent.
+
+### Permissions and Looker licenses
+
+Looker licenses classify users into three types:
+
+  * Developer (Admin)
+  * Standard (Creator)
+  * Viewer
+
+The permissions granted to a user determine how that user is classified under the Looker license:
+
+  * A user is classified as a Developer (Admin) user if they have the Admin [default role](/looker/docs/admin-panel-users-roles#default_roles), or at least one of the following permissions:
+
+    * `develop`
+    * `manage_models`
+    * `see_datagroups`
+    * `see_logs`
+    * `see_pdts`
+    * `sudo`
+  * A user is classified as a Standard (Creator) user if they have none of the Developer (Admin) permissions but do have at least one of the following permissions:
+
+    * `create_prefetches`
+    * `explore`
+    * `manage_homepage`
+    * `manage_spaces`
+    * `save_content`
+    * `see_queries`
+    * `see_schedules`
+    * `see_system_activity`
+    * `see_users`
+    * `use_sql_runner`
+  * A user is classified as a Viewer if they have the `access_data` permission, but none of the Developer (Admin) permissions and none of the Standard (Creator) permissions.
+
+### Permissions list
+
+> The following permissions interact with model sets in a potentially unexpected way: 
+> 
+>   * `develop`
+>   * `see_lookml`
+>   * `manage_models`
+>   * `manage_modelsets_restricted`
+>   * `manage_project_connections_restricted`
+>   * `manage_project_connections`
+> 
+In Looker's IDE, a single project can contain multiple model files. If you assign the `develop` or `see_lookml` permissions to a user, and you've allowed that user to see _any_ model that is a part of a project, they will be able to develop or see the LookML for _all_ models in that project. However, they will still not be able to _query_ models that you have not allowed.
+> 
+> If you assign the `manage_models` permission to a user, the user will be able to access all models in all projects in the instance.
+> 
+> If you assign the `manage_modelsets_restricted` permission to a user, they can assign any model in a project to which they have access.
+> 
+> If you assign the `manage_project_connections_restricted` or `manage_project_connections` permissions to a user, the user will be able to see, edit, and create project-scoped connections for any projects that are included in the model set.
+
+Permissions can be classified as one of three types:
+
+  * **Model Specific:** This type of permission is applied only to the model sets that are part of the same role. This permission is applied to individual models or model sets, rather than across the entire Looker instance.
+  * **Connection Specific:** This type of permission is applied at the [connection](/looker/docs/reference/param-model-connection) level. A user with this type of permission will see content on pages in the **Admin** panel that uses a connection associated with a model to which they have data access, even if that connection is used with another model to which they do not have data access.
+  * **Instance Wide:** This type of permission applies to the Looker instance as a whole and has three types: 
+    * NN = **No content access, No menu access** : These permissions allow users to perform certain functions across the entire Looker instance, but do not allow users to access content based on models not included in their role's model set.
+    * CN = **Content access, No menu access** : These permissions allow users to access content and query information across the entire Looker instance — even for content and queries based on models not included in their role's model set.
+    * CM = **Content access, Menu access** : These permissions may expose parts of the Admin menu to non-admin users and allow users to see information about content and queries based on models not included in their role's model set.
+
+The following list describes all the permissions that are available in Looker, in the order in which they appear on the **New Permission Set** page in the **Admin** section:
+
+Permission | Depends On | Type | Definition  
+---|---|---|---  
+`access_data` | None | Model Specific | Users can access data from Looker, but only the data that admins specify. This permission is necessary for almost all Looker functions.A user with this permission, if given access to any model in a given project, can access any file in the [**Data** section](/looker/docs/other-project-files#data_files) of that project (such as a JSON custom map file).  
+`see_lookml_dashboards` | `access_data` | Model Specific | Users can see the LookML `Dashboards` folder, which includes all LookML dashboards. Users must have `explore` permission for any relevant models to explore those dashboards. Users that also have the `develop` permission can [create LookML dashboards](/looker/docs/building-lookml-dashboards#creating_a_lookml_dashboard_file).  
+`see_looks` | `access_data` | Model Specific | Users can see saved Looks (but not dashboards) within folders. Users must have `explore` permission for any relevant models to explore those Looks. Users will also need the [**View**](/looker/docs/access-levels#types_of_access_to_folders) content access level to see Looks in folders.  
+`see_user_dashboards` | `see_looks` | Model Specific | Users can [view user-defined dashboards in folders](/looker/docs/viewing-dashboards) but must have `explore` permission for any relevant models to explore those dashboards. Users also need [**View**](/looker/docs/access-levels#types_of_access_to_folders) content access to see dashboards in folders. Users who also have both the `save_dashboards` permission and the [**Manage Access, Edit**](/looker/docs/access-levels#types_of_access_to_folders) content access to a folder can [create user-defined dashboards](/looker/docs/creating-user-defined-dashboards) in that folder.  
+`explore` | `see_looks` | Model Specific | Users can access and use [the Explore page](/looker/docs/viewing-and-interacting-with-explores#the_explore_page) to generate Looks and dashboards. Without this permission, users can view saved dashboards only (if `see_lookml_dashboards` or `see_user_dashboards` has been granted).  
+`create_table_calculations` | `explore` | Instance Wide NN | Users can view, edit, or add [table calculations](/looker/docs/table-calculations).  
+`create_custom_fields` | `explore` | Instance Wide NN | Users can view, edit, or add [custom fields](/looker/docs/custom-fields); users who have only the `explore` permission can only view custom fields.  
+`can_create_forecast` | `explore` | Instance Wide NN | Users can create and edit [forecasts](/looker/docs/forecasting-in-visualizations) in visualizations; users who don't have this permission can only view existing forecasts in the content to which they have access.  
+`can_override_vis_config` | `explore` | Instance Wide NN | Users can access the [Chart Config Editor](/looker/docs/chart-config-editor), which lets them modify the [Highchart API JSON](https://api.highcharts.com/highcharts/chart) values of a visualization and customize the visualization appearance and format.  
+`save_content` | `see_looks` | Instance Wide NN | This permission is a parent permission of `save_dashboards`, `save_looks`, and `create_public_looks`. This permission must be granted with either `save_dashboards` or `save_looks`.  
+`save_dashboards` | `save_content` | Instance Wide NN |  ADDED 24.4  Users can save and edit dashboards. Users must have `explore` permission for any relevant models to explore from those dashboards. Users must have `download_with_limit` and/or `download_without_limit` permissions to download the content.  
+`save_looks` | `save_content` | Instance Wide NN |  ADDED 24.4  Users can save and edit Looks. Users must have `explore` permission for any relevant models to explore from those Looks. Users must have `download_with_limit` and/or `download_without_limit` permissions to download the content.  
+`create_public_looks` | `save_looks` | Model Specific | Users can [mark a saved Look as public](/looker/docs/publishing-looks-with-public-urls), which will then generate URLs granting access to that Look without authentication.  
+`download_with_limit` | `see_looks` | Model Specific | Users can [download](/looker/docs/downloading) queries (as CSV, Excel, and other formats) but must specify a row limit of 5,000 or fewer to avoid memory problems from large downloads on the instance.  
+`download_without_limit` | `see_looks` | Model Specific | The same as `download_with_limit`, but does not require the user to specify a row limit. Downloading all results for some types of queries may require substantial memory, potentially causing performance issues or even crashing the Looker instance.  
+`schedule_look_emails` | `see_looks` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to email. Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).To send or schedule [System Activity](/looker/docs/system-activity-pages) dashboards, users must have access to all models. Users who also have `create_alerts` permissions can send email [alert](/looker/docs/creating-alerts#sending_alerts_to_email) notifications.  Looker admins can control the email domains that Looker users and embed users can send email deliveries to with the [**Email domain allowlist**](/looker/docs/admin-panel-general-settings#email_domain_allowlist) on the **Settings** page of the **Admin** panel.**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`schedule_external_look_emails` | `schedule_look_emails` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to email. Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).To send or schedule [System Activity](/looker/docs/system-activity-pages) dashboards, users must have access to all models. Users who also have `create_alerts` permissions can send email [alert](/looker/docs/creating-alerts#sending_alerts_to_email) notifications. Users can email content deliveries or alert notifications to email addresses with any domain, regardless of whether the [**Email domain allowlist**](/looker/docs/admin-panel-general-settings#email_domain_allowlist) on the **Settings** page of the **Admin** panel contains any allowlisted email domains.**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`create_alerts` | `see_looks` | Instance Wide NN | From the dashboard tile, users can [create](/looker/docs/alerts-overview#creating_an_alert), [duplicate, and delete](/looker/docs/alerts-overview#modifying_an_alert) their own alerts; and can see and duplicate alerts marked **Public** by other users. The user must be signed in to Slack to see dashboard tile alerts that send Slack notifications. Users can view, edit, disable, and enable alerts that they own on the [**Manage Alerts** user page](/looker/docs/user-alerts). Users must have the `schedule_look_emails` or the `schedule_external_look_emails` permission in order to send email alert notifications.  
+`follow_alerts` | `see_looks` | Instance Wide NN | Users can view and [follow](/looker/docs/alerts-overview#following_alerts) alerts. View the alerts they have followed or for which they are listed as a recipient from the [**Manage Alerts** user page](/looker/docs/user-alerts).  
+`send_to_s3` | `see_looks` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to an Amazon S3 bucket. Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`send_to_sftp` | `see_looks` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to an SFTP server. Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`send_outgoing_webhook` | `see_looks` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to a webhook. Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`send_to_integration` | `see_looks` | Model Specific | Users can [deliver](/looker/docs/scheduling) any Looks, dashboards, and queries with visualizations to which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access) to the [third-party services integrated with Looker](/looker/docs/admin-panel-platform-actions#list_of_integrated_services) via the Looker Action Hub. If using [custom actions](/looker/docs/action-hub#building_a_custom_action) with [user attributes](/looker/docs/admin-panel-users-user-attributes), users must have this permission _and_ have a non-null and valid user attribute value for the specified user attribute to deliver Looker content to that action destination. This permission is not related to [data actions](/looker/docs/reference/param-field-action). Users can schedule delivery to occur after a [datagroup](/looker/docs/reference/param-model-datagroup) has been triggered, has managed the cache, and has [rebuilt relevant PDTs](/looker/docs/caching-and-datagroups#using_a_datagroup_for_a_pdt).**This permission is applied to individual models or model sets, rather than across the entire Looker instance.**  
+`see_sql` | `see_looks` | Model Specific | Users can access the [**SQL** tab](/looker/docs/how-looker-generates-sql#viewing_the_query) while exploring and any SQL errors caused by their queries.  
+`see_lookml` | `see_looks` | Model Specific | Users have read-only access to LookML. Users must have this permission to see the [Go to LookML](/looker/docs/creating-and-editing-explores#features_for_developers) link in the **Admin** panel.If you want a user to be able to edit LookML you must also grant them the `develop` permission. **NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `see_lookml` permission to a user, and you've allowed that user to see _any_ model that is a part of a project, they will be able to see the LookML for _all_ models in that project. However, they will still not be able to _query_ models that you have not allowed.  
+`develop` | `see_lookml` | Model Specific | Users can make local changes to LookML but will not let them make those changes available to everyone unless they also have the `deploy` permission. This permission is required to see the **Get support** option in the **Help** menu, and to see [metadata in the Looker IDE](/looker/docs/lookml-metadata). Users also need this permission to access the [**Rebuild Derived Tables & Run**](/looker/docs/derived-tables#manually_rebuilding_persistent_tables_for_a_query) option in the Explore gear menu. This is not model-specific, so if a user has this permission in one model, they will have access to **Rebuild Derived Tables & Run** in all models.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `develop` permission to a user, and you've allowed that user to see _any_ model that is a part of a project, they will be able to develop the LookML for _all_ models in that project. However, they will still not be able to _query_ models that you have not allowed.  
+`deploy` | `develop` | Instance Wide NN | Users can push their local LookML changes to production so that those changes become available to everyone.  
+`support_access_toggle` | `develop` | Instance Wide NN | Users can [enable or disable access](/looker/docs/admin-panel-general-support-access) by Looker analysts to your Looker instance.  
+`manage_project_models` | `develop` | Model Specific | Users can add, edit, or delete model configurations for allowed models on the [Edit Model Configuration](/looker/docs/manage-projects#adding_and_editing_configurations) page. When configuring a model, users can use only project-scoped connections.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you create a role with the `manage_project_models` permission, the role will grant access to all models that share a project with any of the models in the role's model sets.  
+`use_global_connections` | `manage_project_models` | Model Specific | Users can configure allowed models with any project-scoped connection or any instance-wide connection.  
+`manage_project_connections_restricted` | `develop` | Model Specific CM | Users can see the [Connections](/looker/docs/admin-panel-database-connections) page in the Admin menu. They can see, edit, and create project-scoped connections for any projects in the model set. However, they can edit only the following connection settings:
+
+  * All settings in the [**General settings**](/looker/docs/connecting-to-your-db#general_settings) section
+  * All settings in the [**SSH Server**](/looker/docs/connecting-to-your-db#ssh_server) section
+  * All settings in the [**Time Zone**](/looker/docs/connecting-to-your-db#time_zone) section
+  * The **Additional JDBC Parameters** , **SSL** , **Verify SSL** , and **Use TNS** settings in the [**Additional Settings**](/looker/docs/connecting-to-your-db#additional_settings) section
+
+Users cannot edit any other settings in the **Additional Settings** section. They also may not edit any settings in the [**Persistent Derived Tables (PDTs)**](/looker/docs/connecting-to-your-db#persistent_derived_tables_pdts) section.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `manage_project_connections_restricted` permission to a user, the user will be able to see, edit, and create project-scoped connections for any projects included in the model set.  
+`manage_project_connections` | `manage_project_connections_restricted` | Model Specific CM | Users can see the [Connections](/looker/docs/admin-panel-database-connections) page in the Admin menu. They can see, edit, and create project-scoped connections for any projects included in the model set.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `manage_project_connections_restricted` permission to a user, the user will be able to see, edit, and create project-scoped connections for any projects included in the model set.  
+`use_sql_runner` | `see_lookml` | Model Specific | Users can use [SQL Runner](/looker/docs/sql-runner-basics) to run raw SQL against their allowed connections. Users will also be able to [download results](/looker/docs/sql-runner-basics-create-queries#downloading_results) from the **Download** option in the SQL Runner gear menu, regardless of whether the user has the `download_with_limit` or `download_without_limit` permissions.  
+`clear_cache_refresh` | `access_data` | Model Specific | Users can clear cache and refresh internal and embedded dashboards, dashboard tiles, Looks, and Explores.The `clear_cache_refresh` permission is automatically added to any pre-existing permission sets that contain any of the following permissions: `see_user_dashboards`, `see_lookml_dashboards`, or `explore`. The `clear_cache_refresh` permission is not automatically applied to any [embedded roles](/looker/docs/single-sign-on-embedding#embedded_roles).  
+`see_drill_overlay` | `access_data` | Model Specific | Users can see the results of drilling into a dashboard tile but cannot explore those results. If `explore` is granted, this permission is also automatically granted (even if it isn't checked). Users must also have `explore` permissions to download drill results in PNG format.  
+`manage_spaces` | None | Instance Wide CN | Users can create, edit, move, and delete folders. Users will also need the [**Manage Access, Edit**](/looker/docs/access-levels#types_of_access_to_folders) content access permission.  
+`manage_homepage` | None | Instance Wide NN | Users can [edit and add content to the sidebar](/looker/docs/making-announcements-to-your-users) that all Looker users see on the [pre-built Looker homepage](/looker/docs/finding-content#personalized_home_page_with_visual_thumbnails).  
+`manage_models` | None | Instance Wide CN |  Each LookML model is mapped to a specific set of database connections on the [Manage LookML Projects](/looker/docs/manage-projects) page. With this permission, users can configure these mappings, create new projects, and delete projects. Non-admin users who are granted this permission will have access to all connections that are allowed by the models to which they have access.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `manage_models` permission to a user, the user will be able to access all models in all projects in the instance.  
+`create_prefetches` | None | Instance Wide | Prefetching is strongly discouraged. We recommend using [datagroups](/looker/docs/caching-and-datagroups#specifying_caching_policies_with_datagroup_parameters) instead.  
+`login_special_email` | None | Instance Wide | Users can log in with traditional email/password credentials, even if other login mechanisms (such as Google, LDAP, or SAML) have been enabled on your instance. This can be useful for consultants or others who may not be a part of your normal authentication system.  
+`embed_browse_spaces` | None | Instance Wide NN | Enables the content browser for [signed embeds](/looker/docs/single-sign-on-embedding). If you are using signed embeds, you should grant this permission to users who have the `save_content` permission.  
+`embed_save_shared_space` | None | Instance Wide | Allows user with the `save_content` permission to save content to the organization's **Shared** folder, if there is one. Users who have the `save_content` permission but not the `embed_save_shared_space` permission will only have the option to save content to their [personal embed folder](/looker/docs/viewing-embedded-items#using_embedded_spaces_to_find_looks_and_dashboards).  
+`manage_embed_settings` | None | Instance Wide CM |  ADDED 24.0  Users can edit embed settings on the [**Embed**](/looker/docs/admin-panel-platform-embed) page in the **Platform** section of the **Admin** menu.  
+`manage_modelsets_restricted` | None | Model Specific CM |  ADDED 25.2  Users can modify model sets for which they have the `manage_modelsets_restricted` permission. A user can only add models contained in model sets for which the user also has the `manage_modelsets_restricted` permission.**NOTE** : This permission interacts with model sets in a potentially unexpected way. If you assign the `manage_modelsets_restricted` permission to a user, and you've allowed that user to access _any_ model that is a part of a project, they will be able to assign _all_ models in that project to model sets that they have access to.  
+`manage_schedules` | None | Model Specific CM |  ADDED 25.2  Users can reassign and delete schedules on the [**Schedules**](/looker/docs/admin-panel-alerts-and-schedules-schedule) page for the specified models. This permission does not give a user the ability to see the [**Schedule History**](/looker/docs/admin-panel-alerts-and-schedules-schedule-history) page.  
+`manage_themes` | None | Instance Wide CM |  ADDED 24.0  Users can configure theme settings on the [**Themes**](/looker/docs/themes-for-embedded-dashboards-and-explores) page in the **Platform** section of the **Admin** menu.This permission is available only if themes have been enabled for your instance.  
+`manage_privatelabel` | None | Instance Wide CM |  ADDED 24.0  Users can configure private label settings on the [**Private Label**](/looker/docs/privatelabel) page in the **Platform** section of the **Admin** menu.This permission is available only if private label has been enabled for your instance.  
+`see_alerts` | None | Instance Wide CM | Users can access the **Alerts** and **Alert History** pages in the **Admin** section, allowing users to see all alerts on a Looker instance. Users can view, follow, edit, self-assign, and disable alerts that are owned by other users from the **Alerts** admin page.Users must have permissions to access the alert's underlying content to view or explore from the alert's visualization (in the [**Alert Details**](/looker/docs/admin-panel-alerts-and-schedules-alerts#alert_details_page) page) or to navigate to its dashboard. This permission does not grant users the ability to view, create, follow, or delete alerts from the dashboard tile.  
+`see_queries` | None | Instance Wide CM | Users can see the [Queries](/looker/docs/admin-panel-database-queries) page in the **Admin** section of Looker. This privilege does not give a user the ability to terminate a query on the **Queries** page.  
+`see_logs` | None | Instance Wide CM | Users can see the [Log](/looker/docs/admin-panel-server-log) page in the **Admin** section of Looker.  
+`see_users` | None | Instance Wide CM | Users can see the [Users](/looker/docs/admin-panel-users-users) page (but not the [Groups](/looker/docs/admin-panel-users-groups) page) in the **Admin** section of Looker. This privilege does not give a user the ability to create new users, see or create API credentials, reset passwords, or otherwise modify users or privileges. A user granted this permission can see all users in all groups on an instance, even on a [closed system](/looker/docs/admin-panel-general-settings#closed_system). A user can see all group names and all role names, which some companies may consider sensitive.  
+`sudo` | `see_users` | Instance Wide CM | Users can sudo (in other words, act as and temporarily inherit the permissions of) another user by clicking the **Sudo** button on the [Users](/looker/docs/admin-panel-users-users) page.The `sudo` permission does not allow a non-admin to sudo as an admin, _but a non-admin could potentially escalate their privileges by using sudo_ , so exercise caution.Note: [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instances do not contain the `sudo` permission.  
+`manage_groups` | `see_users` | Instance Wide CM |  ADDED 24.0  Users can create, edit, and delete groups on the [**Groups**](/looker/docs/admin-panel-users-groups) page in the **Users** section of the **Admin** menu, with the exception of any groups that are associated with the **Admin** role.  
+`manage_roles` | `manage_groups` | Instance Wide CM |  ADDED 24.0  Users can create, edit, and delete roles, except for the **Admin** role, on the [**Roles**](/looker/docs/admin-panel-users-roles) page in the **Users** section of the **Admin** menu. Users still cannot create, edit, or delete permission sets or model sets.  
+`manage_user_attributes` | `see_users` | Instance Wide CM |  ADDED 24.0  Users can create, edit, and delete user attributes on the [**User Attributes**](/looker/docs/admin-panel-users-user-attributes) page in the **Users** section of the **Admin** menu.  
+`see_schedules` | None | Instance Wide CM | Users can see the [**Schedules**](/looker/docs/admin-panel-alerts-and-schedules-schedule) and [**Schedule History**](/looker/docs/admin-panel-alerts-and-schedules-schedule-history) pages from the **Admin** panel in Looker. This privilege does not give a user the ability to reassign, edit, or delete other users' schedules on the **Schedules** and **Schedule History** pages.  
+`see_pdts` | None | Connection Specific | Users can see the [Persistent Derived Tables](/looker/docs/admin-panel-database-pdts) page in the **Admin** section of Looker and view information about PDTs from projects that use any connection associated with models for which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access).This permission is included in the **Developer** default permission set for new Looker installations.This permission is applied to connections to which users have data access, rather than across the entire Looker instance or to individual models or model sets.  
+`see_datagroups` | None | Model Specific | Users can see the [Datagroups page](/looker/docs/admin-panel-database-datagroups) in the **Admin** section of Looker. Users can see connection names, model names, and other information about datagroups defined in a model for which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access).This permission is applied to individual models or model sets, rather than across the entire Looker instance or to connections.  
+`update_datagroups` | `see_datagroups` | Model Specific | Users can trigger a datagroup, or reset its cache, through the [Datagroups page](/looker/docs/admin-panel-database-datagroups) in the **Admin** section of Looker. Like users who have the `see_datagroups` permission, users who have the `update_datagroups` permission can see datagroups that are defined in projects that use a model for which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access).This permission is applied to individual models or model sets, rather than across the entire Looker instance or to connections.  
+`see_system_activity` | None | Instance Wide CM | Users can access the System Activity [Explores](/looker/docs/usage-reports-with-system-activity-explores) and [dashboards](/looker/docs/system-activity-pages) and the internal [`i__looker`](/looker/docs/creating-usage-and-metadata-reports-with-i__looker) database to view usage, history, and other metadata about a Looker instance.  
+`see_admin` | None | Instance Wide CM | Users can have read-only access to admin resources, including [pages in the **Admin** panel](/looker/docs/admin-panel-general-support-access#access_levels_for_support_users), with the exception of the following pages:
+
+  * Support Access
+  * Labs
+  * Legacy Features
+  * Export
+  * Content Access
+  * Actions (if the page displays only the enabled or disabled states of actions)
+
+This permission doesn't provide access to System Activity pages.  
+`mobile_app_access` | None | Instance Wide NN | Users can sign in to your instance on a mobile device using the [Looker mobile app](/looker/docs/mobile-app). For users to be able to sign in to the Looker mobile app, the [**Mobile Application Access**](/looker/docs/admin-panel-general-settings#mobile_application_access) option in the [**General Settings**](/looker/docs/admin-panel-general-settings) page in the **Admin** section of Looker first must be enabled.The `mobile_app_access` permission can be added to a new or existing permission set, and it is part of all of Looker's default permission sets.  
+`gemini_in_looker` | None | Instance Wide NN | This permission is the sole permission that is included in the **Gemini** default role.Users can use [Conversational Analytics](/looker/docs/studio/query-your-data-in-natural-language-gemini) with Looker Explores and Explore fields for which they have [data access](/looker/docs/access-control-and-permission-management#controlling_feature_and_data_access). Conversational Analytics users without the `explore` permission can make API calls to [fetch a list of models and Explores](/looker/docs/reference/looker-api/latest/methods/LookmlModel/all_lookml_models) for which they have `access_data` permissions and to [fetch all metadata about a given Explore](/looker/docs/reference/looker-api/latest/methods/LookmlModel/lookml_model_explore) including the list of fields for which they have data access.Users can [write LookML using Gemini assistance](/looker/docs/looker-core-lookml-gemini-assistance) when they also have a Looker role that contains the `develop` permission for at least one model in a LookML project.Users can [create custom Looker visualizations using Gemini assistance](/looker/docs/custom-looker-visualization-gemini) when they also have a Looker role that contains the `can_override_vis_config` permission.Note: In Looker 25.0 and 25.2, the Gemini in Looker permission is not enforced, but we recommend that you assign this permission to those who will use Gemini in Looker features.  
+  
+## Model sets
+
+A model set defines what data and LookML fields a [user](/looker/docs/admin-panel-users-users) or [group](/looker/docs/admin-panel-users-groups) can see. Each set is a list of LookML models to which a user or group should have access. You can think of a model set as performing two functions:
+
+  1. A model set controls which models in your LookML the permissions apply to (if those permissions are model specific).
+  2. A model set limits what data and LookML fields a user can see, because each model is connected to a specific database connection and contains certain LookML fields.
+
+### Creating a model set
+
+To create a model set:
+
+![](/static/looker/docs/images/admin-create-model-set-1-2304.png)
+
+  1. Click the **New Model Set** button at the top of the **Roles** page.
+
+![](/static/looker/docs/images/admin-create-model-set-210-2.png)
+
+  2. Looker displays the **New Model Set** page. Enter a name for the new model set.
+
+  3. Select the model or models that should be included in the new model set.
+
+  4. Click the **New Model Set** button at the bottom of the page. The new model set will appear in the **Model Sets** section of the **Roles** page.
+
+> Models that are included in [pending projects](/looker/docs/manage-projects#projects_with_only_a_configuration) appear in the **Models** list on the **New Model Set** and **Edit Model Set** pages.
+> 
+> Deleting or renaming a model will not change any model sets that include that model. When a model is removed or [renamed](/looker/docs/model-and-view-files#renaming_model_files), we recommend that Looker admins also remove that model's name from any associated model sets, using the **Edit Model Set** page. Removing a deleted model's name from a model set prevents a new model with the same name from unintentionally being included in that model set.
+
+To learn more about models, see the [Model parameters](/looker/docs/reference/param-model) documentation page.
+
+#### Creating multiple models and model sets
+
+The following example illustrates how you can use multiple model sets to limit access to data. Consider a scenario where you have two teams, Marketing and Support. In this example, these two teams should not have access to the entire model, so you would create a separate model for each team. To separate their data access, you would perform the following steps:
+
+  1. Copy the model into two new models.
+  2. In the first of the new models, include only the views, fields, and Explores that the Marketing team should have access to.
+  3. Create a model set for the Marketing team that includes only this new model.
+  4. Create a new role for the Marketing team that includes this new model set and the appropriate permissions for the Marketing team.
+  5. Assign this new role to the Marketing team group.
+  6. Repeat steps 2 through 5 to configure the second model for the Support team.
+
+### Editing a model set
+
+After a model set has been created, perform the following steps to edit it:
+
+![](/static/looker/docs/images/admin-edit-model-set-1-2304.png)
+
+  1. On the **Roles** page, click the **Edit** button to the right of the model set you want to edit.
+
+  2. Looker displays the **Edit Model Set** page. If desired, enter a new name for the model set in the **Name** field.
+
+  3. Add or remove any models from the model set in the **Models** section.
+
+  4. Click the **Update Model Set** button at the bottom of the page.
+
+> Models that are included in [pending projects](/looker/docs/manage-projects#projects_with_only_a_configuration) appear in the **Models** list on the **New Model Set** and **Edit Model Set** pages.
+> 
+> Deleting or renaming a model will not change any model sets that include that model. When a model is removed or [renamed](/looker/docs/model-and-view-files#renaming_model_files), we recommend that Looker admins also remove that model's name from any associated model sets, using the **Edit Model Set** page. Removing a deleted model's name from a model set prevents a new model with the same name from unintentionally being included in that model set.
+
+### Deleting a model set
+
+To delete a model set, on the **Roles** page, click **Delete** to the right of the model set that you want to delete.

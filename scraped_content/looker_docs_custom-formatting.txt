@@ -1,0 +1,65 @@
+**Note:** This page is part of the [Retrieve and chart data](/looker/docs/retrieve-and-chart-data) learning series.  
+  
+> For Looker developers: The formatting shown on this page is the same as formatting used with the [`value_format` LookML parameter](/looker/docs/reference/param-field-value-format), except that the `value_format` parameter requires the formatting string to be enclosed in double quotes.
+
+Custom formatting gives you greater control over how numeric data appears in a Looker result set. With custom formatting, you can apply Excel-style formatting options to numeric data shown in [visualizations](/looker/docs/creating-visualizations), or produced by [custom fields](/looker/docs/custom-fields) or [table calculations](/looker/docs/table-calculations).
+
+**Caution:** Custom formatting is supported only for [dimensions of `type: number`](/looker/docs/reference/param-dimension-filter-parameter-types#number) or [measures of `type: number`](/looker/docs/reference/param-measure-types#number). Users who do not have `develop` permissions can view a field's data type by selecting the [**Info** icon](/looker/docs/creating-and-editing-explores#info_icon) next to a field's name in the Explore [field picker](/looker/docs/creating-and-editing-explores#field-specific_information_and_actions).
+
+## Using custom formatting in visualizations
+
+For visualizations with a **Values** tab in the gear menu:
+
+![](/static/looker/docs/images/explore-value-format-2310.png)
+
+  1. Select the **Edit** menu on the **Visualization** bar.
+  2. Select the **Values** tab.
+  3. In the **Value Format** field, enter the custom formatting string.
+
+For example, to add custom formatting for a [table visualization](/looker/docs/table-options):
+
+![](/static/looker/docs/images/explore-table-next-format-2310.png)
+
+  1. Select the **Edit** menu on the **Visualization** bar.
+  2. Select the **Series** tab.
+  3. In the **Customizations** section, select the **Format** drop-down and choose **Custom...**.
+
+A new blank field will appear when you select **Custom...**. Enter the custom formatting string in the blank field.
+
+![](/static/looker/docs/images/explore-table-next-format-custom-2308.png)
+
+## Using custom formatting with table calculations and custom fields
+
+When you create or edit a [table calculation](/looker/docs/table-calculations#creating_table_calculations) or [custom field](/looker/docs/custom-fields), select the **Custom** option in the **Format** drop-down and enter the custom format in the blank field.
+
+## Custom formatting examples
+
+You can reference Excel's complete guide to specifying these formats [on their Number format codes documentation page](https://support.office.com/en-us/article/number-format-codes-5026bbd6-04bc-48cd-bf33-80f18b4eae68), or you can use a third-party tool to build a custom format, such as [Custom Formats Builder](https://customformats.com/).
+
+**Warning:** Date formatting, color formatting, and hexadecimal conversion are not supported in Looker.
+
+Some of the most common formatting options are listed in the following table. A format code that uses `0` requires that non-significant zeros be displayed if the number contains fewer digits than specified in the code. A format code that uses `#` displays only the significant digits, even if there are fewer digits than specified in the code.
+
+Some special characters, such as international currency symbols, must be treated as strings and enclosed in double quotes.
+
+**Caution:** Excel-style formatting does not support many international number formats, such as 1.234,56 or 1 234,56. Looker does support several international formats through the localization function. For information about localizing number formats, see the [Localizing number formatting](/looker/docs/localizing-number-formatting) documentation page. Format| Result  
+---|---  
+`0`| Integer (123)  
+`00#`| Integer zero-padded to 3 places (001)  
+`0 "String"`| Integer followed by a string (123 String)("String" can be replaced with any text string)  
+`0.##`| Number up to 2 decimals (1. or 1.2 or 1.23)  
+`0.00`| Number with exactly 2 decimals (1.23)  
+`00#.00`| Number zero-padded to 3 places and exactly 2 decimals (001.23)  
+`#,##0`| Number with comma between thousands (1,234)  
+`#,##0.00`| Number with comma between thousands and 2 decimals (1,234.00)  
+`0.000,, "M"`| Number in millions with 3 decimals (1.234 M)Division by 1 million happens automatically  
+`0.000, "K"`| Number in thousands with 3 decimals (1.234 K)Division by 1 thousand happens automatically  
+`$0`| Dollars with 0 decimals ($123)  
+`$0.00`| Dollars with 2 decimals ($123.00)  
+`"€"0`| Euros with 0 decimals (€123)  
+`$#,##0.00`| Dollars with comma between thousands and 2 decimals ($1,234.00)  
+`$#.00;($#.00)`| Dollars with 2 decimals, positive values displayed normally, negative values wrapped in parenthesis  
+`0\%`| Display as percent with 0 decimals (1 becomes 1%)  
+`0.00\%`| Display as percent with 2 decimals (1 becomes 1.00%)  
+`0%`| Convert to percent with 0 decimals (.01 becomes 1%)  
+`0.00%`| Convert to percent with 2 decimals (.01 becomes 1.00%)

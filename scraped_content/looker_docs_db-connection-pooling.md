@@ -1,0 +1,94 @@
+# https://cloud.google.com/looker/docs/db-connection-pooling
+
+Depth: 3
+
+Connection pooling enables the use of preconfigured connection pools on [PostgreSQL](/looker/docs/db-config-postgresql) and [Snowflake](/looker/docs/db-config-snowflake) database dialects.
+
+If your dialect supports it, database connection pooling enables Looker to use pools of connections through the JDBC driver. Database connection pooling enables faster query performance; a new query does not need to create a new database connection but can instead use an existing connection from the connection pool. The connection pooling capability ensures that a connection is cleaned up after a query execution and is available for reuse after the query execution ends.
+
+You can enable connection pooling using the [**Database Connection Pooling**](/looker/docs/admin-panel-general-labs#database_connection_pooling) option when you [create](/looker/docs/connecting-to-your-db) or [edit](/looker/docs/admin-panel-database-connections#editing_connections) a database connection in Looker.
+
+**Note:** Database connection pooling was previously a Looker [Labs](/looker/docs/admin-panel-general-labs) feature. When **Database Connection Pooling** moved out of Labs, Looker automatically applied the **Database Connection Pooling** Labs setting to the **Database Connection Pooling** connection setting for any database connections on your instance that support connection pooling.
+
+Looker will use connection pooling on your connection if all of the following are true:
+
+  * You are using one of the dialects that support database connection pooling.
+  * The **Database Connection Pooling** option is enabled on the Looker connection.
+  * You have configured connection pools on your database.
+
+Here are some things to consider when you're using connection pools:
+
+  * Multiple users share a connection pool if their user attribute values are identical. Users who have unique or differing values in their set of user attributes will use unique connection pools when connecting to the database.
+
+  * The maximum number of connections that can be made to connection pools across all database nodes is limited by the value in the [**Max connections per node**](/looker/docs/connecting-to-your-db#max_connections) field in the database's **Connection** page.
+
+  * If the number of concurrent queries being issued to a connection pool exceeds the maximum number of connections, queries are queued in Looker until prior queries are executed.
+
+  * Unique JDBC connection strings create unique connection pools. For example, unique database usernames or database group names that dictate role-based access control to the database will create unique JDBC connection strings, which then create unique connection pools. For example, a finance group in a company may have a database role that grants them access to all tables in the database, but the sales and marketing team may have a database role that grants them access to only a subset of the database tables. In this case, each group would have a unique JDBC connection string and a unique connection pool. A third group might be a set of [embedded analytics](/looker/docs/single-sign-on-embedding) customers who have their own access rights to the database. The embedded analytics customers would also have a unique JDBC string and a unique connection pool, so they would also have a unique set of connections that are not in use by the finance or sales and marketing groups.
+
+  * The `WHERE` clause in a SQL query does not cause new connection pools. The `WHERE` clause has no impact on the JDBC connection string, so a new connection pool is not created. For example, unique [access filters](/looker/docs/reference/param-explore-access-filter) modify the SQL `WHERE` clause in a query, not the JDBC connection string, so unique access filters won't create new connection pools.
+
+  * When multiple connection pools are created, the maximum number of connections is fragmented into multiple pools, with each pool containing a subset of available connections. This occurs because the total number of connections cannot exceed the maximum connections value.
+
+## Dialect support for database connection pooling
+
+The ability to use database connection pooling depends on the database dialect your Looker connection is using. In the latest release of Looker, the following dialects support database connection pooling:
+
+Dialect | Supported?  
+---|---  
+Actian Avalanche | No  
+Amazon Athena | No  
+Amazon Aurora MySQL | No  
+Amazon Redshift | No  
+Apache Druid | No  
+Apache Druid 0.13+ | No  
+Apache Druid 0.18+ | No  
+Apache Hive 2.3+ | No  
+Apache Hive 3.1.2+ | No  
+Apache Spark 3+ | No  
+ClickHouse | No  
+Cloudera Impala 3.1+ | No  
+Cloudera Impala 3.1+ with Native Driver | No  
+Cloudera Impala with Native Driver | No  
+DataVirtuality | No  
+Databricks | No  
+Denodo 7 | No  
+Denodo 8 | No  
+Dremio | No  
+Dremio 11+ | No  
+Exasol | No  
+Firebolt | No  
+Google BigQuery Legacy SQL | No  
+Google BigQuery Standard SQL | No  
+Google Cloud PostgreSQL | Yes  
+Google Cloud SQL | No  
+Google Spanner | No  
+Greenplum | Yes  
+HyperSQL | No  
+IBM Netezza | No  
+MariaDB | No  
+Microsoft Azure PostgreSQL | Yes  
+Microsoft Azure SQL Database | No  
+Microsoft Azure Synapse Analytics | No  
+Microsoft SQL Server 2008+ | No  
+Microsoft SQL Server 2012+ | No  
+Microsoft SQL Server 2016 | No  
+Microsoft SQL Server 2017+ | No  
+MongoBI | No  
+MySQL | No  
+MySQL 8.0.12+ | No  
+Oracle | No  
+Oracle ADWC | No  
+PostgreSQL 9.5+ | Yes  
+PostgreSQL pre-9.5 | Yes  
+PrestoDB | No  
+PrestoSQL | No  
+SAP HANA | No  
+SAP HANA 2+ | No  
+SingleStore | No  
+SingleStore 7+ | No  
+Snowflake | Yes  
+Teradata | No  
+Trino | No  
+Vector | No  
+Vertica | No

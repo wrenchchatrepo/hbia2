@@ -1,0 +1,26 @@
+The `ln` function can be used in [custom filters](/looker/docs/filtering-and-limiting#custom-filters) and [table calculations](/looker/docs/table-calculations) to get the natural logarithm of a value.
+
+## Syntax
+
+**`ln(value)`**
+
+The `ln` function takes the logarithm of a `value` to the base of the mathematical constant _e_.
+
+## Examples
+
+The `ln` function can be used to model exponential growth linearly by taking `ln` of the dependent variable. For example:
+    
+    
+    ln(order_items.growth_rate)
+    
+
+## Things to know
+
+`ln` can be used to give you the time needed to reach a certain level of growth. For instance, modeling growth exponentially as:
+
+_growth = e time_
+
+_time_ can be determined using `ln` as follows:
+    
+    
+    ln(growth)

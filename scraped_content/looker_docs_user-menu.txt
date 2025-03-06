@@ -1,0 +1,10 @@
+To access the user menu, click the **Profile** menu icon account_circle.
+
+Depending on your permissions in Looker, the user menu can include the following options:
+
+  * [Account](/looker/docs/user-account): Configure some of your Looker user account settings.
+  * [History](/looker/docs/user-history): View the queries you have run recently, by date.
+  * [Schedules](/looker/docs/user-schedules): View the current schedules you have created.
+  * [Alerts](/looker/docs/user-alerts): View the alerts that you have created or followed, or for which you are a recipient, depending on your permissions.
+  * [Sessions](/looker/docs/user-sessions): View information about your session, including the browser type, when you logged in, and when your session expires.
+  * **Log Out** : Click this link to log out of Looker.

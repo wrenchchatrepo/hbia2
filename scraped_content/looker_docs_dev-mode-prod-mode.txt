@@ -1,0 +1,43 @@
+Your Looker data model exists in two states: Production Mode and Development Mode.
+
+## Production Mode
+
+Production Mode is the production version of Looker. Everyone using a Looker instance in Production Mode accesses their projects in the same state. Project files are read-only in Production Mode.
+
+Use Production Mode when you are exploring data in Looker for your own analyses or to create saved content (Looks and dashboards) for other users.
+
+## Development Mode
+
+Development Mode lets you make changes to LookML files and preview how they will affect content on your instance. The changes you make to LookML files in Development Mode don't affect the production environment, until they are pushed to the production environment. (If you are familiar with Git, Development Mode uses a separate branch.)
+
+In Development Mode, you can see the effects of your changes to project files in the Explore area of Looker. Once you're happy with your changes, you can save and merge them into production, where they then will be viewable by everyone.
+
+Development Mode is frequently referred to as _dev mode_.
+
+## Switching in and out of Development Mode
+
+You can switch Development Mode on and off by either of these methods:
+
+  * Use the keyboard shortcut Control-Shift-D (Mac) or Ctrl+Shift+D (Windows).
+  * Click the Looker **Main menu** icon menu and click the **Development Mode** toggle at the bottom of the menu.
+
+![](/static/looker/docs/images/dev-switching-dev-mode-2500.png)
+
+While in Development Mode, you will notice the following changes:
+
+  * The LookML and Explore sections of Looker are populated by your development version of the model.
+  * There is a **Development Mode** banner at the top of the screen with the text "You are in **Development Mode**."
+
+![](/static/looker/docs/images/dev-dev-mode-banner-2206.png)
+
+To exit Development Mode, you can use any of these methods:
+
+  * Use the keyboard shortcut Ctrl-Shift-D (Windows) or Control+Shift+D (Mac).
+  * Select **Exit Development Mode** in the banner.
+  * Click the Looker **Main menu** icon menu, and then click the **Development Mode** toggle at the bottom of the menu.
+
+## Version control
+
+The Looker IDE is integrated with Git for version control. This lets you edit a private copy of the LookML files in Development Mode. Looker automatically manages the Git workflows for committing, pulling, and pushing changes. To access Git commands, you can use the Looker IDE's **Git Actions** panel or the Git button.
+
+For details on setting up Git version control with Looker, see the [Setting up and testing a Git connection](/looker/docs/setting-up-git-connection) documentation page. For details on using version control options in the Looker IDE, see the [Using version control and deploying](/looker/docs/version-control-and-deploying-changes) documentation page.

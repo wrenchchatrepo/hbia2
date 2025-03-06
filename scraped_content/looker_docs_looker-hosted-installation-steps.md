@@ -1,0 +1,13 @@
+# https://cloud.google.com/looker/docs/looker-hosted-installation-steps
+
+Depth: 3
+
+Using a [Looker-hosted](/looker/docs/glossary#looker-hosted) instance greatly reduces the effort required to install, configure, and maintain the Looker application, because all necessary IT functions that are related to the Looker application are handled for you. When you choose this option, Looker provides an instance of the Looker application. The instance lives in a shared virtual private cloud (VPC), with network rules preventing traffic between hosted Looker instances.
+
+You need to perform a few steps to let your Looker instance connect securely to your database and configure how users will log in to your instance:
+
+  1. [Enable secure database access](/looker/docs/enabling-secure-db-access)
+  2. [Configure your database for Looker](/looker/docs/dialects)
+  3. [Connect Looker to your database](/looker/docs/connecting-to-your-db)
+  4. [Test your database connectivity](/looker/docs/testing-db-connectivity)
+  5. [Configure Looker sign-in options](/looker/docs/getting-started-with-users)

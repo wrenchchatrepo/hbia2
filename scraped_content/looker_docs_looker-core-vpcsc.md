@@ -1,0 +1,73 @@
+# https://cloud.google.com/looker/docs/looker-core-vpcsc
+
+Depth: 3
+
+VPC Service Controls can improve your ability to mitigate the risk of data exfiltration from Google Cloud services. You can use VPC Service Controls to create service perimeters that help protect the resources and data of services that you explicitly specify.
+
+To add the Looker (Google Cloud core) service to a VPC Service Controls service perimeter, follow the instructions about how to create a service perimeter on the [Create a service perimeter](/vpc-service-controls/docs/create-service-perimeters#create-perimeter) documentation page, and select **Looker (Google Cloud core) API** in the **Specify services to restrict** dialog. To learn more about using VPC Service Controls, visit the [Overview of VPC Service Controls](/vpc-service-controls/docs/overview) documentation page.
+
+VPC Service Controls supports Looker (Google Cloud core) instances that meet two criteria:
+
+  * [Instance editions](/looker/docs/looker-core-instance-create#create_edition) must be **Enterprise** or **Embed**
+  * [Instance network configurations](/looker/docs/looker-core-instance-create#set_the_network_connection) must use private IP only
+
+**Note:** If you're using [Shared VPC](/vpc/docs/shared-vpc), ensure that you either include the Looker (Google Cloud core) service project in the same service perimeter as the Shared VPC host project or create a [perimeter bridge](/vpc-service-controls/docs/share-across-perimeters) between the two projects. If the Looker (Google Cloud core) service project and the Shared VPC host project are not in same perimeter or cannot communicate through a perimeter bridge, instance creation could fail or the Looker (Google Cloud core) instance may not function properly.
+
+## Required roles
+
+To understand the required IAM roles for setting up VPC Service Controls, visit the [Access control with IAM](/vpc-service-controls/docs/access-control) page of the VPC Service Controls documentation.
+
+## Removing the default route
+
+When a Looker (Google Cloud core) instance is created inside a Google Cloud project that is within a VPC Service Controls perimeter, or is inside a project that gets added to a VPC Service Controls perimeter, you must remove the default route to the internet.
+
+To remove the default route to the internet, select one of the following options:
+
+### gcloud
+    
+    
+    gcloud services vpc-peerings enable-vpc-service-controls --network=NETWORK --service=servicenetworking.googleapis.com
+    
+
+Replace `NETWORK` with your Looker (Google Cloud core) instance's VPC network.
+
+For more information, visit the [gcloud services vpc-peerings enable-vpc-service-controls](/sdk/gcloud/reference/services/vpc-peerings/enable-vpc-service-controls) documentation page.
+
+### REST
+
+HTTP method and URL:
+    
+    
+    PATCH https://servicenetworking.googleapis.com/v1/{parent=services/*}:enableVpcServiceControls
+    
+
+Request JSON body:
+    
+    
+    {
+    "consumerNetwork": NETWORK
+    }
+    
+
+Replace `NETWORK` with your Looker (Google Cloud core) instance's VPC network.
+
+For more information, visit the [Method: services.enableVpcServiceControls](/service-infrastructure/docs/service-networking/reference/rest/v1/services/enableVpcServiceControls) documentation page.
+
+**Note:** Removing the default route restricts outgoing traffic to only [VPC Service Controls compliant services](/vpc-service-controls/docs/supported-products). For example, if the default route is removed, sending email will fail because the API used to send email is not VPC Service Controls compliant.
+
+## Connecting to resources or services outside the VPC Service Controls perimeter
+
+To connect to another Google Cloud resource or service, you may need to set up [ingress and egress rules](/vpc-service-controls/docs/ingress-egress-rules) if the project that the resource is in is located outside the VPC Service Controls perimeter.
+
+For information on accessing other external resources, follow the instructions for the type of resource that you want to connect to on the [Private IP networking with Looker (Google Cloud core)](/looker/docs/looker-core-private-ip-config) documentation page.
+
+**Note:** If you are creating a Looker (Google Cloud core) instance inside a Shared VPC, and the Shared VPC host project and the Looker (Google Cloud core) service project are in different VPC Service Controls perimeters, you must create a [VPC Service Controls perimeter bridge](/vpc-service-controls/docs/create-perimeter-bridges) between the two perimeters to allow instance creation.
+
+## Adding CMEK keys to a perimeter
+
+Sometimes, a Looker (Google Cloud core) instance that is [enabled with customer-managed encryption keys (CMEK)](/looker/docs/looker-core-cmek) has the Cloud KMS key hosted in a different Google Cloud project. For this scenario, when you enable VPC Service Controls, you must add the KMS key hosting project to the security perimeter.
+
+## What's next?
+
+  * [Connect Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects)
+  * [Set up the Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-setup)

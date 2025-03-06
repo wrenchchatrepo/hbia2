@@ -1,0 +1,23 @@
+# https://cloud.google.com/looker/docs/sql-experts
+
+Depth: 3
+
+This guide provides a focused introduction to LookML, Looker's modeling language, and is specifically intended for those who are already proficient in SQL.
+
+LookML lets you define SQL logic in a structured and reusable way. From the SQL fragments defined in your LookML, Looker assembles relevant SQL statements. Once you've set up your LookML model and connected Looker to your database, Looker automatically generates the necessary SQL queries to retrieve data from your database.
+
+Because you use LookML to define your SQL, you don't need to repeat SQL logic in multiple places. LookML helps you adhere to the "Don't Repeat Yourself (DRY)" principle, a key concept in programming that promotes code reusability and reduces errors. For example, imagine that you need to decode transaction codes by using a SQL `CASE` statement across multiple queries. Instead of declaring the `CASE` statement in multiple queries, you can define it once in LookML and reuse it throughout your data model.
+
+In this guide, you'll deconstruct SQL queries and reassemble them into reusable LookML elements such as dimensions, measures, views, and Explores.
+
+The following pages explain LookML elements by using concepts familiar to SQL experts:
+
+  * [SQL concepts for views](/looker/docs/sql-experts-view): Define and customize LookML views, which are based on database tables, and map your SQL fields to LookML dimensions and measures.
+  * [SQL concepts for joins](/looker/docs/sql-experts-joins): Define and customize joins between views in LookML to mirror SQL join logic, and manage relationships between tables to avoid data duplication.
+  * [SQL concepts for derived tables](/looker/docs/sql-experts-derived-tables): Define and customize derived tables in LookML by using either SQL or LookML's built-in syntax to define and reuse complex data logic without repeating yourself.
+
+## Related resources
+
+  * [Using Looker's SQL Generator (Community article)](https://www.googlecloudcommunity.com/gc/Technical-Tips-Tricks/Using-Looker-s-SQL-Generator/ta-p/814623)
+  * [How Looker generates SQL](/looker/docs/how-looker-generates-sql)
+  * [Looker cookbook: Maximizing code reusability with DRY LookML](/looker/docs/best-practices/dry-lookml-cookbook)

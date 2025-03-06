@@ -1,0 +1,166 @@
+**Note:** [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instances don't include this page.**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+## Labs overview
+
+Looker Labs features are new, in-progress features whose details may change over time. Labs features are split into two categories:
+
+  * **Beta:** These features are expected to remain in the product, and errors are expected to be resolved at some point. However, these features may change in detail, and errors may not be fixed with the same speed as with normal features. You can see the list of current beta Labs features in the Beta features section on this page.
+  * **Experimental:** These features may or may not remain in the product, and errors may or may not be corrected. These experimental features are intended to show you functionality that could be incorporated into Looker in the future and to get your feedback. You can see the list of current experimental Labs features in the Experimental features section on this page.
+
+You can choose to use these features or leave them disabled. You'll see a list of these features on the **Labs** page in the **General** section of the **Admin** panel. Each feature has a short description underneath it explaining the functionality that it adds to or changes in Looker.
+
+## Enabling and disabling Labs features
+
+To enable or disable a feature, click the switch next to the feature name.
+
+> Use caution when disabling a Labs feature. If users or developers have relied on the feature to create a certain behavior, disabling the feature will break that functionality.
+
+## Current Labs features
+
+Looker supports the following beta and experimental Labs features.
+
+## Beta features
+
+Beta Labs features are expected to remain in the product, and errors are expected to be resolved at some point. However, their details may change, and errors may not be fixed with the same speed as they would be for normal features.
+
+### Access Studio in Looker
+
+Enables the [Studio in Looker feature](/looker/docs/enabling-studio-in-looker), which lets you [create, view, and edit Looker Studio reports](/looker/docs/studio-in-looker) in your Looker instance, including both governed and ad hoc data. You can [share and manage your reports](/looker/docs/move-share-copy-reports) in Looker folders and see your recent reports and the reports that you have marked as favorites from the Looker Home page.
+
+### Accessible Data Table Visualizations
+
+This Labs feature is disabled by default.
+
+When this feature is enabled, the [data table visualization](/looker/docs/table-options) will behave slightly differently in order to be fully accessible for all viewers. Specifically, this feature disallows double-clicking on table cells and unpins the row number column from the left side of the table.
+
+### Complex Filters UI Configuration for Explores
+
+This Labs feature is enabled by default.
+
+When this feature is enabled and a comma is entered into a filter expression, matches (advanced) filters no longer update to simpler filter types until the page is reloaded. This feature resolves a few stability issues with matches (advanced) filters.
+
+### Content Validator Scoping
+
+This Labs feature is disabled by default.
+
+When this feature is enabled, your Looker developers can scope the [Content Validator](/looker/docs/content-validation) to a specific content folder and to specific LookML projects when running content validation.
+
+### Data history playback (data change over time animation) for visualization
+
+This Labs feature is disabled by default.
+
+If enabled, this Labs feature allows users to explore data changes over time for visualizations within dashboards. See the [Viewing dashboards](/looker/docs/viewing-dashboards#tile_three-dot_menu) documentation page for more information.
+
+### Full Screen Visualizations
+
+This Labs feature is enabled by default.
+
+When enabled, this feature enables full-screen and expanded views for visualizations within dashboard tiles. See the [Viewing dashboards](/looker/docs/viewing-dashboards#view_options) documentation page for more information on view options.
+
+Full-screen and expanded functionality can be turned off on a dashboard in the dashboard's [**Settings** menu](/looker/docs/editing-user-defined-dashboards#allow_full-screen_mode_for_visualizations).
+
+### In-page Table Calculations
+
+This Labs feature is disabled by default.
+
+The **In-page Table Calculations** Labs feature lets users create and edit [table calculations](/looker/docs/table-calculations#creating_and_editing_table_calculations_with_in-page_table_calculations) directly in an [Explore's](/looker/docs/viewing-and-interacting-with-explores#the_explore_page) **Data** section instead of using either the **Create table calculation** or the **Edit table calculation** dialog. Creating and editing table calculations in the **Data** section lets users reference fields and values in an Explore query as they create and edit table calculation expressions.
+
+### New Database Connection Setup
+
+This Labs feature is disabled by default.
+
+The **New Database Connection Setup** Labs feature lets users [create database connections](/looker/docs/connecting-to-your-db-enhanced) with a modernized UI, enhanced validation and connection testing capabilities, expanded documentation including cloud-specific resources, and a comprehensive configuration summary. This Labs feature can be disabled to return to the original [**Add/Edit Connection**](/looker/docs/connecting-to-your-db) workflow.
+
+### New Explore & Look Saving
+
+This Labs feature is disabled by default.
+
+This feature improves the visibility and navigation of **Save** dialogs on the Explore and Look pages. The new experience allows quick navigation of folders, and users can choose to sort existing content by Name, Created Date, or Last Update. It does not change any functionality of these pages.
+
+### Prerender Iframes (before data loads) for custom visualizations
+
+This Labs feature is disabled by default.
+
+This feature reduces the custom visualization loading time by starting to render the iframe even before query data has been loaded.
+
+### SQL Runner Vis
+
+This Labs feature is disabled by default.
+
+This feature adds the ability to visualize ad hoc queries from SQL Runner.
+
+### Smart Single Value Text Size
+
+This Labs feature is disabled by default.
+
+Enabling the **Smart Single Value Text Size** Labs feature automatically resizes the fonts on single value visualizations displayed within dashboard tiles. Fonts are resized to display at least 8-10 value characters within a tile; if the characters in the visualization overflow horizontally or vertically at a given size, the font size will step down. The minimum font size allowed is 14 pixels. Once the minimum font size is reached, any overflowing characters will be truncated with an ellipsis (...). The maximum font size allowed is 104 pixels.
+
+When you're using this Labs features, single value tiles on dashboards may look less consistent, but more characters will fit on smaller tiles.
+
+### Tiered Support Access
+
+This Labs feature is enabled by default.
+
+Enabling the **Tiered Support Access** Labs feature enables enhanced support access, including updated access duration times and access levels. For more information, see the [Admin settings - Support Access](/looker/docs/admin-panel-general-support-access) documentation page. Disabling this Labs feature enables [legacy support access](/looker/docs/admin-panel-general-support-access#legacy_support_access).
+
+### Visual Drilling
+
+This Labs feature is enabled by default.
+
+The **Visual Drilling** Labs feature is not supported by [dashboards](/looker/docs/viewing-dashboards). For dashboards, visual drilling is possible through the use of the [`link`](/looker/docs/reference/param-field-link#using_link_to_customize_drill_visualizations) parameter without needing to enable the Labs feature.
+
+When **Visual Drilling** is turned off, the drill overlay always displays the data table.
+
+When **Visual Drilling** is enabled, the drill overlays for Looks and Explores consider the underlying data to select the best visualization type, which can be a table visualization or some other visualization type. Or, with **Visual Drilling** enabled, you can use the `link` parameter to customize a drill visualization, as shown on the [`link`](/looker/docs/reference/param-field-link#using_link_to_customize_drill_visualizations) parameter documentation page and on the [More powerful data drilling](/looker/docs/best-practices/how-to-use-more-powerful-data-drilling) Best Practices page. When the visualization from a drill is not a table, [buttons](/looker/docs/viewing-looks#vis_drilling) let the user switch between the default visualization type and a data table.
+
+For more information about visualization types, see the [Visualization types](/looker/docs/visualization-types) documentation page.
+
+## Experimental features
+
+Experimental Labs features may or may not remain in the product, and errors may or may not be corrected. These experimental features are intended to show you functionality that could be incorporated into Looker in the future. We always welcome your feedback.
+
+### BI Engine Symmetric Aggregates
+
+This Labs feature is disabled by default.
+
+When the **BI Engine Symmetric Aggregates** Labs feature is enabled, for queries that use [symmetric aggregates](/looker/docs/best-practices/understanding-symmetric-aggregates), Looker will generate experimental SQL patterns that are designed to execute faster on the Google BigQuery BI Engine. This feature should have no effect on query results, only on execution performance.
+
+### Custom Vis Reliable Render
+
+This Labs feature is disabled by default.
+
+When this Labs feature is enabled, Looker suppresses refresh behavior in custom visualizations to fix partial PNG and PDF renders.
+
+### Enhanced Query Admin
+
+This Labs feature is disabled by default.
+
+When enabled, this feature enhances the [**Queries** page](/looker/docs/admin-panel-database-queries) in the **Database** section of the **Admin** menu. The enhanced page features tabs for **Recent** and **Complete** queries. These tabs are paginated for improved performance, and display 50 queries per page.
+
+  * The **Recent** tab displays queries run in the last hour. From this tab, Looker admins can cancel running queries.
+
+  * The **Complete** tab displays the most recent 500 queries.
+
+### Guided analyses in System Activity
+
+This Labs feature is disabled by default.
+
+When enabled, the [**History**](/looker/docs/usage-reports-with-system-activity-explores#history) System Activity Explore displays [guided analysis](/looker/docs/usage-reports-with-system-activity-explores#guided_analyses_in_system_activity_labs_feature) options to provide a question-and-answer format for performing analyses.
+
+### Reduce Filter Queries
+
+This Labs feature is disabled by default.
+
+This feature reduces the number of queries that are sent by filters. When **Reduce Filter Queries** is enabled, Looker moves any filter that requests suggestions into a dialog where the filter won't fetch suggestions until a user clicks on it in the dialog.
+
+### Redux DevTools
+
+This Labs feature is disabled by default.
+
+This feature enables Redux DevTools for debugging application state.
+
+### Rigorous Dashboard Download Permission Checking
+
+This Labs feature is disabled by default.
+
+When this feature is enabled, users can download a dashboard only if they have the [`download_with_limit`](/looker/docs/admin-panel-users-roles#download_with_limit) or [`download_without_limit`](/looker/docs/admin-panel-users-roles#download_without_limit) permission on every model that is included in the dashboard.

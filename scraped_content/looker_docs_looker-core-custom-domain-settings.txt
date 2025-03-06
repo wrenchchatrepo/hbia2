@@ -1,0 +1,18 @@
+You can view information about the custom domain that is mapped to your instance on the **CUSTOM DOMAIN** tab of the instance details page in the Google Cloud console. You navigate to the instance details page by clicking on the instance name from the [**Instances** page](/looker/docs/looker-core-view-console). The settings are as follows:
+
+  * **Status** : An icon that summarizes the status of the domain, as described in more detail in the second **Status** column.
+  * **Domain** : The domain that is associated with the instance.
+  * **Record Type** : The type of DNS record that is associated with the domain.
+  * **Data** : The IP address that is associated with the domain's DNS record.
+  * **Status** : A description of where the domain is in the provisioning and verification process.
+
+    * **Unverified** : A DNS record has not been created, or the record's IP address doesn't match the appropriate IP address for the type of network connection that the instance is using.
+    * **Verifying** : The domain verification is in progress.
+    * **Modifying** : The domain modification is in progress.
+    * **Available** : The custom domain is ready to use.
+    * **Unavailable** : The custom domain is provisioned to the Looker (Google Cloud core) instance but the SSL certificate is not ready.
+  * **VERIFY DOMAIN** : For domains that are unverified, a **VERIFY DOMAIN** button appears. Click the button to verify the domain. An error appears in a window on the page if the domain cannot be verified.
+
+  * **Delete** : The **Delete** trash icon lets you [delete a custom domain](/looker/docs/looker-core-custom-domain-delete).
+
+**Note:** You cannot modify a custom domain once it is created. If you want to make changes to the custom domain, you must delete the existing custom domain and create a new one.

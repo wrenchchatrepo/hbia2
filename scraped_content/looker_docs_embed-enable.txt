@@ -1,0 +1,14 @@
+**Note:** If you are using a Looker (Google Cloud core) instance, to enable signed embedding you must use the Embed edition of Looker (Google Cloud core). If you are using a Looker (original) instance, signed embedding must be enabled for your instance. [Contact a Google Cloud sales specialist](https://cloud.google.com/contact) to enable this feature.
+
+[Signed embedding](/looker/docs/single-sign-on-embedding) is a way to present private embedded Looks, visualizations, Explores, dashboards, or LookML dashboards to your users without requiring them to have a separate Looker login. Instead, users will be authenticated through your own application.
+
+Before you can use signed embedding on your Looker instance, you must enable signed embedding in the Looker Admin panel and then create an embed secret. The embed secret validates that a signed embedding request is legitimate and hasn't been forged by someone else. To enable signed embedding, follow these steps:
+
+  1. In the **Admin** section of Looker, navigate to the **Embed** page.
+  2. In the **Embed SSO Authentication** drop-down, if the option is set to **Disabled** select **Enabled** and then click **Update**.
+
+Looker will display additional **Embed** options.
+
+  3. ​​To generate your embed secret key, select the **Set Secret** button in the **Embed Secret** section.
+**Important:** Be sure to copy the embed secret key to a secure location. You won't be able to retrieve the key from Looker again without resetting it. Resetting the embed secret key will break any embeds that used the old key.  **Important:** Any user, with any permission level, who has access to the secret key can create a URL to access any model that the Looker instance is connected to. [Protect the signed embed secret](/looker/docs/security-best-practices-embedded-analytics#single_sign-on_embedding) as you would admin credentials to your embedded Looker instance, and keep signed embedding disabled if you're not using it. 
+  4. If your application will be using [JavaScript events](/looker/docs/embedded-javascript-events) passing to communicate between the iframe where Looker is embedded and the parent application, add the domain name of your parent application to the **Embedded Domain Allowlist** field.

@@ -1,0 +1,13 @@
+## Configure advanced authentication options
+
+By default, the Looker application authenticates users with an email address and password, but you may also use [SAML](/looker/docs/admin-panel-authentication-saml), [LDAP](/looker/docs/admin-panel-authentication-ldap), [Google Authentication](/looker/docs/admin-panel-authentication-google), or [OpenID Connect](/looker/docs/admin-panel-authentication-openid-connect). For enhanced security you can also enable [two-factor authentication](/looker/docs/admin-panel-authentication-two-factor).
+
+## Set up user permissions
+
+If you need to, Looker lets you create roles to manage which users have access to features and data. As your organization expands its Looker usage you can expand these permissioning features as appropriate. When you start with Looker, the default options may be sufficient.
+
+See the [Roles](/looker/docs/admin-panel-users-roles) documentation page for more info.
+
+## Invite Looker users
+
+Click **Admin** > **Users** to open the **Users** page. Click **Add Users** to create new users and assign their roles. You'll find more information on the [Users](/looker/docs/admin-panel-users-users) documentation page.

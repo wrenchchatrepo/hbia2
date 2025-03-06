@@ -1,0 +1,35 @@
+# https://cloud.google.com/looker/docs/power
+
+Depth: 3
+
+The `power` function can be used in [custom filters](/looker/docs/filtering-and-limiting#custom-filters) and [table calculations](/looker/docs/table-calculations) to raise a number to the power of a given exponent.
+
+## Syntax
+
+**`power(base, exponent)`**
+
+The `power` function evaluates a `base` by raising it to the power of a given `exponent`.
+
+## Examples
+
+The `power` function can be used to raise a number to the power of another number. For example, 23 would be written as:
+    
+    
+    power(2, 3)
+    
+
+Typically, the `power` function is used with a field reference or an expression. For example:
+    
+    
+    power(${order_item.standard_deviation_profit}, 2)
+    
+
+## Things to know
+
+The `power` function can also be used to take the nth root of a number by using 1/n as the `exponent`. For example, the cube root (the 3rd root) of 7 would be:
+    
+    
+    power(7, 1/3)
+    
+
+For a square root (the 2nd root) just use the `sqrt` function.

@@ -1,0 +1,74 @@
+Once a Looker (Google Cloud core) instance is created, those with the Admin Looker role can set up the instance for users as described in the following sections on this page:
+
+  * Create a LookML project
+  * Set a Looker homepage
+  * Set up announcements for your users
+  * Understand Looker roles and permissions
+  * Configure an email domain allowlist
+  * Configure business user features
+  * Add and manage Looker (Google Cloud core) users
+  * Share performance recommendations
+
+## Create a LookML model
+
+Once an instance contains a [database connection](/looker/docs/looker-core-dialects#setup_database), you are ready to set up a LookML model.
+
+LookML models are located inside LookML projects. A LookML project contains collections of LookML files that describe how your database tables are related to each other and how Looker should interpret those tables. Once a model is set up, users can interact with the data, including [exploring data](/looker/docs/creating-and-editing-explores), creating [dashboards](/looker/docs/creating-user-defined-dashboards), and setting up [alerts](/looker/docs/alerts-overview), among other things.
+
+You can set up a LookML model within a Looker (Google Cloud core) instance if you have one of the following roles:
+
+  * [Admin Looker role](/looker/docs/admin-panel-users-roles#default_permission_sets)
+  * [Developer Looker role](/looker/docs/admin-panel-users-roles#default_permission_sets)
+
+The steps for creating LookML models and projects are listed on the [Generating a LookML model](/looker/docs/generating-a-model) documentation page. Alternatively, you can follow the **Set up Looker** guide that appears dynamically within the Looker (Google Cloud core) instance.
+
+If you want to [customize the LookML](/looker/docs/lookml-validation) in your model, you can [access your project files](/looker/docs/accessing-project-files) in two ways:
+
+  * from the **Develop** menu in the [main navigation panel](/looker/docs/finding-content)
+  * by expanding **Edit project files** and clicking **edit project** in the **Set up Looker** guide
+
+Click the name of your project to open its LookML files. See the [Introduction to LookML](/looker/docs/what-is-lookml) documentation page to learn more about LookML development.
+
+Additionally, the [Best practice: Create a positive experience for Looker users](/looker/docs/best-practices/how-to-create-a-positive-experience-for-looker-users) article provides recommendations on how to use LookML to improve the experiences of Looker (Google Cloud core) users.
+
+Looker (Google Cloud core) also provides a sample LookML project that can help you learn to write LookML, query data, and view dashboards. The sample LookML project is provided on Looker (Google Cloud core) instances of all [edition types](/looker/docs/looker-core-overview#editions). See the [Use the sample LookML project on a Looker (Google Cloud core) instance](/looker/docs/looker-core-sample-project) documentation page for more information about accessing and using the sample LookML project on your instance.
+
+## Set a Looker homepage
+
+The homepage appears when users log in to Looker (Google Cloud core), navigate to the homepage by clicking **Home** in the main navigation panel, or click the Looker logo in the instance. By default, the homepage for your instance is the [prebuilt Looker homepage](/looker/docs/finding-content#viewing_content_on_your_homepage), which displays a user's favorite content, that user's recently viewed content, and the recently viewed content at the organization. However, those with the Admin Looker role can change this default to a URL within Looker (Google Cloud core). Learn more about homepage settings on the [Admin settings - Homepage](/looker/docs/admin-panel-general-homepage) documentation page.
+
+## Set up announcements for your users
+
+If your instance uses the [prebuilt Looker homepage](/looker/docs/finding-content#viewing_content_on_your_homepage), admins and users who have the [`manage_homepage` permission](/looker/docs/admin-panel-users-roles#manage_homepage) can customize announcements to users with the announcement sidebar. See the [Making announcements to your users](/looker/docs/making-announcements-to-your-users) documentation page for more information about the announcement sidebar.
+
+**Tip:** Adding announcements with links to the [Build a Look with sample data](/looker/docs/looker-core-create-look-quickstart) Quickstart and the [Sample LookML project](/looker/docs/looker-core-sample-project) documentation page can be helpful for business users who are new to exploring in Looker (Google Cloud core) or developers who are new to using LookML.
+
+## Understand Looker roles and permissions
+
+Looker roles govern what users can do within a Looker (Google Cloud core) instance, and they are not the same as Google [IAM roles](/looker/docs/looker-core-access-control#iam-vs-looker-roles). For example, in order to [explore data](/looker/docs/creating-and-editing-explores) within a Looker (Google Cloud core) instance, users must have a role that contains the [`explore` Looker permission](/looker/docs/admin-panel-users-roles#explore). Learn more about roles and permissions on the [Admin settings - Roles](/looker/docs/admin-panel-users-roles) documentation page.
+
+Looker roles can be granted by default during first log in (see the documentation for [Google OAuth](/looker/docs/looker-core-oauth-authentication#default-role), [SAML](/looker/docs/admin-panel-authentication-saml#default_groups_and_roles), or [OIDC](/looker/docs/admin-panel-authentication-openid-connect#default_groups_and_roles)), through group mirroring with [SAML](/looker/docs/admin-panel-authentication-saml#enabling_mirror_saml_groups) or [OIDC](/looker/docs/admin-panel-authentication-openid-connect#enabling_mirror_openid_connect_groups), or manually by an Admin on the [**Users**](/looker/docs/admin-panel-users-users#roles_2) or [**Groups**](/looker/docs/admin-panel-users-groups#adding_roles_to_groups) pages.
+
+## Configure an email domain allowlist
+
+The **Email Domain Allowlist** setting defines the email domains to which your Looker (Google Cloud core) users can [deliver](/looker/docs/scheduling) Looker content — [Looks](/looker/docs/viewing-looks), [dashboards](/looker/docs/dashboards), [queries](/looker/docs/delivering-looks-explores) with visualizations — or [alert notifications](/looker/docs/alerts-overview) through email. By default, there are no domains in the allowlist at the time of instance creation and Looker (Google Cloud core) users with [appropriate Looker permissions to email content](/looker/docs/configuring-deliveries#granting_scheduling_permissions_for_users) can email content to any domain.
+
+To limit content deliveries and alert notifications to email addresses with a specific domain, [edit the Looker (Google Cloud core) instance configuration](/looker/docs/looker-core-view-console#editing_settings) to restrict the domain(s) to which users can send emails. Users with the [`schedule_external_look_emails`](/looker/docs/admin-panel-users-roles#schedule_external_look_emails) permission can send emails to any domain regardless of the **Email Domain Allowlist** settings. To learn more about the email domain allowlist and how it interacts with permissions and user attributes, see the [Email domain allowlist for scheduled content](/looker/docs/admin-panel-general-settings#email_domain_allowlist_for_scheduled_content) documentation.
+
+## Configure business user features
+
+Some features in Looker (Google Cloud core) can be configured by an admin to allow or restrict their usage to certain users. See the [Managing business user features](/looker/docs/managing-business-user-features) documentation page to understand how you can set up features for your users.
+
+## Add and manage Looker (Google Cloud core) users
+
+Once your instance is configured, you can [choose an authentication method](/looker/docs/looker-core-user-authentication) and add and manage users. See the [Manage users within Looker (Google Cloud core)](/looker/docs/looker-core-user-management) documentation page for more information.
+
+## Share performance recommendations
+
+Looker (Google Cloud core) performance can be enhanced through Admin settings, LookML developer patterns, and business user practices. See the [Looker performance documents](/looker/docs/performance-documentation) page for a list of documentation pages that contain tips and best practices for each kind of user. Share this information with your users to keep your Looker (Google Cloud core) instance as performant as possible.
+
+## What's next
+
+  * [Authentication methods for Looker (Google Cloud core)](/looker/docs/looker-core-user-authentication)
+  * [Manage users within Looker (Google Cloud core)](/looker/docs/looker-core-user-management)
+  * [Administer a Looker (Google Cloud core) instance from the Google Cloud console](/looker/docs/looker-core-admin-console)

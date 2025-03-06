@@ -1,0 +1,94 @@
+# https://cloud.google.com/looker/docs/looker-core-logging
+
+Depth: 3
+
+This page describes how to find and use Cloud Logging to view and query logs for your Looker (Google Cloud core) instance.
+
+Looker (Google Cloud core) uses Cloud Logging. See the [cloud logging documentation](/logging/docs) for complete information.
+
+## Required roles
+
+To understand the required roles for Cloud Logging, visit the [Access control with IAM](/logging/docs/access-control) page of the Cloud Logging documentation.
+
+## View logs
+
+To view logs for your Looker (Google Cloud core) instance log entries, select one of the following options:
+
+### console
+
+  1. In the Google Cloud console, go to **Logging > Logs Explorer**
+  2. Select an existing Looker (Google Cloud core) project at the top of the page.
+  3. In the Query builder, add the following:
+     * Resource: Select **Looker instance**. In the dialog, select a Looker (Google Cloud core) instance ID.
+     * Log names: Scroll to the Looker section and select appropriate log files for your instance. For example: 
+       * looker.googleapis.com%2FContentAccess
+       * looker.googleapis.com%2FUserLogin
+     * Severity: Select a log level.
+     * Time range: Select a preset or create a custom range.
+
+###  gcloud 
+
+Use the [`gcloud logging`](/sdk/gcloud/reference/logging/read) command to view log entries.
+    
+    
+    gcloud logging read "resource.type=looker.googleapis.com/Instance" \
+    --project=PROJECT_ID \
+    --limit=10 \
+    --format=json
+
+Replace the following:
+
+  * PROJECT_ID: the ID of the Google Cloud project in which the Looker (Google Cloud core) instance resides.
+
+You may also include the following flags:
+
+  * The [`limit`](/sdk/gcloud/reference/logging/read#--limit) flag is an optional parameter that indicates the maximum number of entries to return.
+
+## Troubleshoot
+
+Issue | Troubleshooting | Log files are incomplete. | Check the [severity level](/logging/docs/reference/v2/rest/v2/LogEntry#logseverity) at which your logging is configured. Log messages below the level configured will be dropped.   
+---|---  
+Operations information is not found in logs. | You want to find more information about an operation. For example, a user was deleted but you can't find out who did it. The logs show the operation started but don't provide any more information. You must [enable audit logging](/logging/docs/audit) for detailed and personal identifying information (PII) like this to be logged.  
+Log files are hard to read. | You'd rather view the logs as JSON or text. You can use the [ `gcloud logging read`](/sdk/gcloud/reference/logging/read) command along with Linux post-processing commands to download the logs. To download the logs as JSON, use the following code:
+    
+    
+    gcloud logging read \
+    "resource.type=looker.googleapis.com/Instance \
+    AND logName=projects/PROJECT_ID \
+    /logs/looker.googleapis.com%2FLOG_NAME" \
+    --format json \
+    --project=PROJECT_ID \
+    --freshness="1d" \
+    > downloaded-log.json
+        
+
+Replace the following:
+
+  * `PROJECT_ID`: the ID of the Google Cloud project in which the Looker (Google Cloud core) instance resides
+  * `LOG_NAME`: the resource name of the log
+
+To download the logs as text, use the following code:
+    
+    
+    gcloud logging read \
+    "resource.type=looker.googleapis.com/Instance \
+    AND logName=projects/PROJECT_ID \
+    /logs/looker.googleapis.com%2FLOG_NAME" \
+    --format json \
+    --project=PROJECT_ID \
+    --freshness="1d"| jq -rnc --stream 'fromstream(1|truncate_stream(inputs)) \
+    | .textPayload' \
+    --order=asc
+    > downloaded-log.txt
+       
+
+Replace the following:
+
+  * `PROJECT_ID`: the ID of the Google Cloud project in which the Looker (Google Cloud core) instance resides
+  * `LOG_NAME`: the resource name of the log
+
+  
+  
+## What's next
+
+  * [Looker (Google Cloud core) audit logging](/looker/docs/looker-core-audit-logging)

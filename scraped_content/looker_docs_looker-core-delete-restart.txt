@@ -1,0 +1,63 @@
+You can delete or restart a Looker (Google Cloud core) instance.
+
+**Important:** Deleting a Looker (Google Cloud core) instance that is [associated with a Looker Studio Pro subscription](/looker/docs/looker-core-lsp) immediately converts any in-use complimentary Looker Studio Pro licenses to paid licenses.
+
+## Required role
+
+To get the permissions that you need to delete or restart a Looker (Google Cloud core) instance, ask your administrator to grant you the [Looker Admin ](https://cloud.google.com/iam/docs/understanding-roles#looker.admin) (`roles/looker.admin`) IAM role on the project in which the instance was created. For more information about granting roles, see [Manage access to projects, folders, and organizations](/iam/docs/granting-changing-revoking-access). 
+
+You might also be able to get the required permissions through [custom roles](/iam/docs/creating-custom-roles) or other [predefined roles](/iam/docs/understanding-roles). 
+
+## Delete a Looker (Google Cloud core) instance
+
+To delete a Looker (Google Cloud core) instance, select one of the following options:
+
+### console
+
+  1. On the **Instances** page, click the three-dot menu beside the instance.
+  2. Select **Delete Instance**. If the instance is currently being modified, you will not be able to delete it.
+  3. In the pop-up, confirm that you want to delete your instance by typing the instance name in the provided field and clicking **DELETE**.
+
+You can also delete an instance from its configuration page by clicking **DELETE** in the instance configuration page icon bar.
+
+###  gcloud 
+    
+    
+    gcloud looker instances delete INSTANCE_NAME --region=REGION --async
+    
+
+Replace the following:
+
+  * INSTANCE_NAME: the [name](/looker/docs/looker-core-view-console#the_instances_page) of the Looker (Google Cloud core) instance
+  * REGION: the [region](/looker/docs/looker-core-view-console#the_instances_page) the instance was created in
+
+## Restart a Looker (Google Cloud core) instance
+
+Restarting a Looker (Google Cloud core) instance stops any in-process Looker processes on the instance — including running queries, schedules, and alerts — and then restarts the instance. Once the restart has been completed, the instance will automatically resume its normal operations. Any queries that were running at the time of restart won't be completed unless you reinitiate them. Schedules and alerts will run on their specified cadence, but any jobs that were scheduled or that were being executed during the restart won't be completed.
+
+If the instance is currently being modified, wait for it to complete its updates before you attempt a restart.
+
+To restart a Looker (Google Cloud core) instance, select one of the following options:
+
+### console
+
+  1. On the **Instances** page, click the name of the instance to view its configuration settings.
+  2. Click **RESTART** in the instance configuration page icon bar.
+
+###  gcloud 
+    
+    
+    gcloud looker instances restart INSTANCE_NAME --region=REGION --async
+    
+
+Replace the following:
+
+  * INSTANCE_NAME: the [name](/looker/docs/looker-core-view-console#the_instances_page) of the Looker (Google Cloud core) instance
+  * REGION: the [region](/looker/docs/looker-core-view-console#the_instances_page) the instance was created in
+
+## What's next
+
+  * [Create a Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-create)
+  * [Administer a Looker (Google Cloud core) instance from the Google Cloud console](/looker/docs/looker-core-admin-console)
+  * [Back up and restore a Looker (Google Cloud core) instance](/looker/docs/looker-core-backup-restore)
+  * [Looker (Google Cloud core) admin settings](/looker/docs/looker-core-admin-looker)

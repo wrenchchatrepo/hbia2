@@ -1,0 +1,9 @@
+Looker makes available several APIs that should not be confused.
+
+[ Looker Application API arrow_forward_ios The **Looker Application API** allows developers access to the vast majority of Looker functionality over a convenient JSON-oriented REST API. It includes a diversity of endpoints, from simple running of queries to managing users, content, schedules, instance configurations, and more.  ](/looker/docs/reference/looker-api/latest)
+
+[ Looker (Google Cloud core) Admin API arrow_forward_ios The **Looker (Google Cloud core) Admin API** allows developers to execute some of the administrative functions of the Google Cloud console in regards to Looker instances. It is only available to those customers who utilize Google Cloud core hosting for their Looker instance.  ](/looker/docs/reference/rest)
+
+[ Looker Actions API arrow_forward_ios The **Looker Actions API** allows developers to define Actions, or custom destinations to which Looker can send query results, dashboard results, or user interactions.  ](/looker/docs/actions-overview)
+
+Please note that the endpoint reference for this API is documented [on GitHub](https://github.com/looker-open-source/actions/blob/master/docs/action_api.md) and not the Google Cloud documentation pages.

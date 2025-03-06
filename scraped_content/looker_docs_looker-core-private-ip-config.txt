@@ -1,0 +1,61 @@
+Once you have set up a Looker (Google Cloud core) instance to use only [private IP](/looker/docs/looker-core-create-private-ip) and set up your instance's [custom domain](/looker/docs/looker-core-custom-domain-private-ip-overview) and configured access to it, you may want to configure your network to allow or restrict communication with external services or the internet.
+
+## Restrict email deliveries to external domains
+
+By default, Looker (Google Cloud core) instances that use only private IP or both private and public IP allow email deliveries to external domains. To restrict the domains to which Looker users can send email deliveries, you can set up an [email domain allowlist](/looker/docs/looker-core-view-console#editing_settings).
+
+## Connect a private IP Looker (Google Cloud core) instance to external services
+
+Looker (Google Cloud core) instances that use only private IP or both private and public IP may require additional configuration to connect to services or resources outside of the instance's VPC network. The following sections describe additional configuration options.
+
+### Connect to other VPCs using private services access
+
+To use internal IPs to connect to services in other VPCs that are hosted by either Google or third parties, you can use [private services access](/vpc/docs/private-services-access).
+
+During Looker (Google Cloud core) [instance creation](/looker/docs/looker-core-create-private-ip#before_you_create_a_instance), you created a private services access connection to connect your VPC to the Looker (Google Cloud core) service. You can also [update the IP allocation](/vpc/docs/configure-private-services-access#modifying-connection) of an existing private services access connection without disrupting traffic.
+
+To set up a private services access connection:
+
+  1. [Allocate an internal IP range](/vpc/docs/configure-private-services-access#allocating-range) in your VPC network.
+  2. [Set up the private connection](/vpc/docs/configure-private-services-access#creating-connection) between your VPC network and service producer's network, using the allocated IP range. This private connection establishes a [VPC Network Peering](/vpc/docs/vpc-peering) connection between your VPC and the other network.
+
+Private connections are a one-to-one relationship between your VPC network and a service producer. If a single service producer offers multiple services, you only need one private connection for all of the producer's services.
+
+### Connect to on-premises resources or third-party services
+
+You can use either of the following two options to connect Looker (Google Cloud core) instances using only private IP or both private and public IP to on-premises resources or third-party services:
+
+  * [Cloud Interconnect](/network-connectivity/docs/interconnect/concepts/overview) and [Cloud Router](/network-connectivity/docs/router/concepts/overview)
+  * [Cloud VPN](/network-connectivity/docs/vpn/concepts/overview), specifically HA VPN, and [Cloud Router](/network-connectivity/docs/router/concepts/overview)
+
+With either method, you will need to do the following:
+
+  * Configure a [dynamic route](/vpc/docs/routes#dynamic_routes) in your Looker (Google Cloud core) VPC for each on-premises resource.
+  * Set up a [custom advertised route](/network-connectivity/docs/router/concepts/advertised-routes) of the Looker (Google Cloud core) [private services access subnet](/vpc/docs/configure-private-services-access#about_the_service_producers_subnet) on all Cloud Routers that are deployed in the Looker (Google Cloud core) VPC.
+  * Update your on-premises firewalls to allow traffic with the Looker (Google Cloud core) subnet.
+  * Configure [DNS forwarding](/dns/docs/overview#dns-forwarding-methods), which will let Looker (Google Cloud core) connect to any on-premises resources.
+  * Configure [DNS Peering](/sdk/gcloud/reference/services/peered-dns-domains) with the Service Networking Google Managed VPC for the Looker (Google Cloud core) instance to resolve the private hostnames.
+
+#### Cloud Interconnect and Cloud Router
+
+The following network diagram shows how Cloud Interconnect and Cloud Router interact with the Looker (Google Cloud core) service to connect to an on-premises network:
+
+  1. Private services access connects the Looker (Google Cloud core) service with the VPC over internal IP addresses using VPC peering.
+  2. Cloud Router uses Border Gateway Protocol (BGP) to advertise the private IP prefixes and program dynamic routes based on the BGP advertisements it receives from a peer. Cloud Interconnect is used to connect to the on-premises network.
+
+![](/static/looker/docs/images/looker-private-network-2316.png)
+
+#### Cloud VPN and Cloud Router
+
+For a walkthrough of how to create a private and public IP Looker (Google Cloud core) instance and connect it to an on-premises database using Cloud VPN and Cloud Router, see the [Connect Looker Cloud over hybrid networking](https://codelabs.developers.google.com/codelabs/looker-hybrid-networking) codelab.
+
+### Connect to databases hosted by other cloud service providers
+
+To set up a private connection to databases or services that are hosted by other cloud service providers, your Google Cloud project must be configured to route traffic to those cloud service providers to allow for data exchange. Learn more about connecting cloud environments on the [Patterns for connecting other cloud service providers with Google Cloud](/architecture/patterns-for-connecting-other-csps-with-gcp) documentation page.
+
+## What's next?
+
+  * [Connect Looker Cloud over hybrid networking](https://codelabs.developers.google.com/codelabs/looker-hybrid-networking)
+  * [Connecting Looker (Google Cloud core) to your database](/looker/docs/looker-core-dialects)
+  * [Prepare your Looker (Google Cloud core) instance for users](/looker/docs/looker-core-instance-setup)
+  * For an example of how to manually install [Looker Marketplace](/looker/docs/marketplace) content, see the Looker Community article, [Installing the Looker API Explorer on a Looker (Google Cloud core) instance on a private IP network](https://www.googlecloudcommunity.com/gc/Technical-Tips-Tricks/Installing-the-Looker-API-Explorer-on-a-Looker-Google-Cloud-core/ta-p/722671).

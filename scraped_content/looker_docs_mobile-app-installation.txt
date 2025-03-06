@@ -1,0 +1,34 @@
+If **Mobile Application Access** is [enabled for your instance](/looker/docs/mobile-app-enablement), you can sign in to your Looker account on an Android or iOS device.
+
+Once you have installed the Looker app, you can [sign in to your instance](/looker/docs/mobile-app-sign-in) to view your [favorite and most recently viewed Looks and dashboards](/looker/docs/mobile-app-navigating-to-content#viewing_your_most_recently_viewed_or_favorite_content), view [boards](/looker/docs/mobile-app-navigating-to-content#navigating_to_content_from_boards), browse [content in folders](/looker/docs/mobile-app-navigating-to-content#browsing_content_in_folders), and [share content](/looker/docs/mobile-app-sharing-content) from the app.
+
+## Device requirements
+
+To use the Looker app, your mobile device must meet the following requirements:
+
+  * iOS device on iOS 13 or higher
+  * Android device on Android 8 or higher
+
+## Installing the Looker app
+
+To download the Looker mobile app, search for **Looker** in the Apple App Store or the Google Play Store or use the following links:
+
+  * [Download the Looker app on the App Store](https://apps.apple.com/us/app/looker-studio/id1644381985) (for iOS)
+
+![](/static/looker/docs/images/ios-qr-code.png)
+
+[![](/static/looker/docs/images/app-store.png)](https://apps.apple.com/us/app/looker-studio/id1644381985)
+
+  * [Get the Looker app on the Play Store](https://play.google.com/store/apps/details?id=com.google.android.apps.cloud.cloudbi) (for Android)
+
+![](/static/looker/docs/images/play-qr-code.png)
+
+[![](/static/looker/docs/images/play-store.png)](https://play.google.com/store/apps/details?id=com.google.android.apps.cloud.cloudbi)
+
+## Checking the app version
+
+To find the version number of the Looker app on your mobile device, select **More** in the mobile app's bottom navigation menu. The version number appears after the option to [sign out of the app](/looker/docs/mobile-app-sign-in#signing_out_of_the_app).
+
+![](/static/looker/docs/images/mobile-check-version-720.png)
+
+For information on updating an app on your device to the latest version, see the [Google Play Help](https://support.google.com/googleplay/answer/113412) documentation for Android or the [Apple Support](https://support.apple.com/en-us/HT202180) documentation for iOS.

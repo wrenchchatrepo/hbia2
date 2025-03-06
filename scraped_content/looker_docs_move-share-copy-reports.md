@@ -1,0 +1,159 @@
+# https://cloud.google.com/looker/docs/move-share-copy-reports
+
+Depth: 3
+
+Looker stores reports, [Looks](/looker/docs/saving-and-editing-looks#saving_looks_from_an_explore) (saved visualized query results), and [dashboards](/looker/docs/viewing-dashboards) (collections of tiles that show visualized query results) in folders. When you create a report in Looker, you can share it with other users by clicking **Save and Share** and saving it to a folder to which those users have access. Access to these folders is controlled by [access levels](/looker/docs/organizing-spaces#folder_access_levels) and user permissions. Once a report is saved, you can move or copy the report to a different folder, or you can delete the report.
+
+This page guides you through the components of sharing reports by moving and copying them to folders for other users to access in Looker. Read the following sections to learn about these concepts:
+
+  * Things to know about sharing reports
+  * Move reports
+  * Copy reports
+  * Delete reports
+
+## Things to know about sharing reports
+
+There are several things to know about sharing reports in Looker:
+
+  * Reports can't be stored in folders that are nested more than five folder levels deep, and they also can't be stored in folders with [custom access levels](/looker/docs/access-levels#configure_groups_to_provide_granular_access). This restriction applies to saving, copying, and moving reports, as well as copying or moving folders that _contain_ reports. For example, consider the following use cases:
+
+    * You can't save a report in a subfolder that is nested 10 folder levels away from the parent folder.
+    * You can't move a folder that contains reports to a folder that has custom access levels.
+    * You can't move a report to a folder that has custom access levels.
+    * You _can_ move a folder into another folder that has inherited access levels.
+  * A folder that contains reports cannot be deleted. Any reports in the folder must be deleted before the folder can be deleted.
+
+  * Users can share a report with other users by moving it into a folder that those users have access to.
+
+For more information about content access and permissions, see [Controlling user content access](/looker/docs/access-control-and-permission-management#controlling_user_content_access) and [How content access and permissions interact](/looker/docs/access-control-and-permission-management#how_content_access_and_permissions_interact).
+
+If you want to change the access level settings for a folder, see [Viewing and managing folder access levels](/looker/docs/organizing-spaces#viewing_and_managing_folder_access_levels).
+
+## Move reports
+
+Once a report is saved, you can move the report to another folder. To move reports, users must have one of the following types of access:
+
+  * [**Admin** access](/looker/docs/admin-panel-users-roles#admin) to the Looker instance.
+  * [**Manage Access, Edit** access level](/looker/docs/organizing-spaces#folder_access_levels) to the report's folder
+  * **Manage Access, Edit** access level to the folder to which the report will be moved
+
+**Caution:** Reports can't be moved to folders that are more than five levels deep, and reports can't be saved in folders that have [custom access levels](/looker/docs/access-levels#configure_groups_to_provide_granular_access).
+
+You can move reports individually, or you can move multiple reports at once.
+
+**Note:** If you want to move an entire folder, see [Renaming, moving, or deleting a folder](/looker/docs/organizing-spaces#renaming_moving_or_deleting_a_folder). See the Things to know about sharing reports section on this page for things to know about moving folders that contain reports.
+
+### Move individual reports
+
+To move an individual report to a new folder, follow these steps:
+
+  1. From a folder, click a report's three-dot **Options** menu more_horiz.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the three-dot **Actions** menu more_horiz.
+
+  2. Select the **Move** option to open the **Move reports** window.
+
+  3. In the **Move reports** window, select the name of a top-level folder on the left to navigate to it.
+
+  4. Select a subfolder from the list, or navigate down to a subordinate subfolder. You can also enter the subfolder name into the **Filter by title** field to filter the list.
+
+  5. Click **OK**.
+
+### Move multiple reports
+
+To move multiple reports to a new folder, follow these steps:
+
+  1. From a folder, click the checkbox check_box for any reports that you want to move.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the **Select** checkmark check_circle_outline, and then select the checkmark to include the report in the bulk move.
+
+  2. Select the **Move** option in the **Reports** section of the folder to open the **Move reports** window.
+
+  3. In the **Move reports** window, select the name of a top-level folder on the left to navigate to it.
+
+  4. Select a subfolder from the list, or navigate down to a subordinate subfolder. You can also enter the subfolder name into the **Filter by title** field to filter the list.
+
+  5. Click **OK**.
+
+## Copy reports
+
+To copy reports, users must have one of the following types of access:
+
+  * [**Admin** access](/looker/docs/admin-panel-users-roles#admin) to the Looker instance
+  * [**Manage Access, Edit** or **View** access level](/looker/docs/organizing-spaces#folder_access_levels) to the report's folder
+  * **Manage Access, Edit** access level to the folder to which the report will be copied, to save it in a folder other than the parent folder
+
+**Caution:** Copied reports can't be saved to folders that are more than five levels deep, and copied reports can't be saved to folders that have [custom access levels](/looker/docs/access-levels#configure_groups_to_provide_granular_access).
+
+You can copy reports individually, or you can copy multiple reports at once.
+
+### Copy individual reports
+
+To copy an individual report, follow these steps:
+
+  1. From a folder, click a report's three-dot **Options** menu more_horiz.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the three-dot **Actions** menu more_horiz.
+
+  2. Select the **Copy** option to open the **Copy reports** window to select a folder to save the copy.
+
+  3. In the **Copy reports** window, select the name of a top-level folder on the left to navigate to it.
+
+  4. Select a subfolder from the list, or navigate down to a subordinate subfolder. You can also enter the subfolder name into the **Filter by title** field to filter the list.
+
+  5. Click **Copy**.
+
+### Copy multiple reports
+
+To copy multiple reports, follow these steps:
+
+  1. From a folder, click the checkbox check_box for any reports that you want to copy.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the **Select** checkmark check_circle_outline, and then select the checkmark to include the report in the bulk copy.
+
+  2. Select the **Copy** option in the **Reports** section of the folder to open the **Copy reports** window. Then, select a folder to save the copy.
+
+  3. In the **Copy reports** window, select the name of a top-level folder on the left to navigate to it.
+
+  4. Select a subfolder from the list, or navigate down to a subordinate subfolder. You can also enter the subfolder name into the **Filter by title** field to filter the list.
+
+  5. Click **Copy**.
+
+## Delete reports
+
+To delete reports, users must have one of the following types of access:
+
+  * [**Admin** access](/looker/docs/admin-panel-users-roles#admin) to the Looker instance
+  * [**Manage Access, Edit** access level](/looker/docs/organizing-spaces#folder_access_levels) to the report's folder
+
+**Warning:** Moving a report to the trash will permanently delete the report. Your Looker admin won't be able to recover it.
+
+You can delete reports individually, or you can delete multiple reports at once.
+
+**Note:** If you want to delete an entire folder, see [Renaming, moving, or deleting a folder](/looker/docs/organizing-spaces#renaming_moving_or_deleting_a_folder). Also see the Things to know about sharing reports section on this page for things to know about deleting folders that contain reports.
+
+### Delete individual reports
+
+To delete an individual report, follow these steps:
+
+  1. From a folder, click a report's three-dot **Options** menu more_horiz.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the three-dot **Actions** menu more_horiz.
+
+  2. Select the **Move to Trash** option.
+
+  3. Click the **Delete permanently** button to confirm, or click the **Cancel** button to cancel.
+
+### Delete multiple reports
+
+To delete multiple reports, follow these steps:
+
+  1. From a folder, select the checkbox check_box for any reports that you want to delete.
+
+If the folder contents are displayed in [grid view](/looker/docs/finding-content#using_list_view_and_grid_view), hold the pointer over a report thumbnail to access the **Select** checkmark check_circle_outline, and then select the checkmark to include the report in the bulk delete.
+
+  2. Select the **Move to Trash** option in the **Reports** section of the folder.
+
+  3. Click the **Delete permanently** button to confirm, or click the **Cancel** button to cancel.
+
+**Warning:** If you accidentally delete a report, your Looker admin won't be able to recover it for you.

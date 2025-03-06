@@ -1,0 +1,88 @@
+# https://cloud.google.com/looker/docs/studio/about-looker-studio-pro
+
+Depth: 3
+
+Looker Studio Pro is the premium version of Looker Studio. With Looker Studio Pro, you get access to all the features of Looker Studio that you already know, plus enhanced enterprise capabilities and technical support. Looker Studio Pro licenses are available at no cost to [Looker (original)](/looker/docs/admin-panel-platform-lsp) and [Looker (Google Cloud core)](/looker/docs/looker-core-lsp) users.
+
+## What you get with Looker Studio Pro
+
+###  ![](/static/looker/docs/studio/images/migrate-enterprise-server-circle-graphic.svg)
+
+| 
+
+###  Own your organization's content 
+
+Your Looker Studio Pro reports and data sources belong to your organization, rather than to individual users. Link your Looker Studio Pro content to a Google Cloud project to ensure that your critical assets will continue to work even if the person who created them leaves the organization. In addition, Google Cloud administrators can set​​ project-level permissions with IAM to control access to those assets.  [ Learn more about owning your organization's content with Looker Studio Pro. ](/looker/docs/studio/link-looker-studio-pro-to-a-google-cloud-project-mau-version)  
+---|---  
+  
+###  ![](/static/looker/docs/studio/images/artboard-4-8-2023-07-17.svg)
+
+| 
+
+###  Collaborate at scale with team workspaces 
+
+Team workspaces are shared locations for team collaboration that enable Looker Studio Pro users to manage access and share Looker Studio content at scale.  Members of a team workspace automatically get access to the content, and the specific permissions on workspaces depend on which role those members are granted: Manager, Content Manager, or Contributor.  [ Learn more about collaborating at scale with Looker Studio Pro. ](/looker/docs/studio/about-team-workspaces)  
+  
+###  ![](/static/looker/docs/studio/images/artboard-8-8-2023-07-17.svg)
+
+| 
+
+###  Automate report delivery 
+
+Keep your colleagues, clients, and stakeholders up to date with enhanced features for scheduled report delivery.  As a Looker Studio Pro customer, you can add up to 20 delivery schedules to a report and deliver reports to Google Chat. You can also set up alerts that will notify you and your stakeholders when a chart on your Looker Studio report meets criteria that you specify.  [ Learn more about automating report delivery with Looker Studio Pro. ](/looker/docs/studio/schedule-automatic-report-delivery)  
+![](/static/looker/docs/studio/images/artboard-7-8-2023-07-17.svg) | 
+
+###  Empower exploration with personal report links 
+
+Democratize data exploration by sharing personal report links with your team.  A personal report link creates a copy of your report that is only accessible to the person who opens the link. Personal reports let other people edit and explore their copy of the report while preventing changes to your original report.  [ Learn more about using Looker Studio Pro to empower exploration with personal report links. ](/looker/docs/studio/get-a-personal-report-link)  
+  
+###  ![](/static/looker/docs/studio/images/migrate-collaboration-circle-graphic.svg)
+
+| 
+
+###  Looker Studio mobile app 
+
+The Looker Studio mobile application (app) lets users access reports and data while on the go.  [ Learn more about the Looker Studio mobile app. ](/looker/docs/studio/how-to-use-the-looker-studio-mobile-app)  
+![](/static/looker/docs/studio/images/artboard-6-2023-07-17.svg) | 
+
+###  Get help with Cloud Customer Care 
+
+Looker Studio Pro customers have access to Google Cloud Cloud Customer Care's scalable and flexible support services. [ Learn more about getting help with Cloud Customer Care. ](https://cloud.google.com/support) **Note:** Looker Studio support is not included in other premium Google Cloud services. To receive technical support for Looker Studio Pro issues, you'll need both a Google Cloud support plan and a Looker Studio Pro subscription.  
+![](/static/looker/docs/studio/images/gemini-icon-spark-blue.png) | 
+
+###  Gemini in Looker 
+
+Gemini in Looker provides AI assistance to help Looker Studio Pro users ask questions about their data, create calculated fields using natural language prompts, and add Looker Studio content to a Slides presentation.  [ Learn more about Gemini in Looker. ](/looker/docs/studio/gemini-in-looker-overview)  
+  
+## How to get Looker Studio Pro
+
+Looker Studio Pro is available as a self-service subscription. You can add as many Looker Studio Pro users to the subscription as you need, and you'll be billed for each licensed user in the subscription. For pricing, [visit our Marketing page](https://cloud.google.com/looker-studio#pricing).
+
+### Before you begin
+
+Here's what you'll need to get started with Looker Studio Pro:
+
+  * You must be a Google Workspace or Cloud Identity user to subscribe to or use Looker Studio Pro.
+
+  * You will need to provide a valid Google Cloud project that is linked to a billing account. [Learn how to set up a Google Cloud billing account](https://cloud.google.com/billing/docs/how-to/create-billing-account).
+
+  * You must have the **Owner** ( ```roles/owner``` ) or **Looker Studio Pro Manager** ( ```roles/lookerstudio.proManager``` ) IAM role on the Google Cloud project that you use for Looker Studio Pro.
+
+  * You must have the ```resourcemanager.projects.updateLiens``` permission on the Google Cloud project that you use for Looker Studio Pro. This is required so that Google Cloud can create a [lien](https://cloud.google.com/resource-manager/docs/project-liens) on the Google Cloud project, which helps to prevent accidental deletion of your Looker Studio Pro assets.
+
+> The ```resourcemanager.projects.updateLiens``` permission is granted by the **Owner** , **Looker Studio Pro Manager** , and **Project Lien Modifier** roles. If you are creating custom roles to manage Looker Studio Pro, be sure to include this permission in the role.
+
+  * Your organization must own the Google Cloud project that you use for Looker Studio Pro.
+
+  * You must belong to the same organization that owns the Google Cloud project that is used for the subscription. (For example, you can't make someone who is outside your organization an owner on the project and have that outside user subscribe to Looker Studio Pro on behalf of the organization.)
+
+  * The Google Cloud project that you use for Looker Studio Pro must not currently be in use for a Pro subscription.
+
+For more information about granting Cloud IAM roles, see [Manage access](https://cloud.google.com/iam/docs/granting-changing-revoking-access). You might also be able to get the required permissions through [custom roles](https://cloud.google.com/iam/docs/creating-custom-roles) or other [predefined roles](https://cloud.google.com/iam/docs/understanding-roles).
+
+## Ready to subscribe to Looker Studio Pro?
+
+  1. [Launch Looker Studio](https://lookerstudio.google.com/navigation/reporting).
+  2. If you're eligible to subscribe, in the top banner, click **Tell me more.**
+
+![A rocket ship blasts off next to the words get Looker Studio Pro.](/static/looker/docs/studio/images/get-pro-banner-2023-09-15.png)

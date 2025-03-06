@@ -1,0 +1,88 @@
+# https://cloud.google.com/looker/docs/db-config-apache-spark
+
+Depth: 3
+
+This page contains information about connecting Looker to Apache Spark 3.
+
+Looker connects to Apache Spark 3+ through a JDBC connection to the Spark Thrift Server.
+
+**Note:** Looker does not support connections to Apache Spark 1.5 or Apache Spark 2. Queries on connections to Apache Spark 1.5 or Apache Spark 2 will return an error.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+## Creating the Looker connection to your database
+
+In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+
+Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information. Some of the settings are described next:
+
+  * **Name** : The name of the connection. This is how the connection will be referred to in the LookML model.
+  * **Dialect** : Select **Apache Spark 3+**.
+  * **Host** : The Thrift server host.
+  * **Port** The Thrift server port (10000 by default).
+  * **Database** : The default schema/database that will be modeled. When no database is specified for a table, this will be assumed.
+  * **Username** : The user that Looker will authenticate as.
+  * **Password** : The optional password for Looker user.
+  * **Enable PDTs** : Use this toggle to enable [persistent derived tables](/looker/docs/derived-tables#persistent-derived-tables). When PDTs are enabled, the **Connection** window reveals additional PDT settings and the [**PDT Overrides**](/looker/docs/connecting-to-your-db#pdt-overrides) section.
+  * **Temp Database** : A temporary schema/database for storing PDTs. It must be created beforehand, with a statement such as `CREATE SCHEMA looker_scratch;`.
+  * **Additional JDBC parameters** : Add any additional Hive JDBC parameters here, such as: 
+    * `;spark.sql.inMemoryColumnarStorage.compressed=true`
+    * `;auth=noSasl`
+  * **SSL** : Leave this unchecked.
+  * **Database Time Zone** : The time zone of data stored in Spark. Usually it can be left blank or set to UTC.
+  * **Query Time Zone** : The time zone to display data queried in Looker.
+
+To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+To save these settings, click **Connect**.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+### Apache Spark 3+
+
+Apache Spark 3+ supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | No  
+SQL Runner Show Processes | No  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | No  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | No  
+Aggregate Awareness | Yes  
+Incremental PDTs | No  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | No  
+Approximate Count Distinct | No  
+  
+## Next steps
+
+After you have created the connection, [set authentication options](/looker/docs/getting-started-with-users).

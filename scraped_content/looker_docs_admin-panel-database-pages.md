@@ -1,0 +1,10 @@
+# https://cloud.google.com/looker/docs/admin-panel-database-pages
+
+Depth: 3
+
+These pages appear under the **Database** section of Looker's **Admin** menu:
+
+  * [Connections](/looker/docs/admin-panel-database-connections): View, test, add, edit, audit, and delete database connections.
+  * [Queries](/looker/docs/admin-panel-database-queries): View information about the last 50 queries submitted to your database.
+  * [Persistent Derived Tables](/looker/docs/admin-panel-database-pdts): View information about and troubleshoot persistent derived tables.
+  * [Datagroups](/looker/docs/admin-panel-database-datagroups): View information about datagroups, reset their caches, and trigger rebuilds.

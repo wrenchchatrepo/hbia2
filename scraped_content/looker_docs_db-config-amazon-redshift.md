@@ -1,0 +1,137 @@
+# https://cloud.google.com/looker/docs/db-config-amazon-redshift
+
+Depth: 3
+
+**Note:** Looker support for Redshift is implemented using standard Redshift deployments. If your Redshift database is an [Amazon Redshift Serverless](https://aws.amazon.com/redshift/redshift-serverless/) deployment, Looker can connect successfully but it may encounter issues with killing queries because of a difference in the system tables for retrieving query connection IDs.  
+  
+You can access data from Amazon Redshift, optionally also using [Amazon Redshift Spectrum](https://aws.amazon.com/redshift/spectrum/) to access data stored in S3.
+
+## Encrypting network traffic
+
+It is a best practice to encrypt network traffic between the Looker application and your database. Consider one of the options described on the [Enabling secure database access](/looker/docs/enabling-secure-db-access) documentation page.
+
+If you're interested in using SSL encryption, see the [Amazon Redshift documentation on configuring security options for connections](http://docs.aws.amazon.com/redshift/latest/mgmt/connecting-ssl-support.html).
+
+## Users and security
+
+First, create your Looker user. Change `some_password_here` to a unique, secure password:
+    
+    
+    CREATE USER looker WITH PASSWORD 'some_password_here';
+    
+
+**Password Constraints** _(taken from the[Redshift ALTER USER documentation](http://docs.aws.amazon.com/redshift/latest/dg/r_ALTER_USER.html))_:
+
+  * 8 to 64 characters in length.
+  * Must contain at least one uppercase letter, one lowercase letter, and one number.
+  * Can use any printable ASCII characters (ASCII code 33 to 126) except `'` (single quote), `"` (double quote), `\`,`/`,`@`, or space.
+
+Next, grant the appropriate privileges:
+    
+    
+    GRANT USAGE ON SCHEMA public TO looker;
+    GRANT SELECT ON TABLE public.table1 TO looker;
+    GRANT SELECT ON TABLE public.table2 TO looker;
+    ...
+    GRANT SELECT ON TABLE public.tableN TO looker;
+    
+
+To give Looker access to the information schema data that it needs to [generate LookML](/looker/docs/generating-a-model) and that it needs for the [SQL Runner](/looker/docs/sql-runner-basics) side bar, run the following commands:
+    
+    
+    GRANT SELECT ON TABLE information_schema.tables TO looker;
+    GRANT SELECT ON TABLE information_schema.columns TO looker;
+    
+
+If you want to `GRANT SELECT` on all of your tables to the `looker` user, execute this query:
+    
+    
+    GRANT SELECT ON ALL TABLES IN SCHEMA public TO looker;
+    
+
+For acceptable Redshift performance, it is necessary to set the proper distribution and sort keys. See the [Redshift documentation](http://docs.aws.amazon.com/redshift/latest/dg/t_Creating_tables.html) for details.
+
+## Temp schema setup
+
+While logged in to your Redshift database as an admin user, run:
+    
+    
+    CREATE SCHEMA looker_scratch AUTHORIZATION looker;
+    
+
+If the `looker_scratch` schema is already created or has bad permissions:
+    
+    
+    ALTER SCHEMA looker_scratch OWNER TO looker;
+    
+
+## Setting the search_path
+
+Finally, you should set an appropriate `search_path`, which Looker SQL Runner uses to retrieve certain metadata from your database. Assuming that you have created a user called `looker`, and a temp schema called `looker_scratch`, the command is as follows:
+    
+    
+    ALTER USER looker SET search_path TO '$user',looker_scratch,schema_of_interest,public;
+                                                                ^^^^^^^^^^^^^^^^^^
+                                                                ^^^^^^^^^^^^^^^^^^
+                                                 include a comma-separated list of
+                                                all schemas you'll use with Looker
+    
+
+## Optionally accessing data in S3 using Amazon Redshift Spectrum
+
+You can take full advantage of Amazon Redshift Spectrum's performance from within Looker.
+
+Spectrum significantly extends the functionality and ease of use for Redshift by letting users access data stored in S3, without having to load it into Redshift first. You can even join S3 data to data stored in Redshift, and the Redshift optimizer will take care of maximizing your query performance, optimizing both the S3 and Redshift portions of your query. For information on setting up access using Amazon Spectrum, see the Community post on [Using Amazon Redshift's new Spectrum Feature](https://www.googlecloudcommunity.com/gc/Modeling/Using-Amazon-Redshift-s-new-Spectrum-Feature/m-p/576711#M5207).
+
+## Creating the Looker connection to your database
+
+After completing the database configuration, you can connect to the database from Looker. In the **Admin** section of Looker, select **Connections** , and then click **Add Connection**.
+
+Fill out the connection details. The majority of the settings are common to most database dialects. See the [Connecting Looker to your database](/looker/docs/connecting-to-your-db) documentation page for information.
+
+To verify that the connection is successful, click **Test**. See the [Testing database connectivity](/looker/docs/testing-db-connectivity) documentation page for troubleshooting information.
+
+Click **Connect** to save these settings.
+
+## Feature support
+
+For Looker to support some features, your database dialect must also support them.
+
+Amazon Redshift supports the following features as of Looker 25.2:
+
+Feature | Supported?  
+---|---  
+Support Level | Supported  
+Looker (Google Cloud core) | Yes  
+Symmetric Aggregates | Yes  
+Derived Tables | Yes  
+Persistent SQL Derived Tables | Yes  
+Persistent Native Derived Tables | Yes  
+Stable Views | Yes  
+Query Killing | Yes  
+SQL-based Pivots | Yes  
+Timezones | Yes  
+SSL | Yes  
+Subtotals | Yes  
+JDBC Additional Params | Yes  
+Case Sensitive | Yes  
+Location Type | Yes  
+List Type | Yes  
+Percentile | Yes  
+Distinct Percentile | No  
+SQL Runner Show Processes | Yes  
+SQL Runner Describe Table | Yes  
+SQL Runner Show Indexes | Yes  
+SQL Runner Select 10 | Yes  
+SQL Runner Count | Yes  
+SQL Explain | Yes  
+Oauth Credentials | No  
+Context Comments | Yes  
+Connection Pooling | No  
+HLL Sketches | Yes  
+Aggregate Awareness | Yes  
+Incremental PDTs | Yes  
+Milliseconds | Yes  
+Microseconds | Yes  
+Materialized Views | Yes  
+Approximate Count Distinct | Yes

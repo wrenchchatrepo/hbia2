@@ -1,0 +1,278 @@
+When you create a new project, it exists only in [Development Mode](/looker/docs/dev-mode-prod-mode#development_mode) to let you develop your model in a safe environment that won't impact other users. Once you're ready to publish your project, the next step is to configure a Git connection.
+
+Configuring a Git connection for your project lets you deploy your LookML to [Production Mode](/looker/docs/dev-mode-prod-mode#production_mode), which lets other users explore your data model, build dashboards, and add LookML to your model. For a quicker setup, use a bare repository. For a more robust Git integration, create your own Git repository and follow the instructions on this page to connect it to your Looker instance.
+
+**Note:** When you create a new project during the process of [generating a model](/looker/docs/generating-a-model), the project is created with a bare repository.
+
+## Integrating Looker with Git
+
+Looker uses Git to record changes and manage file versions. Each LookML project corresponds to a Git repository. Any time a user is in Development Mode that user is on their own Git branch.
+
+For LookML source file management, Looker can be configured with any Git provider that uses an SSH key or HTTPS for authentication. The general steps are the same no matter which platform you use. This page uses GitHub as an example for connecting a Looker project to Git once you have [created a Git repository](https://help.github.com/articles/creating-a-new-repository/).
+
+To access Git integration options, you must have [Development Mode turned on](/looker/docs/dev-mode-prod-mode#switching_in_and_out_of_development_mode).
+
+You can configure Git integration using one of the following protocols:
+
+  * **HTTPS** : HyperText Transfer Protocol Secure. With HTTPS, Looker accesses your Git repository with a username and password (or access token) that you provide, as described in Connecting to Git Using HTTPS.
+  * **SSH** : Secure Shell. With SSH, Looker accesses your Git repository using a deploy key that you generate through your Git provider's website, as described in Connecting to Git Using SSH.
+
+### Connecting to Git using HTTPS
+
+For LookML projects that are configured with HTTPS authentication, Looker connects to your Git provider with one or more user accounts that you set up with your Git provider. Looker uses a username and password (or access token) to sign in to your Git provider and perform Git operations on behalf of your LookML developers.
+
+If your Git account uses two-factor authentication, you can go to your Git provider and create access tokens to use instead of passwords. Go to the [Setting up HTTPS git connection with 2FA Enabled](https://www.googlecloudcommunity.com/gc/Administering-Looker/Setting-up-HTTPS-git-connection-with-2FA-Enabled/td-p/580237) Community post to see instructions for creating personal access tokens for common Git providers.
+
+With HTTPS authentication, you can configure your LookML project to use a single Git account for the entire project, or you can configure the project to use your developers' individual Git accounts to perform their Git operations.
+
+Note the following for GitHub HTTPS authentication:
+
+  * GitHub doesn't accept account passwords for authenticating Git operations on github.com. See [GitHub's blog post](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/) for more information. To connect a Looker project to GitHub by using HTTPS, [use the developer settings in GitHub](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) to create a personal access token.
+  * Looker doesn't support GitHub's [fine-grained personal access tokens](https://github.blog/2022-10-18-introducing-fine-grained-personal-access-tokens-for-github/). To connect your Looker project to GitHub by using HTTPS, use GitHub's **Tokens (classic)** option when you create a personal access token.
+
+#### Single account HTTPS authentication
+
+If you set up your LookML project with a single Git account, Looker uses that Git account to sign in to your Git provider to commit changes on behalf of the developers. Looker makes these commits by using the developer's Looker username so that you can tell which developer made each commit. You can see your project's commit history on your Git provider's interface or by selecting the [**History**](/looker/docs/git-command-reference#history) option from the Git menu of the Looker IDE. See [Executing Git commands in Looker](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker) for more information on the Git menus in Looker.
+
+For single account HTTPS authentication, the Git user account that you specify must have read and write access to your Git repository. Your LookML developers themselves don't need to have their own Git user accounts.
+
+#### Multiple account HTTPS authentication with user attributes
+
+If you set up your LookML project with multiple accounts, your LookML project will use each Looker developer's individual Git account to perform Git operations. You also need to configure one generic Git user account, with at least read access, that Looker will use to pull the production version of the files.
+
+The following tasks and requirements are needed for Git authentication with user attributes:
+
+  * Each of your LookML developers must have their own user account with your Git provider. Each Git user account must have read and write access to the project's repository.
+  * Your Looker admin must set up Looker user accounts with [user attributes](/looker/docs/admin-panel-users-user-attributes#creating_user_attributes) that correspond to Git username and Git password (or [access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) if the Git user accounts have two-factor authentication).
+  * User attributes for Git account passwords (or access tokens) must be [hidden](/looker/docs/admin-panel-users-user-attributes#creating_user_attributes). When you create the password or access token attribute, select **Yes** under the **Hide Values** option and enter the Git provider URL in the **Domain Allowlist** field.
+  * The user attributes for Git name and password (or access token) must be filled in for each Looker developer. User attributes can be configured [by a Looker admin](/looker/docs/admin-panel-users-users#user_attributes) or [by the Looker user](/looker/docs/user-menu#changing_standard_account_settings).
+
+The following example shows the [**User Attributes** Admin page](/looker/docs/admin-panel-users-user-attributes), where a Looker admin has set up user attributes for the Git username and the user access token.
+
+![Table on the User Attributes Admin page that displays the string-type user attributes github_token and github_username.](/static/looker/docs/images/dev-git-https-useratt-admin-2112.png)
+
+The following example shows a Looker user's [**Account**](/looker/docs/user-account) page where the user has entered their Git credentials into the user attribute fields.
+
+![](/static/looker/docs/images/dev-git-https-useratt-account-2112.png)
+
+#### Configuring HTTPS Git authentication
+
+To configure a LookML project with HTTPS Git authentication, follow these steps:
+
+  1. Get the HTTPS URL for your Git repository. In the case of GitHub, for new repositories (repositories that don't yet contain any files), GitHub will show you the URL as part of the initial setup. Be sure to select the **HTTPS** button on the **Code** tab so that you get the HTTPS URL, and then select the **Copy URL to clipboard** icon to copy it to your clipboard.
+
+![](/static/looker/docs/images/dev-connect-git-create-repo-existing-https-2114.png)
+
+For existing GitHub repositories (repositories that already contain files), you can see the HTTPS URL by going to the repository's **Code** tab and selecting the **Code** button. Be sure to select the **HTTPS** link. You can select the **Copy URL to clipboard** icon to copy the HTTPS URL to your clipboard.
+
+![](/static/looker/docs/images/dev-connect-git-create-repo-https-2114.png)
+
+  2. [Navigate to your LookML project](/looker/docs/manage-projects#accessing-project-files), and select the **Settings** icon from the navigation bar.
+
+  3. In the **Project Configuration** page, on the **Configuration** tab, go to the **Configure Git** button (for new projects) or the **Reset Git Connection** button (for existing projects that have been connected to Git previously).
+
+  4. Select the **Configure Git** or the **Reset Git Connection** button to open the **Configure Git** page.
+
+> Resetting your Git connection will preserve Git history for the main branch. It will also preserve the history of each Looker developer's personal branch once they pull, merge, and deploy. To preserve history for all branches, see the [Migrating to a new Git repository](/looker/docs/best-practices/how-to-migrate-to-a-new-git-repo) Best Practices page.
+
+![](/static/looker/docs/images/dev-connect-git-2112.png)
+
+  5. In the Looker **Configure Git** page, paste the HTTPS URL for your Git repository in the **Repository URL** field, and then select **Continue**.
+
+Looker will detect your Git provider and update the window with information about your Git repository.
+
+If Looker does not successfully detect your Git provider, it will ask you to choose from a drop-down.
+
+  6. Select your Git login option:
+
+     * **Use a single, constant username and password/token combination** (see Single account HTTPS authentication).
+     * **Use user attributes for username and password/token** (see User attribute HTTPS authentication).
+  7. In the **Username** and **Password** /**Personal Access Token** fields, enter the credentials that your LookML project will use to access Git. This is required regardless of your Git login setting:
+
+     * If you selected **Use a single, constant username and password/personal access token combination** , this is the Git username and password (or access token) that your Looker instance will use for all Git operations. This Git user account must have read and write access to your Git repository.
+     * If you selected **Use user attributes for username and password/personal access token** , this is the Git username and password (or access token) that your Looker instance will use to pull the production version of the repository. This Git user account must have at least read access to your Git repository.
+
+> If your Git account uses two-factor authentication, or if you're using GitHub (which requires a personal access token instead of a password), you can go to your Git provider and create access tokens to use instead of passwords. Go to the [Setting up HTTPS git connection with 2FA Enabled ](https://www.googlecloudcommunity.com/gc/Administering-Looker/Setting-up-HTTPS-git-connection-with-2FA-Enabled/td-p/580237) Community post to see instructions for creating personal access tokens for common Git providers.
+
+  8. If you selected **Use user attributes for username and password/personal access token** , Looker displays the **Username User Attribute** and **Personal Access Token User Attribute** drop-down menus in the **Development Mode Credentials** section. Use the drop-down menus to select the [user attributes](/looker/docs/admin-panel-users-user-attributes#creating_user_attributes) for an individual developer's Git credentials.
+
+![](/static/looker/docs/images/dev-configure-git-https-user-attr-2114.png)
+
+(Looker users can edit the values for their user attribute fields on their [Account](/looker/docs/user-account) page, or Looker admins can edit the user attribute values for a user on the [Users](/looker/docs/admin-panel-users-users#user_attributes) admin page.)
+
+  9. Select the **Continue Setup** button.
+
+Git is now configured for your LookML project. From here you can [validate your LookML](/looker/docs/lookml-validation#validating_your_changes), and then create your initial commit and deploy to production to make your project available in [Production Mode](/looker/docs/dev-mode-prod-mode#production_mode). You can also:
+
+  * Use the Git menu to access the [Git commands](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker).
+  * Use the Git menu to test your Git connection.
+  * If you're a Looker admin, go to the [project settings](/looker/docs/git-options#project_settings) to require LookML validation and to configure [Git integration options](/looker/docs/git-options#git_integration_options).
+
+### Connecting to Git using SSH
+
+With SSH authentication, you create a deploy key for your Git provider. Looker generates the SSH key pair and displays the public key in the UI, as seen in step 4. Looker uses that deploy key to sign in to your Git provider to commit changes on behalf of the Looker developers. Looker makes commits using a developer's Looker username so you can tell which developer made each commit. You can see your project's commit history on your Git provider's interface or by selecting the [**History**](/looker/docs/git-command-reference#history) option from the Git menu of the Looker IDE. See [Executing Git commands in Looker ](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker) for more information on the Git menus in Looker.
+
+To configure a LookML project with SSH Git authentication, follow these steps:
+
+  1. [Open your project](/looker/docs/manage-projects#accessing-project-files) or [create a new LookML project](/looker/docs/generating-a-model).
+  2. In your project, select the **Settings** icon from the left-hand icon menu to open the **Project Configuration** page.
+  3. In the **Project Configuration** page, perform one of the following actions to open the **Configure Git** page:
+
+     * For a project with no Git connection, select the **Configure Git** button.
+     * For a project that is already configured with a Git connection, select the **Reset Git Connection** button.
+
+> Resetting your Git connection will preserve Git history for the main branch. It will also preserve the history of each Looker developer's personal branch once they pull, merge, and deploy. To preserve history for all branches, see the [Migrating to a new Git repository](/looker/docs/best-practices/how-to-migrate-to-a-new-git-repo) Best Practices page.
+
+![Diagram showing the progression from the Project Settings page to the Configure Git page. New projects will display a Configure Git button, and existing projects will display a Reset Git Connect button, but both buttons lead to the Configure Git page.](/static/looker/docs/images/dev-connect-git-2112.png)
+
+  4. Get the SSH URL for your Git repository. Here are the formats for common Git providers:
+
+     * GitHub: `git@github.com:<organization-name>/<repository-name>.git`
+     * GitHub Enterprise: `git@example.com:<organization-name>/<repository-name>.git`
+     * [Cloud Source Repositories](https://community.looker.com/technical-tips-tricks-1021/using-cloud-source-repositories-for-version-control-in-looker-30241): `ssh://username@example.com@source.developers.google.com:2022/p/<project-id>/r/<repository-name>`
+     * GitLab: `git@gitlab.com:<organization-name>/<repository-name>.git`
+     * [Bitbucket](https://community.looker.com/technical-tips-tricks-1021/using-bitbucket-for-version-control-in-looker-30244): `git@bitbucket.org:<organization-name>/<repository-name>.git`
+     * [Phabricator](https://community.looker.com/technical-tips-tricks-1021/setting-up-phabricator-and-looker-for-version-control-30243): `ssh://username@example.com/diffusion/MYCALLSIGN/<repository-name>.git`
+
+In the case of GitHub, for new repositories (repositories that don't yet contain any files), GitHub will display the SSH URL on the **Code** tab as part of the initial setup. Be sure to select the **SSH** button so you get the SSH URL, and then select the clipboard icon to copy it to your clipboard.
+
+![](/static/looker/docs/images/dev-connect-git-create-repo-718.png)
+
+For existing GitHub repositories (repositories that already contain files), you can see the SSH URL by going to the repository's **Code** tab and selecting on the **Code** button. Be sure to select the **Use SSH** link. You can select the clipboard icon to copy to your clipboard.
+
+![](/static/looker/docs/images/dev-connect-git-create-repo-existing-718.png)
+
+  5. In the Looker **Configure Git** page, paste the SSH URL for your Git repository in the **Repository URL** field, and then select **Continue**.
+
+> URLs with custom or non-standard Git ports can be used with Looker by adding the non-standard port number to the Git URL. For example: `ssh://git@corporate.git.server.com:22/myorganization/myproject.git`
+> 
+> You must include the `ssh://` for this to work properly.
+
+  6. Looker will detect your Git provider and display a deploy key for your repository. (If Looker doesn't successfully detect your Git provider, it will prompt you to choose from a drop-down.) Copy the deploy key to your clipboard, and then select the **Deploy Key settings for your repository** link to open the GitHub **Deploy keys** page for your GitHub repository.
+
+  7. In the GitHub **Settings** tab, on the **Deploy keys** page, select the **Add deploy key** button:
+
+![](/static/looker/docs/images/dev-git-new-deploy-keys-718.png)
+
+GitHub displays the **Deploy keys / Add new** page.
+
+  8. Add a title for the deploy key. The name isn't important, but you might want to include "Looker" and your project title to keep track of it in the future.
+
+  9. Paste the deploy key that you copied from Looker .
+
+  10. Select the **Allow write access** option.
+
+**Note:** This is an important step, because Looker requires this setting to make and deploy changes to your LookML model.
+  11. Select the **Add key** button. (At this point, your Git provider may prompt you to enter your password. If so, enter your password and then select **Confirm password**.)
+
+  12. GitHub will show all the deploy keys that have been added for your repository.
+
+  13. Go back to your Looker window, and, in the **Configure Git** page, select **Test and Finalize Setup**.
+
+From here, you can try again to set up the deploy key, or you can select **Skip Tests and Finalize Setup** to keep your current settings.
+
+Git is now configured for your LookML project. From here you can [validate your LookML](/looker/docs/lookml-validation#validating_your_changes), and then create your initial commit and deploy to production to make your project available in [Production Mode](/looker/docs/dev-mode-prod-mode#production_mode). You can also:
+
+  * Use the Git menu to access the [Git commands](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker).
+  * Use the Git menu to test your Git connection.
+  * If you're a Looker admin, go to the [project settings](/looker/docs/git-options#project_settings) to require LookML validation and to configure [Git integration options](/looker/docs/git-options#git_integration_options).
+
+### Configuring a bare Git repository
+
+If you haven't yet created a remote Git repository, or if you just want to get set up quickly so others can benefit from your LookML, you can configure a bare Git repository. Configuring a bare Git repository creates a local Git repository on your Looker instance, rather than connecting to a remote repository.
+
+When you select the option to create a bare repository, Looker creates the repository on your Looker server and starts the Git history for the repository.
+
+When you create a new project during the process of [generating a model](/looker/docs/generating-a-model), the project is automatically configured with a bare repository.
+
+**Warning:** Don't use the bare repository option if you intend to subsequently connect your LookML project to a Git repository that has a Git history. If you do so, Looker will be unable to reconcile the two Git histories and you will be unable to perform any Git actions.
+
+To configure a LookML project with a bare Git repository:
+
+  1. [Open your project](/looker/docs/manage-projects#accessing-project-files) or [create a new LookML project](/looker/docs/generating-a-model).
+  2. In your project, select the **Settings** icon from the left-hand icon menu to open the **Project Configuration** page.
+  3. In the **Project Configuration** page, perform one of the following actions to open the **Configure Git** page:
+
+     * For a project with no Git connection, select the **Configure Git** button.
+     * For a project that is already configured with a Git connection, select the **Reset Git Connection** button.
+
+> Resetting your Git connection will preserve Git history for the main branch. It will also preserve the history of each Looker developer's personal branch once they pull and merge and then deploy. To preserve history for all branches, see the [Migrating to a new Git repository](/looker/docs/best-practices/how-to-migrate-to-a-new-git-repo) Best Practices page.
+
+  4. Select **Set up a bare repository instead** at the bottom of the **Configure Git** page.
+
+![](/static/looker/docs/images/dev-configure-git-bare-repo-718.png)
+
+  5. In the **Configure Bare Git Repository** dialog, select **Create Repository**.
+
+After the Git repository is created, Looker will display a **Bare Repository Created** dialog.
+
+Git is now configured for your LookML project. From here you can [validate your LookML](/looker/docs/lookml-validation#validating_your_changes), and then create your initial commit and deploy to production to make your project available in [Production Mode](/looker/docs/dev-mode-prod-mode#production_mode). You can also:
+
+  * Use the Git menu to access the [Git commands](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker).
+  * Use the Git menu to test your Git connection.
+  * If you're a Looker admin, go to the [project settings](/looker/docs/git-options#project_settings) to require LookML validation and to configure [Git integration options](/looker/docs/git-options#git_integration_options).
+
+For projects that are configured with a bare repository, you can subsequently use the **Reset Git Connection** if you want to connect the project to a Git provider (see the procedures for using HTTPS or SSH). However, don't connect to a Git repository that already has a Git history. If you have set up your LookML project with a bare repository, Looker creates a repository on your Looker server and starts the Git history for the repository. If you subsequently connect your LookML project to a Git repository that has a Git history, Looker will be unable to reconcile the two Git histories and you will be unable to perform any Git actions.
+
+### Connecting a new LookML project to a non-empty Git repository
+
+Configuring Git for version control is a key step in creating a new LookML project. Typically, each project should have its own repository. However, you may need to configure a project with a Git repository that contains existing LookML, such as in the following situations:
+
+  * When you're moving an existing LookML project between instances
+  * When you're resurrecting the code from a broken or defunct LookML project for use in a new project
+
+**Warning:** Don't use this procedure if you have configured your project with a bare repository. If you have set up your LookML project with a bare repository, Looker creates a repository on your Looker server and starts the Git history for the repository. If you subsequently connect your LookML project to a Git repository that has a Git history, Looker will be unable to reconcile the two Git histories and you will be unable to perform any Git actions.
+
+This section describes best practices for configuring a new LookML project with an existing, non-empty Git repository for further LookML development.
+
+**Note:** This workflow is only for repositories to which you have write access.
+
+  1. Create a new LookML project by selecting **Blank Project** as the starting point. A blank project is the starting point because it will be populated with LookML objects from an existing repository, rather than from a database schema or SQL query.
+  2. Configure Git for your project using either HTTPS or SSH, using the URL for the non-empty project in the **Repository URL** section of the **Configure Git** page.
+  3. Once you have configured Git for your project, [pull from production](/looker/docs/git-command-reference#pull_prod) from the **Git Actions** panel.
+  4. Once you have pulled from production, [select **Deploy to Production**](/looker/docs/version-control-and-deploying-changes#deploying_to_production).
+
+Changes that you make to the LookML in your project won't affect the original repository; rather, the changes will be saved in your local version of the repository.
+
+If you want to to use a specific public repository as the basis of a blank LookML project but you don't have write access to that repository, follow the instructions that are outlined in the [Cloning a public Git repository](/looker/docs/create-projects#cloning_a_public_git_repository) section of the **Creating a new LookML project** documentation page.
+
+If you're setting up a Git workflow using one repository across multiple instances, see the Community post on [Git workflow using one repository across multiple instances — development, staging, and production](https://www.googlecloudcommunity.com/gc/Technical-Tips-Tricks/Git-Workflow-Using-One-Repository-Across-Multiple-Instances/ta-p/587693) for more information.
+
+## Testing your Git connection
+
+Looker provides a Git connection test to verify your Git connection. The Git connection test verifies that you've set up the correct Git URL and that the Git host is reachable by Looker . The Git connection test also verifies that you have provided a valid Git deploy key and that the deploy key has write access to your Git repository.
+
+If Looker is unable to connect to your Git repository, the [Git button](/looker/docs/version-control-and-deploying-changes#executing_git_commands_in_looker) will display the text **Test Git Connection** to prompt you to troubleshoot your connection.
+
+![](/static/looker/docs/images/dev-git-test-auto-718.png)
+
+You can also access the Git connection test tool by selecting **Test Git Connection** in the **Git actions** panel:
+
+![](/static/looker/docs/images/dev-git-test-manual-718.png)
+
+The Git connection test tool then displays the steps it is taking to test the Git connection:
+
+  1. **Examine git remote**
+  2. **Host name for git service will resolve**
+  3. **Networking to the git service is operational**
+  4. **Verify authorization credentials**
+  5. **Ensure credentials allow write access**
+
+If a step is successful, Looker displays a green checkmark to the left of the step. If a step is unsuccessful, Looker displays a red checkmark to the left of the step and also displays an error message.
+
+The following example shows a successful test:
+
+![Git Connection Test dialog displaying a list of steps with green checkmarks next to them to indicate that all steps were successful.](/static/looker/docs/images/dev-git-test-success-2100.png)
+
+In the following example, the Git repository does not have a deploy key configured for the Looker connection. The green checkmarks to the left of the first three steps indicate that these steps were successful:
+
+  * `Examine git remote`
+  * `Host name for git service will resolve`
+  * `Networking to the git service is operational`
+
+The red checkmarks to the left of the last two steps indicate that these steps failed:
+
+  * `Verify authorization credentials`
+  * `Ensure credentials allow write access`
+
+![Git Connection Test dialog displaying a list of successful and failed steps. An error under the Verify authorization credentials step reads Cannot AUTH to remote \(Looker deploy key\).](/static/looker/docs/images/dev-git-test-error-2100.png)

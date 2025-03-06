@@ -16,7 +16,6 @@ __pycache__/
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -28,34 +27,61 @@ lib64/
 parts/
 sdist/
 var/
+wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-.pytest_cache/
-.coverage
-htmlcov/
-.tox/
-.nox/
 
-# Virtual environments
+# Virtual Environment
 venv/
 ENV/
 env/
-.venv/
+.env
 
-# Jupyter Notebook
-.ipynb_checkpoints
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Project specific
+node_modules/
+temp_docs/
+garbage/
+reference/
+.credentials/
+google-cloud-sdk/
+scraped_docs/
+cloud.google.com/
+
+# Temporary files
+*.log
+*.tmp
+temp_*
+*_temp
+
+# Large data files
+*.pdf
+*.zip
+*.tar.gz
+
+# Credentials and secrets
+*.pem
+*.key
+*.crt
+.env
+.env.*
+!.env.example
 
 # Data files
-*.csv
-*.tsv
-*.xls
-*.xlsx
 *.db
 *.sqlite3
-*.log
 *.json
+!url_structure.json
 !vertex_config.yaml
+!package.json
+!package-lock.json
 
 # Repository flattening outputs
 flattened_repos/
@@ -72,7 +98,6 @@ backup/
 *~
 
 # OS specific files
-.DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
@@ -116,4 +141,13 @@ generated/
 bucket-data/
 
 # Test outputs
-test-results/ 
+test-results/
+
+# Non-working scripts and reference materials
+*.pdf
+
+# Keep
+!requirements.txt
+!scripts/
+!config/
+!scraped_content/

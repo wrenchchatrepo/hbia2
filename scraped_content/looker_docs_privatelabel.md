@@ -1,0 +1,224 @@
+# https://cloud.google.com/looker/docs/privatelabel
+
+Depth: 3
+
+**Note:** If you are using a [Looker (Google Cloud core)](/looker/docs/looker-core-overview) instance, you will see this page only if you are using the [**Embed** edition](/looker/docs/looker-core-instance-create#create_edition) of Looker (Google Cloud core).
+
+You can customize Looker to remove references to Looker and blend the look and feel of Looker with your branding.
+
+**Note:** To access all the admin pages in Looker, you must have the [Admin role](/looker/docs/admin-panel-users-roles#default_roles). If you have a permission that enables only parts of the **Admin** panel, such as [`manage_schedules`](/looker/docs/admin-panel-users-roles#manage_schedules) or [`manage_themes`](/looker/docs/admin-panel-users-roles#manage_themes), but you don't have the Admin role, then Looker may not display the page or pages described in this article in the **Admin** panel. Also, the `see_admin` permission grants read-only permission to most (but not all) Admin pages. See the [`see_admin`](/looker/docs/admin-panel-users-roles#see_admin) description for more information.
+
+On the **Private Label** admin page, you can configure the following options:
+
+  * Documentation Links
+  * Email Subscription Options
+  * Help Menu
+  * Custom Favicon
+  * Custom Logo
+  * Custom Document Title
+  * Looker Mentions in Scheduled Emails
+  * Custom Welcome Email Advanced Settings
+  * Looker Mentions in Account Setup
+  * Looker Logo in Alerts
+  * Looker Links in Alerts
+  * Looker Mentions in Folders Pages
+
+Depending on your pricing plan, you can also customize the following options:
+
+  * Download PDFs Without Logo
+  * Embed Without Logo
+
+## Enabling private label
+
+Google Cloud must enable the private label option for your instance. [Contact a Google Cloud sales specialist](https://cloud.google.com/contact) for pricing and additional information.
+
+## Private Label Admin page
+
+In the Looker **Admin** panel, the **Private Label** page lets you load custom logos and customize how certain links to Looker are shown or hidden.
+
+### Documentation Links
+
+**Documentation Links** lets you show or hide the following links to Looker's documentation:
+
+  * The **Docs** and **User Guide** options in the **Help** menu:
+
+![A screenshot of the Looker Help menu.](/static/looker/docs/images/whitelabel-74-help-menu-docs-user-guide.png)
+
+  * The **Help + Syntax Reference** link in the **Custom Filters** panel:
+
+![A screenshot of the Custom Filters panel.](/static/looker/docs/images/admin-whitelabel-custom-filter-link-418.png)
+
+  * The question mark icon in the **matches (advanced)** option in the **Filters** panel:
+
+![A screenshot of the Filters panel.](/static/looker/docs/images/admin-whitelabel-advanced-matches-link-418.png)
+
+  * The question mark icon next to the [custom format field](/looker/docs/custom-formatting#using_custom_formatting_in_visualizations) in the **Series** tab of a [table visualization](/looker/docs/table-options#series_menu_options):
+
+![A screenshot of the Series tab of a table visualization.](/static/looker/docs/images/admin-whitelabel-custom-format-table-716.png)
+
+### Email Subscription Options
+
+Typically, there is a link on the Account page where a user can manage their [email subscriptions](/looker/docs/user-account#changing_your_email_subscription_settings). Your selection in **Email Subscription Options** determines whether or not that link is shown on the Account page.
+
+![A screenshot of the Looker Account page. One of the fields is titled Subscription Settings, next to which is a link titled Manage your email subscription settings.](/static/looker/docs/images/admin-whitelabel-email-subscription-514.png)
+
+### Help Menu
+
+The **Help Menu** setting lets you show or hide the **Help** menu on the main menu bar:
+
+![A screenshot of the Looker main menu bar's help menu options.](/static/looker/docs/images/whitelabel-74-help-menu.png)
+
+### Custom Favicon
+
+Toggle this switch on to upload a custom favicon. Looker displays the favicon in browser tabs and windows:
+
+![A screenshot of a favicon in a browser tab.](/static/looker/docs/images/admin-whitelabel-favicon-418.png)
+
+After you toggle the switch on, Looker displays buttons to let you choose your favicon file and upload it. The favicon must be in ICO, PNG, or GIF file format, and must be one of the following sizes:
+
+  * 16 x 16 pixels
+  * 32 x 32 pixels
+  * 48 x 48 pixels
+  * 64 x 64 pixels
+
+### Custom Logo
+
+Toggle this switch on to upload a custom logo.
+
+Looker displays two versions of the logo. The first is small, rendered at 75 by 32 pixels, in the menu bar:
+
+![A screenshot of the main menu bar. The Looker logo appears in the upper left hand corner.](/static/looker/docs/images/admin-whitelabel-small-logo-64.png)
+
+The second is large, rendered at 210 by 90 pixels, that appears on various pages in the product, including:
+
+  * User login
+  * Password reset
+  * User account setup
+  * Email unsubscribe
+  * Download a dashboard as a PDF
+
+![A sample image of the Looker logo.](/static/looker/docs/images/admin-whitelabel-large-logo-520.png)
+
+After you toggle the switch on, Looker displays buttons to let you choose and upload your file icon. The logo must be in ICO, PNG, or GIF file format, and 500 KB or smaller.
+
+### Custom Document Title
+
+Enable this option to enter a custom document title. Looker displays the document title in the browser tabs and windows:
+
+![A screenshot of a browser tab. The page title is highlighted.](/static/looker/docs/images/admin-whitelabel-document-title-418.png)
+
+The document title usually shows a user's location within the Looker application, but Looker will display the custom document title when there is not an available specific document title.
+
+### Looker Mentions in Scheduled Emails
+
+By default, deliveries of [Looks](/looker/docs/delivering-looks-explores#include_links), [dashboards](/looker/docs/scheduling-and-sending-dashboards#include_links), and LookML dashboards to email include a link that reads **View full report** or **View full dashboard** :
+
+![A screenshot of a Looker-generated email that contains a dashboard. At the beginning of the email, there is a highlighted link that reads View this data in Looker.](/static/looker/docs/images/looker-mentions-in-emails-78.png)
+
+This link lets the email recipients connect to your Looker instance and further explore the data delivered in the email. Disabling the **Looker Mentions in Scheduled Emails** option replaces this text with **View full dashboard**.
+
+![A screenshot of a Looker-generated email that contains a dashboard. At the beginning of the email, there is a highlighted link that reads View full dashboard.](/static/looker/docs/images/looker-mentions-in-emails-off-78.png)
+
+To remove the link altogether, see the [**Emailed Data Policy** options](/looker/docs/admin-panel-alerts-and-schedules-scheduled-emails#default_emailed_data_policy_options) on the **Scheduled Emails** page in the **Admin** panel.
+
+### Custom Welcome Email Advanced Settings
+
+If you have enabled [custom welcome emails](/looker/docs/admin-panel-users-custom-welcome-email), you can edit the body text of the emails that new Looker [users](/looker/docs/admin-panel-users-users) will receive when they are added to your instance. By default, Looker welcome emails include the subject line "Welcome to Looker" and header text that reads "You've been invited to join Looker!"
+
+If you enable the **Custom Welcome Email Advanced Settings** option, you can also edit the subject line and header text in welcome emails.
+
+The header text and body text support HTML for adding formatting and links.
+
+In addition, when you enable this option, the **Activate Your Account** button that is included in welcome emails is colored gray instead of purple.
+
+### Looker Mentions in Account Setup
+
+By default, new users activating their Looker account with email and password authentication will see references to Looker in the welcome message on the account setup page:
+
+![A screenshot of the Looker account setup page. There is a Looker logo at the top of the page, followed by the text Welcome to Looker!.](/static/looker/docs/images/account-setup-reference-switch-off-78.png)
+
+They will also see "Welcome to Looker" in the browser tab:
+
+![A screenshot of a browser tab with the title Welcome to Looker! The favicon is the Looker logo.](/static/looker/docs/images/whitelabel-browser-tab-text-account-setup-not-enabled-78.png)
+
+To remove the reference to Looker in the welcome message and browser tab, switch on the **Looker Mentions in Account Setup** option. When this is enabled, the new user will only see "Welcome" on the page:
+
+![A screenshot of the Looker account setup page. There is a Looker logo at the top of the page, followed by the text Welcome!.](/static/looker/docs/images/account-setup-reference-switch-on-78.png)
+
+The user will also only see "Welcome" on the browser tab:
+
+![A screenshot of a browser tab with the title Welcome! The favicon is the Looker logo.](/static/looker/docs/images/whitelabel-browser-tab-text-account-setup-enabled-78.png)
+
+If **Custom Logo** is also enabled, the Looker logo will be replaced with the specified logo image file. With both features enabled, a new user will see the following on the account setup page:
+
+![A screenshot of the Looker account setup page. There is a sample company logo at the top of the page, followed by the text Welcome!.](/static/looker/docs/images/account-setup-reference-switch-on-custom-logo-78.png)
+
+If **Custom Favicon** is also enabled, the Looker logo will be replaced with the specified icon image file on the account setup page browser tab:
+
+![A screenshot of a browser tab with the title Welcome! The favicon is a sample company logo.](/static/looker/docs/images/whitelabel-browser-tab-text-account-setup-favicon-enabled-78.png)
+
+### Looker Logo in Alerts
+
+By default, [alert notification emails](/looker/docs/alerts-overview#alert_notifications_to_email) include the Looker logo:
+
+![A screenshot of an alert notification email. The Looker logo appears near the bottom of the email.](/static/looker/docs/images/whitelabel-alerts-logo-not-enabled-78.png)
+
+To remove the Looker logo from alert notification emails, switch on **Looker Logo in Alerts**. Recipients will then see whitespace instead of the Looker logo:
+
+![A screenshot of an alert notification email. There is no logo at the bottom of the email.](/static/looker/docs/images/whitelabel-alerts-logo-enabled-78.png)
+
+Use **Looker Logo in Alerts** together with **Looker Links in Alerts** to further customize the appearance of alert notification emails.
+
+### Looker Links in Alerts
+
+By default, [alert notification emails](/looker/docs/alerts-overview#alert_notifications_to_email) include the following links:
+
+![An alert notification email. There is a large purple button titled Go to Dashboard, along with a Looker logo and two links that read Unfollow this alert and Edit this alert.](/static/looker/docs/images/whitelabel-alerts-links-not-enabled-78.png)
+
+  1. A purple **Go to Content** button that links back to the Looker content on which the alert is set.
+  2. An **Unfollow this alert** link that removes the recipient from the alert subscription.
+  3. An **Edit this alert** link that links back to the Looker content on which the alert is set.
+
+The **Looker Links in Alerts** feature lets you remove the links from alert notification emails. To remove links back to Looker in alert notification emails, switch on **Looker Links in Alerts**. The purple **Go to Content** button will no longer appear, and the bottom two links will be replaced with instructions for navigating to the content in Looker to modify or disable the alert:
+
+![An alert notification email. There is a Looker logo and a link that reads Navigate to your dashboard to disable or edit this alert.](/static/looker/docs/images/whitelabel-alerts-links-enabled-78.png)
+
+When **Looker Links in Alerts** is enabled along with **Looker Logo in Alerts**, recipients will only see the alert information and instructions to navigate to the content in Looker to modify or disable the alert:
+
+![An alert notification email. There is a link that reads 'Navigate to your dashboard to disable or edit this alert'.](/static/looker/docs/images/looker-logo-and-links-alerts-enabled-78.png)
+
+### Looker Mentions in Folders Pages
+
+By default, a user sees a message reading **Welcome to Looker!** in the folder when there is no content saved in their personal folder.
+
+![](/static/looker/docs/images/whitelabel-710-looker-mentions-folders-off.png)
+
+To remove the reference to Looker, switch on **Looker Mentions in Folders Pages**. When this is enabled, users will only see **Welcome!** in their empty personal folder:
+
+![A screenshot of an empty personal folder. There is a message that reads 'Welcome!'](/static/looker/docs/images/whitelabel-710-looker-mentions-folders-on.png)
+
+## Additional optional private label features
+
+There are two additional private label features that allow you to further customize PDF downloads and embedded content. Looker must enable these features for your instance. [Contact a Google Cloud sales specialist](https://cloud.google.com/contact) for pricing and additional information.
+
+### Download PDFs Without Logo
+
+By default, generated PDFs include a footnote that reads **Generated by Looker on`<TIMESTAMP>`**:
+
+![A screenshot of a downloaded PDF of a Looker dashboard. A footnote reads Generated by Looker on March 12, 2020 at 9:04am PDT.](/static/looker/docs/images/whitelabel-present-wo-logo-74.png)
+
+When **Download PDFs Without Logo** is enabled for your instance, the footnote instead reads **Generated on`<TIMESTAMP>`**:
+
+![A screenshot of a downloaded PDF of a Looker dashboard. There is a footnote that reads 'Generated on March 12, 2020 at 9:04am PDT'.](/static/looker/docs/images/whitelabel-present-wo-logo-enabled-74.png)
+
+### Embed Without Logo
+
+By default, content embedded in an iFrame includes a footer that reads **Powered by Looker**.
+
+![A screenshot of an iFrame that displays an embedded Looker dashboard. A footer reads Powered by Looker.](/static/looker/docs/images/whitelabel-embed-wo-logo-74.png)
+
+When **Embed without Logo** is enabled for your instance, the footer is removed.
+
+![A screenshot of an iFrame that displays an embedded Looker dashboard. There is no footer.](/static/looker/docs/images/whitelabel-embed-wo-logo-enabled-74.png)
+
+For more embedded content customization options, see the [**Remove Look Navigation**](/looker/docs/admin-panel-platform-embed#remove_look_navigation) feature on the [**Embed** page](/looker/docs/admin-panel-platform-embed) in the **Admin** panel.

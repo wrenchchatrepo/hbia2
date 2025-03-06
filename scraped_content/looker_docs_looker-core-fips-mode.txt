@@ -1,0 +1,21 @@
+The [Federal Information Processing Standard Publication (FIPS) 140-2](https://csrc.nist.gov/pubs/fips/140-2/upd2/final) is a US government computer security standard that is used to approve cryptographic modules. New Looker (Google Cloud core) instances can be created that meet FIPS 140-2 Level 1 standards.
+
+## Create a FIPS 140-2 compliant Looker (Google Cloud core) instance
+
+To create a new FIPS 140-2 compliant Looker (Google Cloud core) instance, in the **FIPS 140-2 Validated Encryption** portion of the **Encryption** section, select the **Enable FIPS 140-2 Validated encryption** checkbox when [you create the Looker (Google Cloud core) instance](/looker/docs/looker-core-instance-create).
+
+Only new instances can be placed into FIPS-compliant mode.
+
+## FIPS and database dialects
+
+Any database that was used by a Looker (Google Cloud core) instance that is in FIPS-compliant mode won't work with a Looker (Google Cloud core) instance that is not in FIPS-compliant mode.
+
+Several database dialects that are otherwise supported by Looker (Google Cloud core) are not supported in FIPS-compliant mode. The following [dialects](/looker/docs/looker-core-dialects#supported-dialects-for) are not supported in FIPS-compliant mode:
+
+  * Denodo 8
+  * Dremio 11+
+  * IBM Netezza
+  * Microsoft SQL Server (MSSQL)
+  * PrestoSQL
+  * Teradata
+  * Trino

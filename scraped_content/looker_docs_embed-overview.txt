@@ -1,0 +1,14 @@
+Looker's embed solution offers application developers and product teams an extremely fast time-to-value solution for delivering embedded analytics experience, ranging from single visualizations to complete dashboard or data exploration experiences.
+
+Contrasted with solutions that are built entirely from the REST API, or solutions that are built using visualization components, the Looker embed solution offers a more out-of-the-box solution with all the functionality and UI built in to a single iframe.
+
+## Using Looker's embed solution
+
+You can integrate our embed solution into your web application either [generating an embed URL](/looker/docs/get-signed-embed-url) from a Looker dashboard, Look, or Explore, or by manually [including an iframe with an appropriately signed URL](/looker/docs/single-sign-on-embedding), or by leveraging our [Embed SDK](/looker/docs/embed-sdk-intro) to facilitate the process. In addition, Looker customers who are looking to provide convenient access to already authenticated Looker users from the context of other applications can use our [Private Embed modality](/looker/docs/private-embedding) to simplify the integration work even further.
+
+## Try it out
+
+Want to see the Looker embed solution in action before writing any code? These demos can help:
+
+  * [Atom Fashion](https://atomfashion.io/): A demo data-driven web app (requires Google account to log in)
+  * [Looker signed embed tool](https://fabio-looker.github.io/looker_sso_tool/): An app that you can use to generate a signed embed URL (requires an embed secret from your instance)
