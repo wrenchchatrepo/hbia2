@@ -1,0 +1,46 @@
+---
+description: brain is my implementation of the imdone python card kanbani
+globs: *.py *.js, *.ts, *.jsx, *.tsx
+alwaysApply: false
+---
+
+# Project Rules: brain
+
+## Auto-attach
+- Python files (*.py) and Markdown files (*.md)
+
+## Project Type
+- Personal knowledge management system using imdone for task tracking
+
+## Languages
+- Python 3 (with requirements.txt for dependencies)
+- Markdown for content and task management
+
+## Structure
+- `.imdone/` - Configuration for the imdone kanban board
+- `journal/` - Personal journal entries
+- `reference/` - Reference materials
+- `backlog/` - Task backlog
+- `scripts/` - Utility scripts
+- `archive/` - Archived content
+
+## Task Management
+- Uses imdone kanban with custom lists (BACKLOG, PLANNING, TODO, DOING, DONE, etc.)
+- Tasks are managed as cards with metadata (tags, due dates, reminders)
+
+## URL Processing
+- Contains Python scripts for processing and annotating URLs
+- Uses API keys stored securely (likely for AI processing)
+
+## Python Style
+- Uses type hints
+- Follows modern Python practices (pathlib, typing)
+- Includes error handling and retries for API calls
+
+## Documentation
+- Markdown-based documentation
+- Comments in code for complex logic
+
+## Security
+- API keys loaded from environment variables
+- Credentials directory for secure storage

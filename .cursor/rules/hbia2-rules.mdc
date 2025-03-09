@@ -1,0 +1,41 @@
+---
+description: This project is almost entirely in GCP but it sync'd with GitHub
+globs: .py
+alwaysApply: false
+---
+# Project Rules: hbia2
+
+## Auto-attach
+- Python files (*.py)
+
+## Framework
+- Google Vertex AI Agent Builder
+
+## Language
+- Python 3.11 with strict typing
+
+## Cloud Configuration
+- **Project ID**: heuristicsai
+- **Project Number**: 976453210613 (used for billing)
+- **Region**: us-central1
+- **Location**: global
+
+## API Integration
+- Anthropic Claude API
+- Google Gemini API
+- Deepseek API
+- Firewalk API
+
+## Search Integration
+- Google Search with Search Engine ID "5156d1d267745405c"
+
+## Credentials
+- All API keys and tokens stored securely in macOS Keychain
+
+## Documentation
+- Google-style docstrings
+
+## Testing
+- Comprehensive test coverage
+
+--

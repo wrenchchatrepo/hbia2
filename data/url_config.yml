@@ -1,0 +1,34 @@
+# URL Processing Configuration
+github_repos:
+  batch_size: 5
+  priority_files:
+    - "*.md"
+    - "*.rst"
+    - "*.txt"
+  exclude_patterns:
+    - "node_modules/**"
+    - "dist/**"
+    - "build/**"
+    - ".git/**"
+    - "coverage/**"
+    - "tmp/**"
+
+documentation_sites:
+  batch_size: 3
+  include_patterns:
+    - "**/*.md"
+    - "**/*.rst"
+    - "**/*.txt"
+  exclude_patterns:
+    - "**/node_modules/**"
+    - "**/dist/**"
+    - "**/build/**"
+    - "**/.git/**"
+    - "**/coverage/**"
+    - "**/tmp/**"
+
+output:
+  reference_dir: "references"
+  content_dir: "content"
+  text_dir: "text"
+  log_file: "processing.log" 

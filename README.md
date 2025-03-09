@@ -1,173 +1,159 @@
-# Vertex AI Agent Builder
+# HBIA2 Repository
 
-A comprehensive framework for building, deploying, and managing intelligent agents using Google Cloud's Vertex AI.
+This repository contains scripts and data for scraping, processing, and uploading documentation for various Google Cloud products.
 
-## Overview
-
-This repository contains all the necessary components to set up a suite of specialized AI agents using Google Cloud's Vertex AI. The agents are designed to provide expert assistance in various domains including Looker, BigQuery, DBT, GCP architecture, Omni, and Looker Studio.
-
-## Features
-
-- **Multiple Specialized Agents**: Domain-specific assistants for Looker, BigQuery, DBT, GCP, Omni, and Looker Studio
-- **Automated Setup**: Scripts to automate the entire setup process
-- **Documentation Integration**: Automatically downloads and processes relevant documentation
-- **Repository Integration**: Flattens and processes GitHub repositories for knowledge ingestion
-- **Slack Integration**: Connect your agents to Slack for team collaboration
-- **Centralized Configuration**: Easy-to-manage configuration files
-
-## Prerequisites
-
-- Google Cloud Platform account with billing enabled
-- `gcloud` CLI installed and configured
-- `gsutil` installed
-- `git` installed
-- `wget` installed
-- Bash shell environment
-
-## Quick Start
-
-1. Clone this repository:
-```bash
-   git clone https://github.com/wrenchchatrepo/hbia2.git
-   cd hbia2
-   ```
-
-2. Fill in the required values in the `.env` file:
-   ```bash
-   cp .env.example .env
-   # Edit .env with your specific values
-   ```
-
-3. Run the setup script:
-```bash
-   chmod +x setup_vertex_agent.sh
-   ./setup_vertex_agent.sh
-   ```
-
-4. Follow the prompts to complete the setup.
-
-## Project Structure
+## Repository Structure
 
 ```
-.
-├── .env                           # Environment variables (create from .env.example)
-├── vertex_config.yaml             # Main configuration file
-├── setup_vertex_agent.sh          # Main setup script
-├── flatten_repos.sh               # Script to process GitHub repositories
-├── download_docs.sh               # Script to download documentation
-├── repos.md                       # List of repositories to process
-├── scripts/
-│   ├── setup/
-│   │   ├── create_datastores.sh   # Script to create Vertex AI datastores
-│   │   └── create_agents.sh       # Script to create Vertex AI agents
-│   └── update/
-│       └── update_datastores.sh   # Script to update datastores
-└── datastores/                    # Directory for downloaded documentation
-    ├── looker/
-    ├── bigquery/
-    ├── dbt/
-    ├── gcp/
-    ├── omni/
-    └── lookerstudio/
+/hbia2/
+├── scripts/                           # All scraping and processing scripts
+│   ├── scrapers/                      # Scripts for scraping content
+│   │   ├── api/                       # API scraping scripts
+│   │   ├── docs/                      # Documentation scraping scripts
+│   │   └── github/                    # GitHub repo scraping scripts
+│   ├── processors/                    # Scripts for processing content
+│   │   ├── api/                       # API processing scripts
+│   │   ├── docs/                      # Documentation processing scripts
+│   │   └── github/                    # GitHub repo processing scripts
+│   ├── utils/                         # Utility scripts
+│   └── upload/                        # Scripts for uploading to GS buckets
+├── data/                              # All data (scraped and processed)
+│   ├── bigquery/                      # BigQuery product data
+│   │   ├── api/                       # API documentation
+│   │   │   ├── scraped/               # Raw scraped content
+│   │   │   └── processed/             # Processed content
+│   │   ├── docs/                      # General documentation
+│   │   └── github/                    # GitHub repository content
+│   ├── looker/                        # Looker product data
+│   ├── looker-studio/                 # Looker Studio product data
+│   ├── gcp/                           # GCP product data
+│   ├── dbt/                           # dbt product data
+│   ├── omni/                          # Omni product data
+│   └── combined/                      # Combined data across products
+├── config/                            # Configuration files
+│   ├── bucket_mappings.json           # Mapping of products to GS buckets
+│   └── datastore_mappings.json        # Mapping of products to data stores
 ```
+
+## Products
+
+The repository is organized around the following products:
+
+1. **BigQuery**: Google's fully managed, serverless data warehouse
+2. **Looker**: Business intelligence and data analytics platform
+3. **Looker Studio**: Data visualization and reporting platform
+4. **GCP**: Google Cloud Platform services
+5. **dbt**: Data build tool for analytics engineering
+6. **Omni**: Looker's multi-cloud analytics solution
+
+## Content Types
+
+For each product, we organize content into the following types:
+
+1. **API**: API documentation and reference
+2. **Docs**: General product documentation
+3. **GitHub**: Content from GitHub repositories
+
+## Source Types
+
+For each content type, we have two source types:
+
+1. **Scraped**: Raw content scraped from documentation websites or GitHub repositories
+2. **Processed**: Processed content ready for upload to GS buckets and data stores
+
+## Scripts
+
+### Scrapers
+
+Scripts for scraping content from documentation websites and GitHub repositories.
+
+- `scripts/scrapers/api/scrape_bigquery_api.py`: Scrape BigQuery API documentation
+- `scripts/scrapers/api/scrape_looker_api.py`: Scrape Looker API documentation
+- `scripts/scrapers/api/scrape_storage_api.py`: Scrape Google Cloud Storage API documentation
+
+### Processors
+
+Scripts for processing scraped content.
+
+- `scripts/processors/api/process_bigquery_api.py`: Process BigQuery API documentation
+- `scripts/processors/api/process_looker_api.py`: Process Looker API documentation
+- `scripts/processors/api/process_storage_api.py`: Process Google Cloud Storage API documentation
+
+### Utils
+
+Utility scripts for various tasks.
+
+- `scripts/utils/combine_api_docs.py`: Combine API documentation from multiple products
+- `scripts/utils/extract_looker_models.py`: Extract model properties from Looker API documentation
+
+### Upload
+
+Scripts for uploading content to GS buckets and data stores.
+
+- `scripts/upload/upload_to_bucket.py`: Upload content to GS buckets
+- `scripts/upload/upload_to_datastore.py`: Upload content to data stores
 
 ## Configuration
 
-### Environment Variables (.env)
+Configuration files for the repository.
 
-The `.env` file contains sensitive information and configuration parameters:
+- `config/bucket_mappings.json`: Mapping of products to GS buckets
+- `config/datastore_mappings.json`: Mapping of products to data stores
 
-- Project information (ID, region)
-- API keys
-- Storage bucket names
-- Slack integration details
-- Agent configuration parameters
+## Usage
 
-### Main Configuration (vertex_config.yaml)
+### Scraping Content
 
-The `vertex_config.yaml` file defines the structure of your Vertex AI agents:
-
-- Organization information
-- Google Cloud project details
-- Storage configuration
-- Agent definitions
-- Integration settings
-- Code interpreter settings
-
-## Setup Process
-
-The setup process consists of several steps:
-
-1. **Environment Setup**: Configuring Google Cloud project and enabling APIs
-2. **Infrastructure Creation**: Creating storage buckets and directory structure
-3. **Data Collection**: Downloading documentation and processing GitHub repositories
-4. **Datastore Creation**: Setting up Vertex AI datastores
-5. **Agent Creation**: Creating and configuring Vertex AI agents
-6. **Integration**: Setting up Slack integration (optional)
-
-## Maintenance
-
-### Updating Datastores
-
-To update the content in your datastores:
+To scrape API documentation for a product:
 
 ```bash
-./scripts/update/update_datastores.sh
+cd scripts/scrapers/api
+python3 scrape_<product>_api.py
 ```
 
-### Adding New Repositories
+### Processing Content
 
-1. Edit the `repos.md` file to add new GitHub repositories
-2. Run the repository flattening script:
-   ```bash
-   ./flatten_repos.sh
-   ```
-3. Update the datastores:
-   ```bash
-   ./scripts/update/update_datastores.sh
-   ```
+To process API documentation for a product:
 
-## Slack Integration
+```bash
+cd scripts/processors/api
+python3 process_<product>_api.py
+```
 
-To integrate your agents with Slack:
+### Uploading Content
 
-1. Create a Slack app in the [Slack API Console](https://api.slack.com/apps)
-2. Enable webhooks and generate tokens
-3. Update the `.env` file with your Slack credentials
-4. Configure the channels in `vertex_config.yaml`
+To upload content to a GS bucket:
 
-## Security Considerations
+```bash
+cd scripts/upload
+python3 upload_to_bucket.py --product <product> --content-type <content_type> --source-type <source_type>
+```
 
-- Keep your `.env` file secure and never commit it to version control
-- Use service accounts with minimal required permissions
-- Regularly rotate API keys and tokens
-- Monitor usage to detect any unauthorized access
+To upload content to a data store:
 
-## Troubleshooting
+```bash
+cd scripts/upload
+python3 upload_to_datastore.py --product <product> --content-type <content_type> --source-type <source_type>
+```
 
-### Common Issues
+## Examples
 
-- **API Quota Exceeded**: Increase your quota limits in Google Cloud Console
-- **Permission Denied**: Check IAM permissions for your service account
-- **Datastore Update Failures**: Ensure your bucket has the correct files and format
+### Scrape and Process BigQuery API Documentation
 
-### Logs
+```bash
+# Scrape BigQuery API documentation
+cd scripts/scrapers/api
+python3 scrape_bigquery_api.py
 
-Check the following logs for troubleshooting:
+# Process BigQuery API documentation
+cd ../../processors/api
+python3 process_bigquery_api.py
 
-- `flatten_repos.log`: Repository processing logs
-- Google Cloud Logging: For Vertex AI related issues
+# Upload processed BigQuery API documentation to GS bucket
+cd ../../upload
+python3 upload_to_bucket.py --product bigquery --content-type api --source-type processed
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Google Cloud Vertex AI team for the powerful agent platform
-- The open-source community for valuable tools and libraries
+# Upload processed BigQuery API documentation to data store
+python3 upload_to_datastore.py --product bigquery --content-type api --source-type processed
+```
 
