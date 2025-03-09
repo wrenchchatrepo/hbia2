@@ -103,64 +103,88 @@ class URLTracker:
         for product in PRODUCTS:
             scraped_urls[product] = {'api': set(), 'docs': set(), 'github': set()}
             
-            # Check API scraped content
+            # Check API scraped content in data directory
             api_dir = os.path.join(self.data_dir, product, 'api', 'scraped')
             if os.path.exists(api_dir):
-                # Find all .md and .txt files in the API directory
                 api_files = glob.glob(os.path.join(api_dir, '*.md')) + glob.glob(os.path.join(api_dir, '*.txt'))
-                for file_path in api_files:
-                    # Extract URL from file content (usually in the first few lines)
-                    try:
-                        with open(file_path, 'r') as f:
-                            content = f.read(500)  # Read first 500 chars
-                            # Look for URL patterns in the content
-                            if 'http://' in content or 'https://' in content:
-                                lines = content.split('\n')
-                                for line in lines:
-                                    if line.startswith('Source:') and ('http://' in line or 'https://' in line):
-                                        url = line.replace('Source:', '').strip()
-                                        scraped_urls[product]['api'].add(url)
-                                        break
-                    except Exception as e:
-                        print(f"Error reading file {file_path}: {e}")
+                scraped_urls[product]['api'].update(self._extract_urls_from_files(api_files, product, 'api'))
             
-            # Check docs scraped content
+            # Check docs scraped content in data directory
             docs_dir = os.path.join(self.data_dir, product, 'docs', 'scraped')
             if os.path.exists(docs_dir):
                 docs_files = glob.glob(os.path.join(docs_dir, '*.md')) + glob.glob(os.path.join(docs_dir, '*.txt'))
-                for file_path in docs_files:
-                    try:
-                        with open(file_path, 'r') as f:
-                            content = f.read(500)
-                            if 'http://' in content or 'https://' in content:
-                                lines = content.split('\n')
-                                for line in lines:
-                                    if line.startswith('Source:') and ('http://' in line or 'https://' in line):
-                                        url = line.replace('Source:', '').strip()
-                                        scraped_urls[product]['docs'].add(url)
-                                        break
-                    except Exception as e:
-                        print(f"Error reading file {file_path}: {e}")
+                scraped_urls[product]['docs'].update(self._extract_urls_from_files(docs_files, product, 'docs'))
             
-            # Check GitHub scraped content
+            # Check GitHub scraped content in data directory
             github_dir = os.path.join(self.data_dir, product, 'github', 'scraped')
             if os.path.exists(github_dir):
                 github_files = glob.glob(os.path.join(github_dir, '*.md')) + glob.glob(os.path.join(github_dir, '*.txt'))
-                for file_path in github_files:
-                    try:
-                        with open(file_path, 'r') as f:
-                            content = f.read(500)
-                            if 'http://' in content or 'https://' in content:
-                                lines = content.split('\n')
-                                for line in lines:
-                                    if line.startswith('Source:') and ('http://' in line or 'https://' in line):
-                                        url = line.replace('Source:', '').strip()
-                                        scraped_urls[product]['github'].add(url)
-                                        break
-                    except Exception as e:
-                        print(f"Error reading file {file_path}: {e}")
-                        
+                scraped_urls[product]['github'].update(self._extract_urls_from_files(github_files, product, 'github'))
+            
+            # Also check the general scraped_content directory
+            if os.path.exists(self.scraped_dir):
+                # Use the product name as a filter
+                product_files = glob.glob(os.path.join(self.scraped_dir, f"{product}_*.md")) + \
+                               glob.glob(os.path.join(self.scraped_dir, f"{product}.md")) + \
+                               glob.glob(os.path.join(self.scraped_dir, f"{product}_*.txt"))
+                
+                # Add files from the looker_docs directory for the looker product
+                if product == 'looker':
+                    product_files += glob.glob(os.path.join(self.scraped_dir, 'looker_docs_*.md'))
+                
+                # Process the files found
+                for content_type in CONTENT_TYPES:
+                    # Filter files that match this content type
+                    type_files = [f for f in product_files if content_type in f.lower()]
+                    scraped_urls[product][content_type].update(self._extract_urls_from_files(type_files, product, content_type))
+                    
         return scraped_urls
+        
+    def _extract_urls_from_files(self, files: List[str], product: str, content_type: str) -> Set[str]:
+        """Extract URLs from a list of files."""
+        urls = set()
+        
+        # First try to extract from file contents
+        for file_path in files:
+            try:
+                with open(file_path, 'r') as f:
+                    content = f.read(1000)  # Read first 1000 chars
+                    
+                    # Look for URL patterns in the content
+                    if 'http://' in content or 'https://' in content:
+                        lines = content.split('\n')
+                        for line in lines:
+                            # Check for common source indicators
+                            if any(indicator in line.lower() for indicator in 
+                                  ['source:', 'original url:', 'url:', 'from:']):
+                                if 'http://' in line or 'https://' in line:
+                                    # Extract the URL part
+                                    url_start = line.find('http')
+                                    if url_start >= 0:
+                                        url = line[url_start:].split()[0].strip()
+                                        urls.add(url)
+                                        break
+            except Exception as e:
+                print(f"Error reading file {file_path}: {e}")
+        
+        # If we couldn't extract URLs from content, use the filename itself
+        if not urls:
+            # Based on the existence of files, mark URLs as scraped
+            # Load target URLs for comparison
+            target_urls_file = os.path.join(self.data_dir, product, content_type, 'urls.txt')
+            if os.path.exists(target_urls_file):
+                try:
+                    with open(target_urls_file, 'r') as f:
+                        target_urls = [line.strip() for line in f 
+                                      if line.strip() and not line.strip().startswith('#')]
+                    
+                    # If files exist, consider all target URLs as scraped
+                    if files:
+                        urls.update(target_urls)
+                except Exception as e:
+                    print(f"Error reading target URLs file {target_urls_file}: {e}")
+        
+        return urls
         
     def _extract_url_from_filename(self, filename: str) -> str:
         """Extract the original URL from a filename (if possible)."""
