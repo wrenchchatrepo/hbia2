@@ -12,7 +12,9 @@ Instead of hardcoding sensitive information like SSNs, bank account details, and
 
 ## Files
 
-- `store_credentials.py`: Script to store organization details in the Keychain
+- `store_credentials.py`: Script to store all organization details in the Keychain
+- `store_single_credential.py`: Script to store a single credential in the Keychain
+- `list_credentials.py`: Script to list all stored organization credentials
 - `retrieve_credentials.py`: Library to retrieve credentials from the Keychain
 - `example_usage.py`: Example showing how to use the credentials in an application
 
@@ -20,7 +22,11 @@ Instead of hardcoding sensitive information like SSNs, bank account details, and
 
 ### Step 1: Store Credentials
 
-Run the storage script to securely add your organization details to the Keychain:
+You have two options for storing credentials:
+
+#### Option 1: Store All Credentials at Once
+
+Run the storage script to securely add all your organization details to the Keychain:
 
 ```bash
 cd /Users/dionedge/dev/hbia2/scripts/utils/credentials
@@ -29,7 +35,35 @@ python3 store_credentials.py
 
 You will be prompted to enter each piece of information. Sensitive fields like SSN and bank details will have masked input.
 
-### Step 2: Use Credentials in Your Application
+#### Option 2: Store Individual Credentials
+
+To store a single credential at a time:
+
+```bash
+python3 store_single_credential.py CREDENTIAL_NAME
+```
+
+For example:
+```bash
+python3 store_single_credential.py COMPANY_NAME
+```
+
+To see a list of available credential names:
+```bash
+python3 store_single_credential.py --list
+```
+
+### Step 2: View Stored Credentials
+
+To see what credentials are currently stored:
+
+```bash
+python3 list_credentials.py
+```
+
+This will display all stored credentials with sensitive information masked.
+
+### Step 3: Use Credentials in Your Application
 
 Import the retrieval functions in your application code:
 
@@ -55,7 +89,7 @@ python3 example_usage.py
 
 ## Security Notes
 
-1. The `store_credentials.py` script should be run once to set up credentials and then secured or deleted.
+1. The credential storage scripts should be run in a secure environment.
 2. Never commit sensitive information to version control.
 3. The macOS Keychain provides strong encryption for your credentials.
 4. Access to the Keychain may require user authentication depending on your macOS security settings.
