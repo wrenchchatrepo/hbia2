@@ -35,6 +35,10 @@
   - ✅ scripts/update/ - Update scripts
     - ✅ 08_update_datastores.sh
     - ✅ 31_update_datastores.sh (alternative version)
+  - ✅ scripts/utils/ - Utility scripts
+    - ✅ credentials/ - Secure credential management using macOS Keychain
+    - ✅ track_urls.py - Track URLs that have been scraped and those yet to be scraped
+    - ✅ setup_url_files.py - Set up URL files for each product and content type
 - ✅ Created simulation versions of scripts that had issues
 
 ### Directory Structure
@@ -64,6 +68,10 @@
     - ✅ omni_playbook.yaml
     - ✅ looker_studio_playbook.yaml
     - ✅ generative_router_playbook.yaml
+- ✅ Created URL file structure for each product and content type
+  - ✅ Created data/[product]/[content_type]/urls.txt files for all products and content types
+  - ✅ Created data/[product]/[content_type]/scraped/ directories for scraped content
+  - ✅ Created data/[product]/[content_type]/processed/ directories for processed content
 
 ### Documentation
 - ✅ Created detailed README.md
@@ -75,6 +83,7 @@
 - ✅ Successfully scraped and organized Looker documentation (441 pages)
 - ✅ Implemented efficient documentation scraping pipeline
 - ✅ Created clean markdown and text versions of all documentation
+- ✅ Created URL tracking reports for monitoring scraping progress
 
 ### Code Organization
 - ✅ Moved non-working scripts to garbage/ directory
@@ -90,6 +99,7 @@
 - ✅ Organized content in both markdown and text formats
 - ✅ Implemented rate limiting and retry logic
 - ✅ Added progress tracking and timing information
+- ✅ Created URL tracking system for monitoring scraping progress
 - 🔄 Process remaining product documentation (BigQuery, DBT, etc.)
 - ⬜ Create documentation index for easy navigation
 - ⬜ Implement search functionality across documentation
@@ -148,6 +158,18 @@
 │   └── playbooks/                    # Agent playbooks
 ├── data/                             # All data (scraped and processed)
 │   ├── bigquery/                     # BigQuery product data
+│   │   ├── api/                      # API documentation
+│   │   │   ├── scraped/              # Scraped API content
+│   │   │   ├── processed/            # Processed API content
+│   │   │   └── urls.txt              # URLs to scrape
+│   │   ├── docs/                     # General documentation
+│   │   │   ├── scraped/              # Scraped docs content
+│   │   │   ├── processed/            # Processed docs content
+│   │   │   └── urls.txt              # URLs to scrape
+│   │   └── github/                   # GitHub repository content
+│   │       ├── scraped/              # Scraped GitHub content
+│   │       ├── processed/            # Processed GitHub content
+│   │       └── urls.txt              # URLs to scrape
 │   ├── combined/                     # Combined data across products
 │   ├── dbt/                          # dbt product data
 │   ├── gcp/                          # GCP product data
@@ -180,6 +202,9 @@
 │   ├── update/                       # Update scripts
 │   ├── upload/                       # Upload scripts
 │   └── utils/                        # Utility scripts
+│       ├── credentials/              # Credential management scripts
+│       ├── track_urls.py             # URL tracking script
+│       └── setup_url_files.py        # URL file setup script
 ├── scraped_content/                  # Raw scraped content
 ├── scraped_docs/                     # Raw scraped documentation
 │   ├── bigquery/                     # BigQuery documentation
