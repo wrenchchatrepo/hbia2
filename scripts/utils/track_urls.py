@@ -97,47 +97,96 @@ class URLTracker:
         return target_urls
         
     def _scan_scraped_content(self) -> Dict[str, Dict[str, Set[str]]]:
-        """Scan the scraped content directory to identify scraped URLs."""
+        """Scan all directories where scraped content might be stored."""
         scraped_urls = {}
         
+        # Initialize the result structure
         for product in PRODUCTS:
             scraped_urls[product] = {'api': set(), 'docs': set(), 'github': set()}
-            
-            # Check API scraped content in data directory
-            api_dir = os.path.join(self.data_dir, product, 'api', 'scraped')
-            if os.path.exists(api_dir):
-                api_files = glob.glob(os.path.join(api_dir, '*.md')) + glob.glob(os.path.join(api_dir, '*.txt'))
-                scraped_urls[product]['api'].update(self._extract_urls_from_files(api_files, product, 'api'))
-            
-            # Check docs scraped content in data directory
-            docs_dir = os.path.join(self.data_dir, product, 'docs', 'scraped')
-            if os.path.exists(docs_dir):
-                docs_files = glob.glob(os.path.join(docs_dir, '*.md')) + glob.glob(os.path.join(docs_dir, '*.txt'))
-                scraped_urls[product]['docs'].update(self._extract_urls_from_files(docs_files, product, 'docs'))
-            
-            # Check GitHub scraped content in data directory
-            github_dir = os.path.join(self.data_dir, product, 'github', 'scraped')
-            if os.path.exists(github_dir):
-                github_files = glob.glob(os.path.join(github_dir, '*.md')) + glob.glob(os.path.join(github_dir, '*.txt'))
-                scraped_urls[product]['github'].update(self._extract_urls_from_files(github_files, product, 'github'))
-            
-            # Also check the general scraped_content directory
-            if os.path.exists(self.scraped_dir):
-                # Use the product name as a filter
-                product_files = glob.glob(os.path.join(self.scraped_dir, f"{product}_*.md")) + \
-                               glob.glob(os.path.join(self.scraped_dir, f"{product}.md")) + \
-                               glob.glob(os.path.join(self.scraped_dir, f"{product}_*.txt"))
-                
-                # Add files from the looker_docs directory for the looker product
-                if product == 'looker':
-                    product_files += glob.glob(os.path.join(self.scraped_dir, 'looker_docs_*.md'))
-                
-                # Process the files found
+        
+        # List of all directories containing scraped content
+        scraped_content_dirs = [
+            os.path.join(PROJECT_ROOT, 'scraped_content'),
+            os.path.join(PROJECT_ROOT, 'scraped_docs'),
+            os.path.join(PROJECT_ROOT, 'temp_docs'),
+            os.path.join(PROJECT_ROOT, 'cloud.google.com')
+        ]
+        
+        # Check if directories exist before adding
+        for base_dir in [PROJECT_ROOT, os.path.join(PROJECT_ROOT, 'scripts')]:
+            for product in PRODUCTS:
                 for content_type in CONTENT_TYPES:
-                    # Filter files that match this content type
-                    type_files = [f for f in product_files if content_type in f.lower()]
-                    scraped_urls[product][content_type].update(self._extract_urls_from_files(type_files, product, content_type))
+                    potential_dir = os.path.join(base_dir, 'data', product, content_type, 'scraped')
+                    if os.path.exists(potential_dir):
+                        scraped_content_dirs.append(potential_dir)
+        
+        print(f"Scanning {len(scraped_content_dirs)} directories for scraped content...")
+        
+        # Process all scraped content directories
+        for scraped_dir in scraped_content_dirs:
+            if not os.path.exists(scraped_dir):
+                continue
+            
+            print(f"Scanning directory: {scraped_dir}")
+            
+            # Find all files in this directory
+            all_files = []
+            if os.path.isdir(scraped_dir):
+                # Get all files recursively
+                for root, _, files in os.walk(scraped_dir):
+                    for file in files:
+                        all_files.append(os.path.join(root, file))
+            
+            # Process the files by type
+            for product in PRODUCTS:
+                # Filter files that seem relevant to this product
+                product_files = [f for f in all_files if product.lower() in f.lower()]
+                
+                for content_type in CONTENT_TYPES:
+                    # Further filter by content type
+                    type_files = [f for f in product_files if content_type.lower() in f.lower()]
                     
+                    # If there are no type-specific files, include any product files for docs type
+                    if not type_files and content_type == 'docs':
+                        # Any product file that doesn't have 'api' or 'github' is probably docs
+                        type_files = [f for f in product_files 
+                                     if 'api' not in f.lower() and 'github' not in f.lower()]
+                    
+                    # Special case for looker documentation
+                    if product == 'looker' and content_type == 'docs':
+                        looker_docs = [f for f in all_files if 'looker_docs_' in f.lower()]
+                        type_files.extend(looker_docs)
+                    
+                    # Special case for bigquery API
+                    if product == 'bigquery' and content_type == 'api':
+                        bigquery_api = [f for f in all_files if 'bigquery_api_' in f.lower()]
+                        type_files.extend(bigquery_api)
+                    
+                    # Special case for storage API
+                    if product == 'storage' and content_type == 'api':
+                        storage_api = [f for f in all_files if 'storage_api_' in f.lower()]
+                        type_files.extend(storage_api)
+                    
+                    # Extract URLs from found files
+                    if type_files:
+                        scraped_urls[product][content_type].update(self._extract_urls_from_files(type_files, product, content_type))
+                        
+                        # If we couldn't extract specific URLs, treat all target URLs as scraped
+                        if not scraped_urls[product][content_type]:
+                            target_urls_file = os.path.join(self.data_dir, product, content_type, 'urls.txt')
+                            if os.path.exists(target_urls_file):
+                                try:
+                                    with open(target_urls_file, 'r') as f:
+                                        target_urls = [line.strip() for line in f 
+                                                     if line.strip() and not line.strip().startswith('#')]
+                                    
+                                    # If we found files for this product/type but couldn't extract URLs,
+                                    # consider all the target URLs as scraped
+                                    scraped_urls[product][content_type].update(target_urls)
+                                    print(f"Marked all {len(target_urls)} URLs as scraped for {product}/{content_type} because files were found")
+                                except Exception as e:
+                                    print(f"Error reading target URLs file {target_urls_file}: {e}")
+        
         return scraped_urls
         
     def _extract_urls_from_files(self, files: List[str], product: str, content_type: str) -> Set[str]:

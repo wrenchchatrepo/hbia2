@@ -1,6 +1,6 @@
 # URL Tracking Report
 
-Generated on: 2025-03-08 23:56:33
+Generated on: 2025-03-09 00:05:19
 
 ## BIGQUERY
 
@@ -10,7 +10,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 3 (100.0%)
 - Pending: 0 (0.0%)
-- Last Updated: 2025-03-08T23:56:33.573830
+- Last Updated: 2025-03-09T00:05:19.735358
 
 **All URLs have been scraped**
 
@@ -23,16 +23,16 @@ Generated on: 2025-03-08 23:56:33
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573838
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735367
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://cloud.google.com/bigquery/docs
 - https://cloud.google.com/bigquery/docs/introduction
 - https://cloud.google.com/bigquery/docs/quickstarts
-
-**No URLs have been scraped yet**
 
 ### GITHUB
 
@@ -40,7 +40,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 0 (0.0%)
 - Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573840
+- Last Updated: 2025-03-09T00:05:19.735370
 
 **URLs to Scrape**:
 - https://github.com/GoogleCloudPlatform/bigquery-utils
@@ -57,7 +57,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 3 (100.0%)
 - Pending: 0 (0.0%)
-- Last Updated: 2025-03-08T23:56:33.573842
+- Last Updated: 2025-03-09T00:05:19.735372
 
 **All URLs have been scraped**
 
@@ -72,7 +72,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 3 (100.0%)
 - Pending: 0 (0.0%)
-- Last Updated: 2025-03-08T23:56:33.573844
+- Last Updated: 2025-03-09T00:05:19.735374
 
 **All URLs have been scraped**
 
@@ -87,7 +87,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 0 (0.0%)
 - Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573850
+- Last Updated: 2025-03-09T00:05:19.735376
 
 **URLs to Scrape**:
 - https://github.com/looker-open-source/actions
@@ -102,30 +102,30 @@ Generated on: 2025-03-08 23:56:33
 
 **Summary**:
 - Total URLs: 2
-- Scraped: 0 (0.0%)
-- Pending: 2 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573852
+- Scraped: 2 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735378
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://docs.getdbt.com/reference/commands
 - https://docs.getdbt.com/reference/dbt-jinja-functions
-
-**No URLs have been scraped yet**
 
 ### DOCS
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573854
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735380
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://docs.getdbt.com/
 - https://docs.getdbt.com/docs/build/projects
 - https://docs.getdbt.com/docs/introduction
-
-**No URLs have been scraped yet**
 
 ### GITHUB
 
@@ -133,7 +133,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 0 (0.0%)
 - Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573855
+- Last Updated: 2025-03-09T00:05:19.735382
 
 **URLs to Scrape**:
 - https://github.com/dbt-labs/dbt-bigquery
@@ -148,31 +148,31 @@ Generated on: 2025-03-08 23:56:33
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573857
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735385
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://cloud.google.com/api-gateway/docs
 - https://cloud.google.com/apis
 - https://cloud.google.com/apis/docs
-
-**No URLs have been scraped yet**
 
 ### DOCS
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573859
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735387
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://cloud.google.com/docs
 - https://cloud.google.com/docs/overview
 - https://cloud.google.com/products
-
-**No URLs have been scraped yet**
 
 ### GITHUB
 
@@ -180,7 +180,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 0 (0.0%)
 - Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573861
+- Last Updated: 2025-03-09T00:05:19.735389
 
 **URLs to Scrape**:
 - https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit
@@ -197,7 +197,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 1
 - Scraped: 0 (0.0%)
 - Pending: 1 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573862
+- Last Updated: 2025-03-09T00:05:19.735391
 
 **URLs to Scrape**:
 - https://cloud.google.com/bigquery/docs/omni-api-reference
@@ -208,16 +208,16 @@ Generated on: 2025-03-08 23:56:33
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573864
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735393
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://cloud.google.com/bigquery/docs/omni-aws-introduction
 - https://cloud.google.com/bigquery/docs/omni-azure-introduction
 - https://cloud.google.com/bigquery/docs/omni-overview
-
-**No URLs have been scraped yet**
 
 ### GITHUB
 
@@ -225,7 +225,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 1
 - Scraped: 0 (0.0%)
 - Pending: 1 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573866
+- Last Updated: 2025-03-09T00:05:19.735394
 
 **URLs to Scrape**:
 - https://github.com/GoogleCloudPlatform/professional-services/tree/main/examples/bigquery-omni
@@ -238,30 +238,30 @@ Generated on: 2025-03-08 23:56:33
 
 **Summary**:
 - Total URLs: 2
-- Scraped: 0 (0.0%)
-- Pending: 2 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573868
+- Scraped: 2 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735396
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://developers.google.com/looker-studio/connector/reference
 - https://developers.google.com/looker-studio/reference
-
-**No URLs have been scraped yet**
 
 ### DOCS
 
 **Summary**:
 - Total URLs: 3
-- Scraped: 0 (0.0%)
-- Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573869
+- Scraped: 3 (100.0%)
+- Pending: 0 (0.0%)
+- Last Updated: 2025-03-09T00:05:19.735398
 
-**URLs to Scrape**:
+**All URLs have been scraped**
+
+**Scraped URLs**:
 - https://developers.google.com/looker-studio
 - https://developers.google.com/looker-studio/connector
 - https://support.google.com/looker-studio
-
-**No URLs have been scraped yet**
 
 ### GITHUB
 
@@ -269,7 +269,7 @@ Generated on: 2025-03-08 23:56:33
 - Total URLs: 3
 - Scraped: 0 (0.0%)
 - Pending: 3 (100.0%)
-- Last Updated: 2025-03-08T23:56:33.573871
+- Last Updated: 2025-03-09T00:05:19.735399
 
 **URLs to Scrape**:
 - https://github.com/googledatastudio/community-connectors
