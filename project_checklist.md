@@ -138,3 +138,67 @@
 5. **Set up integrations**: Configure Slack and other integrations
 6. **Document usage**: Add examples and usage instructions
 7. **Create documentation tools**: Build search and navigation tools for processed documentation
+
+## Project Directory Structure
+
+```
+/hbia2/
+├── config/                           # Configuration files
+│   ├── assistants/                   # Assistant configurations
+│   └── playbooks/                    # Agent playbooks
+├── data/                             # All data (scraped and processed)
+│   ├── bigquery/                     # BigQuery product data
+│   ├── combined/                     # Combined data across products
+│   ├── dbt/                          # dbt product data
+│   ├── gcp/                          # GCP product data
+│   ├── looker/                       # Looker product data
+│   ├── looker-studio/                # Looker Studio product data
+│   ├── omni/                         # Omni product data
+│   └── storage/                      # Storage product data
+├── datastores/                       # Datastore content
+│   ├── bigquery/                     # BigQuery datastore
+│   ├── dbt/                          # dbt datastore
+│   ├── gcp/                          # GCP datastore
+│   ├── looker/                       # Looker datastore
+│   ├── looker-studio/                # Looker Studio datastore
+│   └── omni/                         # Omni datastore
+├── docs/                             # Project documentation
+│   ├── architecture.md               # Architecture documentation
+│   ├── setup_guide.md                # Setup guide
+│   └── usage_guide.md                # Usage guide
+├── scripts/                          # All scripts
+│   ├── main/                         # Main operational scripts
+│   ├── processors/                   # Content processing scripts
+│   │   ├── api/                      # API processing scripts
+│   │   ├── docs/                     # Documentation processing scripts
+│   │   └── github/                   # GitHub processing scripts
+│   ├── scrapers/                     # Content scraping scripts
+│   │   ├── api/                      # API scraping scripts
+│   │   ├── docs/                     # Documentation scraping scripts
+│   │   └── github/                   # GitHub scraping scripts
+│   ├── setup/                        # Setup scripts
+│   ├── update/                       # Update scripts
+│   ├── upload/                       # Upload scripts
+│   └── utils/                        # Utility scripts
+├── scraped_content/                  # Raw scraped content
+├── scraped_docs/                     # Raw scraped documentation
+│   ├── bigquery/                     # BigQuery documentation
+│   ├── dbt/                          # dbt documentation
+│   ├── gcp/                          # GCP documentation
+│   ├── looker/                       # Looker documentation
+│   └── looker-studio/                # Looker Studio documentation
+├── slack/                            # Slack integration files
+├── .env                              # Environment variables
+├── .gitignore                        # Git ignore file
+├── README.md                         # Repository documentation
+└── requirements.txt                  # Python dependencies
+```
+
+This directory structure organizes the repository into logical sections:
+- `config/`: Configuration files for agents and playbooks
+- `data/`: Organized by product, content type, and source type
+- `datastores/`: Content for each product's datastore
+- `docs/`: Project documentation
+- `scripts/`: Organized by function (scrapers, processors, utils, upload)
+- `scraped_content/` and `scraped_docs/`: Raw scraped content
+- `slack/`: Slack integration files
