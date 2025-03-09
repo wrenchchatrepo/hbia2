@@ -23,6 +23,9 @@ def main():
             # Try to retrieve the credential
             value = get_from_keychain(SERVICE_NAME, key)
             
+            if value is None:
+                continue
+                
             # Mask sensitive information
             if any(sensitive in key for sensitive in ['SSN', 'EIN', 'BANK', 'ACCT', 'ROUTING']):
                 # Show only last 4 characters if available
@@ -46,7 +49,8 @@ def main():
     
     print()
     print("To store credentials, run: python3 store_credentials.py")
-    print("To use these credentials in your code, see example_usage.py")
+    print("To store a single credential, run: python3 store_single_credential.py --credential CREDENTIAL_NAME")
+    print("To see available credential names, run: python3 store_single_credential.py --list")
 
 if __name__ == "__main__":
     main() 

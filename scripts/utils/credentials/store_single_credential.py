@@ -35,8 +35,12 @@ def store_in_keychain(service, account, password):
 def main():
     """Store a single organization credential in the Keychain."""
     parser = argparse.ArgumentParser(description="Store a single organization credential in the macOS Keychain.")
-    parser.add_argument("credential", choices=ORG_KEYS, help="The credential to store")
-    parser.add_argument("--list", action="store_true", help="List available credentials")
+    
+    # Create a mutually exclusive group for the credential and list arguments
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--credential", choices=ORG_KEYS, help="The credential to store")
+    group.add_argument("--list", action="store_true", help="List available credentials")
+    
     args = parser.parse_args()
     
     if args.list:

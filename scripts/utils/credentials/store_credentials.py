@@ -24,14 +24,14 @@ ORG_KEYS = [
     "COMPANY_OWNER"
 ]
 
-def store_in_keychain(account: str, password: str, service: str = SERVICE_NAME) -> bool:
+def store_in_keychain(service: str, account: str, password: str) -> bool:
     """
     Store a password in the macOS Keychain.
     
     Args:
+        service: The service name
         account: The account/key name
         password: The password/value to store
-        service: The service name
         
     Returns:
         bool: True if successful, False otherwise
@@ -39,13 +39,13 @@ def store_in_keychain(account: str, password: str, service: str = SERVICE_NAME) 
     try:
         # Delete existing password if it exists
         subprocess.run(
-            ["security", "delete-generic-password", "-a", account, "-s", service],
+            ["security", "delete-generic-password", "-s", service, "-a", account],
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
         )
         
         # Add the new password
-        cmd = ["security", "add-generic-password", "-a", account, "-s", service, "-w", password]
+        cmd = ["security", "add-generic-password", "-s", service, "-a", account, "-w", password]
         result = subprocess.run(cmd, capture_output=True, text=True)
         
         if result.returncode == 0:
@@ -103,7 +103,7 @@ def main():
     # Store in keychain
     success = True
     for key, value in details.items():
-        if not store_in_keychain(key, value):
+        if not store_in_keychain(SERVICE_NAME, key, value):
             success = False
     
     if success:

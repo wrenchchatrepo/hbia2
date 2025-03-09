@@ -21,25 +21,25 @@ ORG_KEYS = [
     "COMPANY_OWNER"
 ]
 
-def get_from_keychain(account: str, service: str = SERVICE_NAME) -> Optional[str]:
+def get_from_keychain(service: str, account: str) -> Optional[str]:
     """
     Retrieve a password from the macOS Keychain.
     
     Args:
-        account: The account/key name
         service: The service name
+        account: The account/key name
         
     Returns:
         str: The retrieved password/value, or None if not found
     """
     try:
-        cmd = ["security", "find-generic-password", "-a", account, "-s", service, "-w"]
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        cmd = ["security", "find-generic-password", "-s", service, "-a", account, "-w"]
+        result = subprocess.run(cmd, capture_output=True, text=True, check=False)
         
         if result.returncode == 0:
             return result.stdout.strip()
         else:
-            print(f"❌ Failed to retrieve {account}: {result.stderr}")
+            # Item not found or other error - return None silently
             return None
     except Exception as e:
         print(f"❌ Error retrieving {account}: {str(e)}")
@@ -54,7 +54,7 @@ def get_organization_details() -> Dict[str, str]:
     """
     details = {}
     for key in ORG_KEYS:
-        value = get_from_keychain(key)
+        value = get_from_keychain(SERVICE_NAME, key)
         if value:
             details[key] = value
     return details
@@ -74,7 +74,7 @@ def get_specific_detail(key: str) -> Optional[str]:
         print(f"Available keys: {', '.join(ORG_KEYS)}")
         return None
     
-    return get_from_keychain(key)
+    return get_from_keychain(SERVICE_NAME, key)
 
 def main():
     """Main function to demonstrate retrieving organization details."""
